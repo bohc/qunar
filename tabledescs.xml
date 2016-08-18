@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<ts> 
+  <t name="urlbean"> 
+    <c ccode="0" cwidth="50" cname="id" ctype="text" ctitle="编号" cisedit="true" cisshow="true"/>  
+    <c ccode="1" cwidth="300" cname="path" ctype="text" ctitle="路径" cisedit="true" cisshow="true"/>  
+    <c ccode="2" cwidth="50" cname="isselected" ctype="text" ctitle="是否选中" cisedit="true" cisshow="true"/>  
+  </t>
+</ts>

@@ -1,0 +1,1418 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<root>
+  <com.bhc.bean.Line> 
+    <curPage>0</curPage>  
+    <pageRows>10</pageRows>  
+    <maxcount>0</maxcount>  
+    <propertyChangeSupport serialization="custom"> 
+      <java.beans.PropertyChangeSupport> 
+        <default> 
+          <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+          <children> 
+            <entry> 
+              <string>daysimgcheck</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>username</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>mainpictxt</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>down_date_begin</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>singlelist</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>earlybookday</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>priceratedate3</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>loc</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>dkeystyle</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>favorabledisplaytype3</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>favorabledisplaytype2</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>favorabledisplaytype1</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>limitcountchk</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>btc2ac</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>kidsprice</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>lbc</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>favorabledisplaystart</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>c2dn</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>disenddate</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>c2down</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>favorabledisplaycheck</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>viewimgdir</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>earlyenddate</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>dkeytxt</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>kidspricedesc</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>lupath</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>sigledistance</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>downdatecheck2</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>downdatecheck1</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>specialendtime</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>c2up</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>storenum</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>mupath</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>waterck</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>prate</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>c1up</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>favorabledes</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>excludefee</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>btcprice</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>pricedate</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>adultprice</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>c2del</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>btc2acc</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>btc2</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>specialsatrttime</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>btc1</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>spic6</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>spic5</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>mainpicselect</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>spic4</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>spic3</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>limitcount</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>spic2</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>spic1</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>foodimgdir</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>changespecial</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>changespecial3</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>specialsatrttime3</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>specialsatrttime2</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>changespecial2</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>c1noimg</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>specialendtime3</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>specialendtime2</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>disbegindate</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>marketprice</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>hotelimgdir</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>earlydiscount</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>maxnumtime</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>httpsmodel</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>adck</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>pricedates</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>favorabledisplayend</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>password</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>minnumtime</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>c1nomain</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>ldc</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>httpmodel</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>dkeycheck</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>lpc</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>down_date_end</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>includefee</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>discount</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>priceratedate</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>reduceprice</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>multilist</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>earlystartdate</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>txtdiscription</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>earlybookcheck</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>payck</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry> 
+          </children>  
+          <source class="com.bhc.bean.Line" reference="../../../.."/> 
+        </default>  
+        <null/> 
+      </java.beans.PropertyChangeSupport> 
+    </propertyChangeSupport>  
+    <username>gayosite</username>  
+    <password>024581</password>  
+    <summary> 
+      <curPage>0</curPage>  
+      <pageRows>10</pageRows>  
+      <maxcount>0</maxcount>  
+      <propertyChangeSupport serialization="custom"> 
+        <java.beans.PropertyChangeSupport> 
+          <default> 
+            <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+            <children> 
+              <entry> 
+                <string>confeature</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>advancedaytype</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>features</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>txtfeaturepath</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>advanceday</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>teamno</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>advancehour</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>featurechecked</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>tip</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>advanceminute</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>departure</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>attention</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>recommendation</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>feeexclude</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>feeinclude</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>payway3</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>payway2</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>payway1</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>advancedesc</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>title</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry> 
+            </children>  
+            <source class="com.bhc.bean.Summary" reference="../../../.."/> 
+          </default>  
+          <null/> 
+        </java.beans.PropertyChangeSupport> 
+      </propertyChangeSupport>  
+      <title>{title}</title>  
+      <recommendation>{title}</recommendation>  
+      <teamno>{title}</teamno>  
+      <departure>{title}</departure>  
+      <feature/>  
+      <feeinclude>{title}</feeinclude>  
+      <feeexclude>{title}</feeexclude>  
+      <attention>{title}</attention>  
+      <tip>{title}</tip>  
+      <features>{title}{特色图片}</features>  
+      <payway1>false</payway1>  
+      <payway2>false</payway2>  
+      <payway3>false</payway3>  
+      <confeature>{title}{特色图片}</confeature>  
+      <featurechecked>false</featurechecked> 
+    </summary>  
+    <days/>  
+    <teams/>  
+    <agelimit>{title}</agelimit>  
+    <btcprice>false</btcprice>  
+    <daysimgcheck>false</daysimgcheck>  
+    <viewimgdir>F:\bohc\workspace\qunar</viewimgdir>  
+    <hotelimgdir>F:\bohc\workspace\qunar</hotelimgdir>  
+    <foodimgdir>F:\bohc\workspace\qunar</foodimgdir>  
+    <txtdiscription>{title}</txtdiscription>  
+    <prate>0</prate>  
+    <singlelist>false</singlelist>  
+    <multilist>false</multilist>  
+    <btc1>true</btc1>  
+    <btc2>false</btc2>  
+    <adck>false</adck>  
+    <payck>false</payck>  
+    <btc2ac>false</btc2ac>  
+    <btc2acc>false</btc2acc>  
+    <lbc>true</lbc>  
+    <ldc>true</ldc>  
+    <lpc>true</lpc>  
+    <loc>true</loc>  
+    <c1up>true</c1up>  
+    <c1nomain>true</c1nomain>  
+    <c1noimg>true</c1noimg>  
+    <c2up>false</c2up>  
+    <c2down>false</c2down>  
+    <c2del>false</c2del>  
+    <c2dn>false</c2dn>  
+    <disbegindate>2014-02-11</disbegindate>  
+    <disenddate>2014-04-02</disenddate>  
+    <reduceprice>false</reduceprice>  
+    <earlybookcheck>false</earlybookcheck>  
+    <favorabledisplaycheck>false</favorabledisplaycheck>  
+    <earlystartdate>2014-02-11</earlystartdate>  
+    <earlyenddate>2014-04-02</earlyenddate>  
+    <favorabledisplaytype1>false</favorabledisplaytype1>  
+    <favorabledisplaytype2>false</favorabledisplaytype2>  
+    <favorabledisplaytype3>false</favorabledisplaytype3>  
+    <favorabledisplaystart>2014-02-11</favorabledisplaystart>  
+    <favorabledisplayend>2014-04-02</favorabledisplayend>  
+    <dkeycheck>false</dkeycheck>  
+    <changespecial>false</changespecial>  
+    <changespecial2>false</changespecial2>  
+    <changespecial3>false</changespecial3>  
+    <specialsatrttime>2014-02-11 02:38:37.113 UTC</specialsatrttime>  
+    <specialendtime>2014-02-11 02:38:37.113 UTC</specialendtime>  
+    <httpmodel>true</httpmodel>  
+    <httpsmodel>false</httpsmodel>  
+    <downdatecheck1>false</downdatecheck1>  
+    <downdatecheck2>false</downdatecheck2>  
+    <pricedates/>  
+    <limitcount>0</limitcount>  
+    <limitcountchk>false</limitcountchk>  
+    <waterck>false</waterck>  
+    <mainpicselect>true</mainpicselect>  
+    <mainpictxt>F:\bohc\workspace\qunar\tempimg.jpg</mainpictxt> 
+  </com.bhc.bean.Line>
+</root>

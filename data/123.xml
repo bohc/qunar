@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<root>
+  <com.bhc.bean.Line> 
+    <curPage>0</curPage>  
+    <pageRows>10</pageRows>  
+    <maxcount>0</maxcount>  
+    <propertyChangeSupport serialization="custom"> 
+      <java.beans.PropertyChangeSupport> 
+        <default> 
+          <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+          <children> 
+            <entry> 
+              <string>excludefee</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>btcprice</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>kidspricedesc</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>kidsprice</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry>  
+            <entry> 
+              <string>includefee</string>  
+              <java.beans.PropertyChangeSupport serialization="custom"> 
+                <java.beans.PropertyChangeSupport> 
+                  <default> 
+                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/> 
+                  </default>  
+                  <null/> 
+                </java.beans.PropertyChangeSupport> 
+              </java.beans.PropertyChangeSupport> 
+            </entry> 
+          </children>  
+          <source class="com.bhc.bean.Line" reference="../../../.."/> 
+        </default>  
+        <null/> 
+      </java.beans.PropertyChangeSupport> 
+    </propertyChangeSupport>  
+    <summary> 
+      <curPage>0</curPage>  
+      <pageRows>10</pageRows>  
+      <maxcount>0</maxcount>  
+      <propertyChangeSupport serialization="custom"> 
+        <java.beans.PropertyChangeSupport> 
+          <default> 
+            <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+            <children> 
+              <entry> 
+                <string>teamno</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>title</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry>  
+              <entry> 
+                <string>recommendation</string>  
+                <java.beans.PropertyChangeSupport serialization="custom"> 
+                  <java.beans.PropertyChangeSupport> 
+                    <default> 
+                      <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion>  
+                      <source class="com.bhc.bean.Summary" reference="../../../../../../../../.."/> 
+                    </default>  
+                    <null/> 
+                  </java.beans.PropertyChangeSupport> 
+                </java.beans.PropertyChangeSupport> 
+              </entry> 
+            </children>  
+            <source class="com.bhc.bean.Summary" reference="../../../.."/> 
+          </default>  
+          <null/> 
+        </java.beans.PropertyChangeSupport> 
+      </propertyChangeSupport>  
+      <title>{title}加个测试</title>  
+      <recommendation>{title}加个测试副标题</recommendation>  
+      <teamno>{title}123</teamno>  
+      <feature/> 
+    </summary>  
+    <days/>  
+    <teams/>  
+    <btcprice>false</btcprice>  
+    <includefee>{title}包含机票说明</includefee>  
+    <excludefee>{title}不包含机票说明</excludefee>  
+    <kidspricedesc>{title}儿童价说明</kidspricedesc>  
+    <kidsprice>{title}儿童价</kidsprice> 
+  </com.bhc.bean.Line>
+</root>

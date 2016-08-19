@@ -542,8 +542,9 @@ public class Main extends ApplicationWindow {
 
 				// hl.setValCode(vcode.getText());
 				try {
-					hl.loginForm2();
+					hl.loginForm3();
 				} catch (Exception e1) {
+					e1.printStackTrace();
 					loginstatus.setText("获取验证码失败");
 					return;
 				}

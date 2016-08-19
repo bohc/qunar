@@ -105,6 +105,7 @@ import com.bhc.bean.Line;
 import com.bhc.bean.Summary;
 import com.bhc.bean.Team;
 import com.bhc.bean.Vehicle;
+import com.bhc.test.HttpUtil;
 import com.bhc.util.BaseIni;
 import com.bhc.util.ComparatorLine;
 import com.bhc.util.FileUtil;
@@ -132,7 +133,7 @@ public class HttpLogin {
 
 	public HttpLogin(Main m) {
 		super();
-		realpath = System.getProperty("user.dir");// user.dirÖ¸¶¨ÁËµ±Ç°µÄÂ·¾¶
+		realpath = System.getProperty("user.dir");// user.diræŒ‡å®šäº†å½“å‰çš„è·¯å¾„
 		pxd = new ParseXmlDo();
 		pxdnew = new ParseXmlDoNew();
 		pxQLy = new ParseXmlDoQly();
@@ -187,7 +188,7 @@ public class HttpLogin {
 	}
 
 	public void getVimage() {
-		updateUI("¿ªÊ¼»ñÈ¡ÑéÖ¤Âë");
+		updateUI("å¼€å§‹è·å–éªŒè¯ç ");
 		URI uri = null;
 		try {
 			// uri = new
@@ -216,17 +217,17 @@ public class HttpLogin {
 			}
 			EntityUtils.consume(entity);
 			// valCode = new OCR().recognizeText(new File(validatecode), "jpg");
-			updateUI("»ñÈ¡ÑéÖ¤ÂëÍê±Ï");
+			updateUI("è·å–éªŒè¯ç å®Œæ¯•");
 		} catch (Exception e) {
 			e.printStackTrace();
-			updateUI("»ñÈ¡ÑéÖ¤Âë³ö´í");
+			updateUI("è·å–éªŒè¯ç å‡ºé”™");
 		} finally {
 		}
 	}
 
-	// È¥ÄÄ¶ùµÇÂ½
+	// å»å“ªå„¿ç™»é™†
 	public void loginForm2() throws ClientProtocolException, IOException {
-		// ÕâÊÇÏÂÔØÑéÖ¤Âë
+		// è¿™æ˜¯ä¸‹è½½éªŒè¯ç 
 		URI uri = null;
 		try {
 			uri = new URIBuilder().setScheme("http").setHost("captcha1.pbs.qunar.com").setPath("/api/image").setParameter("k", "{g3njj(t").setParameter("n", String.valueOf(new Date().getTime())).build();
@@ -237,11 +238,12 @@ public class HttpLogin {
 		Long lflag = new Date().getTime();
 		Result ri = VerificationcCode.showGetVerificationcCode(uri, null, realpath + "/1.png");
 		Map<String, String> parameters = new HashMap<String, String>();
-		parameters.put("remember", "0");
+		parameters.put("remember", "1");
 		parameters.put("username", m.line.getUsername());
 		parameters.put("password", m.line.getPassword());
+		parameters.put("loginType", "0");
 
-		parameters.put("vcode", JOptionPane.showInputDialog(null, "<html><img src=\"file:///" + realpath + "/1.png\" width=\33\" height=\55\" id=\"vcodeImg\"><br><center>ÇëÊäÈëÑéÖ¤Âë</center><br></html>"));
+		parameters.put("vcode", JOptionPane.showInputDialog(null, "<html><img src=\"file:///" + realpath + "/1.png\" width=\33\" height=\55\" id=\"vcodeImg\"><br><center>è¯·è¾“å…¥éªŒè¯ç </center><br></html>"));
 		updateUI(parameters.get("vcode"));
 		parameters.put("", "dujia.pro.qunar.com");
 		parameters.put("", "/login/proxy.htm");
@@ -252,7 +254,9 @@ public class HttpLogin {
 
 		Map<String, String> headers = new HashMap<String, String>();
 		headers.put("Cookie", ri.getCookie());
-		Result r = SendRequest.sendPost("http://user.qunar.com/webApi/logins.jsp", headers, parameters, "utf-8");
+		String purl = "http://user.qunar.com/webApi/logins.jsp";
+		purl = "https://user.qunar.com/passport/loginx.jsp";
+		Result r = SendRequest.sendPost(purl, headers, parameters, "utf-8");
 
 		if (r.getStatusCode() == 200) {
 			cookie = r.getCookie();
@@ -290,9 +294,73 @@ public class HttpLogin {
 		EntityUtils.consume(entity);
 	}
 
+	// å»å“ªå„¿ç™»é™†
+	public void loginForm3() throws ClientProtocolException, IOException {
+		// è¿™æ˜¯ä¸‹è½½éªŒè¯ç â€â€
+		/// https://user.qunar.com/captcha/api/image?k={en7mni(z&p=ucenter_login&c=ef7d278eca6d25aa6aec7272d57f0a9a&t=1471579221997
+		URI uri = null;
+		try {
+			uri = new URIBuilder().setScheme("https").setHost("user.qunar.com").setPath("/captcha/api/image").setParameter("k", "{en7mni(z").setParameter("p", "ucenter_login")
+					.setParameter("c", "ef7d278eca6d25aa6aec7272d57f0a9a").setParameter("t", String.valueOf(new Date().getTime())).build();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		String apiUrl = "https://user.qunar.com/captcha/api/image";
+		Map<String, Object> pm = new HashMap<String, Object>();
+		pm.put("k", "{en7mni(z");
+		pm.put("p", "ucenter_login");
+		pm.put("c", "ef7d278eca6d25aa6aec7272d57f0a9a");
+		pm.put("t", String.valueOf(new Date().getTime()));
+		Result ri = HttpUtil.doPostSSL(apiUrl, null, pm);
+
+		System.out.println(ri);
+
+		Long lflag = new Date().getTime();
+		// Result ri = VerificationcCode.showGetVerificationcCode(uri, null,
+		// realpath + "/1.png");
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("remember", "1");
+		parameters.put("username", m.line.getUsername());
+		parameters.put("password", m.line.getPassword());
+		parameters.put("loginType", "0");
+		// loginType=0&ret=https%3A%2F%2Ftb2cadmin.qunar.com%2F&username=13888269845&password=bhc197811&remember=1&vcode=4hfm
+		parameters.put("vcode", JOptionPane.showInputDialog(null, "<html><img src=\"file:///" + realpath + "/1.png\" width=\33\" height=\55\" id=\"vcodeImg\"><br><center>è¯·è¾“å…¥éªŒè¯ç </center><br></html>"));
+		updateUI(parameters.get("vcode").toString());
+		parameters.put("ret", "https://tb2cadmin.qunar.com/");
+
+		Map<String, String> headers = new HashMap<String, String>();
+		headers.put("Cookie", ri.getCookie());
+		String purl = "http://user.qunar.com/webApi/logins.jsp";
+		purl = "https://user.qunar.com/passport/loginx.jsp";
+		// Result r = SendRequest.sendPost(purl, headers, parameters, "utf-8");
+		Result r = HttpUtil.doPostSSL(purl, ri.getHeaders(), parameters);
+		HttpEntity entity=r.getHttpEntity();
+		if(entity!=null){
+			System.out.println(EntityUtils.toString(entity));
+			EntityUtils.consume(entity);
+		}
+		/**
+		 * if (r.getStatusCode() == 200) { cookie = r.getCookie();
+		 * cookies.clear(); for (Cookie c : r.getCookies()) {
+		 * Browser.setCookie(c.getName() + "=" + c.getValue(),
+		 * "http://tb2cadmin.qunar.com"); cookies.add(c); } // for (Cookie c :
+		 * ri.getCookies()) { // Browser.setCookie(c.getName() + "=" +
+		 * c.getValue(), "http://tb2cadmin.qunar.com"); // cookies.add(c); // }
+		 * if (cookie != null && cookie.length() > 0) { loginstatus = true;
+		 * getSupperid(); } // Map<String,Header> m=r.getHeaders(); } HttpEntity
+		 * entity = r.getHttpEntity(); if (entity != null) { InputStream
+		 * instream = entity.getContent(); try { int i = -1; byte[] b = new
+		 * byte[1024]; StringBuffer sb = new StringBuffer(); while ((i =
+		 * instream.read(b)) != -1) { sb.append(new String(b, 0, i, "utf-8")); }
+		 * String content = sb.toString(); System.out.println(content); }
+		 * finally { instream.close(); } } EntityUtils.consume(entity);
+		 */
+	}
+
 	@SuppressWarnings("deprecation")
 	public void loginForm() {
-		updateUI("¿ªÊ¼³õÊ¼»¯µÇÂ¼Êı¾İ");
+		updateUI("å¼€å§‹åˆå§‹åŒ–ç™»å½•æ•°æ®");
 		String loginurl = "http://user.qunar.com/passport/loginx.jsp";
 		// loginurl = "https://user.qunar.com/passport/loginx.jsp";
 		try {
@@ -311,7 +379,7 @@ public class HttpLogin {
 			// nvps.add(new BasicNameValuePair("answer",
 			// "tcxg7Nmq5CICJih99suh8B_wCn4Je-B-3VvdCdnqd2YLPmwZNIuhXxkuInSGc6ODXx71Nl5gjzFRqz7U74uh6RlqdaYG8eg0Nsc_3QluwC4ChPbSXwOa6pFi7bTG06wBXc-f0hUr3y4JanqSNksyqoljCPzJqzrSqptyaoVs3O5D5-vJQtbr74muw24DBig7NIehXxkuTPTGdCfJRVbreoVs3OZCbP6-_pcyN9_fbfFYeKOCYZ7tVplqdyoJreOJUF6q4AEc2roSja0S7kugA5EqyiVXtObGYgOsBh5x5y1CebaSFo0hY1pqvGIEs0bG"));
 			httpost.setEntity(new UrlEncodedFormEntity(nvps, HTTP.UTF_8));
-			updateUI("Ö´ĞĞµÇÂ¼");
+			updateUI("æ‰§è¡Œç™»å½•");
 			HttpResponse response = httpclient.execute(httpost);
 
 			Browser.clearSessions();
@@ -325,7 +393,7 @@ public class HttpLogin {
 			// for (int f = 0; f < temcookie.length; f++) {
 			// Browser.setCookie(temcookie[f], "http://tb2cadmin.qunar.com");
 			// }
-			// System.out.println("ÒÑ·¢ËÍ" + ths[i]);
+			// System.out.println("å·²å‘é€" + ths[i]);
 			// }
 			// for (int j = i; j < ths.length; j++) {
 			// ths[j] = hs[j - i];
@@ -355,20 +423,20 @@ public class HttpLogin {
 							if (tstr.endsWith("true")) {
 								loginstatus = true;
 								getSupperid();
-								updateUI("µÇÂ¼Íê³É");
+								updateUI("ç™»å½•å®Œæˆ");
 							} else {
-								updateUI("µÇÂ¼Ê§°Ü" + content);
+								updateUI("ç™»å½•å¤±è´¥" + content);
 							}
 						} else {
-							updateUI("µÇÂ¼Ê§°Ü" + content);
+							updateUI("ç™»å½•å¤±è´¥" + content);
 						}
 					} else if (m.line.isHttpsmodel()) {
 						if (content.equals("")) {
 							loginstatus = true;
 							getSupperid();
-							updateUI("µÇÂ¼Íê³É");
+							updateUI("ç™»å½•å®Œæˆ");
 						} else {
-							updateUI("µÇÂ¼Ê§°Ü" + content);
+							updateUI("ç™»å½•å¤±è´¥" + content);
 						}
 					}
 				} finally {
@@ -390,7 +458,7 @@ public class HttpLogin {
 		}
 
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 		} // https://tb2cadmin.qunar.com/supplier/flashUpload.action?sourceType=2
 		String url = "https://tb2cadmin.qunar.com/supplier/flashUpload.action";
 		String filePath = "F://cwb/aec379310a5.jpg";
@@ -422,7 +490,7 @@ public class HttpLogin {
 				if (ss.equals("1")) {
 					ss = imgurl.substring(imgurl.indexOf("\"imgUrl\":\"") + "\"imgUrl\":\"".length());
 					ss = ss.substring(0, ss.indexOf(",") - ",".length());
-					updateUI("Í¼Æ¬:" + imgurl + "£¬ÉÏ´«Íê³É");
+					updateUI("å›¾ç‰‡:" + imgurl + "ï¼Œä¸Šä¼ å®Œæˆ");
 					return ss;
 				}
 			}
@@ -434,7 +502,7 @@ public class HttpLogin {
 
 	public String postFileHttps(String ifile) {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 		} // https://tb2cadmin.qunar.com/supplier/flashUpload.action?sourceType=2
 			// https://tb2cadmin.qunar.com/supplier/flashUpload.action?sourceType=2&ie=false
 		String url = "https://tb2cadmin.qunar.com/supplier/flashUpload.action";
@@ -463,7 +531,7 @@ public class HttpLogin {
 				if (ss.equals("1")) {
 					ss = imgurl.substring(imgurl.indexOf("\"imgUrl\":\"") + "\"imgUrl\":\"".length());
 					ss = ss.substring(0, ss.indexOf("\""));
-					updateUI("Í¼Æ¬:" + imgurl + "£¬ÉÏ´«Íê³É");
+					updateUI("å›¾ç‰‡:" + imgurl + "ï¼Œä¸Šä¼ å®Œæˆ");
 					return ss;
 				} else {
 					updateUI(ss);
@@ -476,10 +544,10 @@ public class HttpLogin {
 	}
 
 	public void getSourceLine(String url) {
-		if (m.line.getCselect().equals("ĞÂÍøÕ¾")) {
+		if (m.line.getCselect().equals("æ–°ç½‘ç«™")) {
 			pxdnew.getHurl(url);
 			line = pxdnew.getLine();
-		} else if (m.line.getCselect().equals("qlyÍøÕ¾")) {
+		} else if (m.line.getCselect().equals("qlyç½‘ç«™")) {
 			pxQLy.getHurl(url);
 			line = pxQLy.getLine();
 		} else {
@@ -491,20 +559,20 @@ public class HttpLogin {
 	public void postLine() {
 		String teamno = line.getSummary().getTeamno();
 		if (teamno == null || teamno.trim().length() == 0) {
-			updateUI("ÍÅºÅ²»ÄÜÎª¿Õ");
+			updateUI("å›¢å·ä¸èƒ½ä¸ºç©º");
 			return;
 		}
 		teamno = teamno.trim();
 		updateUI(teamno + "\t" + pid);
 		if (m.line.isBtc1()) {
-			boolean oup = false;// ¼ÇÂ¼ĞŞ¸ÄÇ°ÊÇ²»ÊÇÊôÓÚÉÏ¼Ü×´Ì¬
+			boolean oup = false;// è®°å½•ä¿®æ”¹å‰æ˜¯ä¸æ˜¯å±äºä¸Šæ¶çŠ¶æ€
 			searchExistLine(teamno, "warehouse", 1);
 			if (pid.equals("")) {
 				searchExistLine(teamno, "sell", 1);
 				if (!pid.equals("")) {
 					oup = true;
 					if (m.line.isLbc() || m.line.isLdc() || m.line.isLoc()) {
-						// downLine();//ÏÂ¼Ü²úÆ·
+						// downLine();//ä¸‹æ¶äº§å“
 					}
 				}
 			}
@@ -522,10 +590,10 @@ public class HttpLogin {
 				postLineMarker();
 			}
 			if (m.line.isLic()) {
-				// Ö»Õë¶Ô×ÔÓÉĞĞ
-				// ²úÆ·ÏêÇéÀïÃæµÄ¾ÆµêĞÅÏ¢ºÍÏßÂ·ÌØÉ«
+				// åªé’ˆå¯¹è‡ªç”±è¡Œ
+				// äº§å“è¯¦æƒ…é‡Œé¢çš„é…’åº—ä¿¡æ¯å’Œçº¿è·¯ç‰¹è‰²
 				// postLineInfoDetail();
-				// ²úÆ·ÏêÇéÀïÃæµÄ½»Í¨
+				// äº§å“è¯¦æƒ…é‡Œé¢çš„äº¤é€š
 				postLineTraffic();
 			}
 			if (m.line.isC1up()) {
@@ -577,15 +645,15 @@ public class HttpLogin {
 			public void run() {
 				try {
 					if (!loginstatus) {
-						updateUI("ÇëÏÈµÇÂ¼");
+						updateUI("è¯·å…ˆç™»å½•");
 						return;
 					}
 					int i = 0;
 					postFileHttps("F:/bohc/workspace/qunar/tempimg.jpg");
 					i++;
-					updateUI("ÉÏ´«Íê³ÉµÚ\t" + i + "\tÕÅ");
+					updateUI("ä¸Šä¼ å®Œæˆç¬¬\t" + i + "\tå¼ ");
 				} catch (Exception e) {
-					updateUI("ÉÏ´«³ö´íÁË:" + e.getMessage());
+					updateUI("ä¸Šä¼ å‡ºé”™äº†:" + e.getMessage());
 					e.printStackTrace();
 				}
 			}
@@ -594,7 +662,7 @@ public class HttpLogin {
 
 	public String postLineBase() {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return null;
 		}
 
@@ -602,24 +670,24 @@ public class HttpLogin {
 
 		String loginurl = "http://tb2cadmin.qunar.com/supplier/product.do";
 		try {
-			updateUI("¿ªÊ¼×¼±¸ÉÏ´«Êı¾İ");
+			updateUI("å¼€å§‹å‡†å¤‡ä¸Šä¼ æ•°æ®");
 			HttpPost httpost = createHttpPost(loginurl);
 
 			String pfunction = summary.getPfunction().trim();
 
 			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 
-			// È¡µÃÄ¿µÄµØ
+			// å–å¾—ç›®çš„åœ°
 			StringBuffer arrive = new StringBuffer("");
-			// ĞÂÍøÕ¾ºÍÀÏÍøÕ¾ÓÃµÄÊÇÕâ¸ö£¬ÒÑ¾­±»×¢ÊÍ£¬²»ÄÜÔÙÓÃ
+			// æ–°ç½‘ç«™å’Œè€ç½‘ç«™ç”¨çš„æ˜¯è¿™ä¸ªï¼Œå·²ç»è¢«æ³¨é‡Šï¼Œä¸èƒ½å†ç”¨
 			// String[] ta = summary.getArrive().split(",");
-			// QLYÍøÕ¾ÓÃµÄÕâ¸ö
+			// QLYç½‘ç«™ç”¨çš„è¿™ä¸ª
 			String[] ta = summary.getArrivecity().split("--");
 			if (ta != null && ta.length > 0) {
 				int i = 0;
 				String pstr = "";
 
-				if (m.line.getCselect().equals("¾ÉÍøÕ¾") || m.line.getCselect().equals("qlyÍøÕ¾")) {
+				if (m.line.getCselect().equals("æ—§ç½‘ç«™") || m.line.getCselect().equals("qlyç½‘ç«™")) {
 					for (String s : ta) {
 						try {
 							if (!s.trim().equals("")) {
@@ -672,7 +740,7 @@ public class HttpLogin {
 							updateUI(e.getMessage());
 						}
 					}
-				} else if (m.line.getCselect().equals("ĞÂÍøÕ¾")) {
+				} else if (m.line.getCselect().equals("æ–°ç½‘ç«™")) {
 					for (String s : ta) {
 						try {
 							if (!s.trim().equals("")) {
@@ -722,7 +790,7 @@ public class HttpLogin {
 			}
 			updateUI(arrive.toString());
 
-			// È¡µÃ³ö·¢µØ
+			// å–å¾—å‡ºå‘åœ°
 			String departure = "";
 			String dstr = summary.getDeparture();
 			if (dstr != null && !dstr.trim().equals("")) {
@@ -741,9 +809,9 @@ public class HttpLogin {
 				}
 				updateUI(departure);
 			}
-			// Ö÷Í¼
+			// ä¸»å›¾
 			// String mainpic = "";
-			// Í¼¿â
+			// å›¾åº“
 			String images = "[";
 
 			String img = summary.getImage();
@@ -753,7 +821,7 @@ public class HttpLogin {
 			if (imgs != null) {
 				if (m.line.isC1nomain()) {
 					for (int i = 0; i < imgs.length; i++) {
-						// Èç¹ûµ÷ÓÃ±¾µØÖ÷Í¼£¬ÄÇÃ´¾Í²»ÓÃÍøÂçÉÏµÄÖ÷Í¼
+						// å¦‚æœè°ƒç”¨æœ¬åœ°ä¸»å›¾ï¼Œé‚£ä¹ˆå°±ä¸ç”¨ç½‘ç»œä¸Šçš„ä¸»å›¾
 						if (m.line.isMainpicselect()) {
 							rm = -1;
 						}
@@ -797,7 +865,7 @@ public class HttpLogin {
 						}
 					}
 
-					// Ö»ÓĞÔÚĞŞ¸ÄÍ¼Æ¬µÄÊ±ºò²ÅÓĞÓÃ
+					// åªæœ‰åœ¨ä¿®æ”¹å›¾ç‰‡çš„æ—¶å€™æ‰æœ‰ç”¨
 					if (m.line.isMainpicselect()) {
 						String mpic = m.line.getMainpictxt();
 						List<String> tlist = new ArrayList<String>();
@@ -845,15 +913,15 @@ public class HttpLogin {
 			nvps.add(new BasicNameValuePair("image_desc", ""));
 			nvps.add(new BasicNameValuePair("b2bFlag", ""));
 
-			// ²úÆ·Ãû³Æ
+			// äº§å“åç§°
 			nvps.add(new BasicNameValuePair("title", concatStr(m.line.getSummary().getTitle().trim(), "{title}", summary.getTitle())));
-			// ÍÅºÅ
+			// å›¢å·
 			nvps.add(new BasicNameValuePair("team_no", summary.getTeamno().trim()));
-			// ĞĞ³ÌÌìÊı
+			// è¡Œç¨‹å¤©æ•°
 			nvps.add(new BasicNameValuePair("day", summary.getDay().trim()));
-			// Èë×¡ÍíÊı
+			// å…¥ä½æ™šæ•°
 			nvps.add(new BasicNameValuePair("night", String.valueOf(Integer.parseInt(summary.getDay().trim()) - 1)));
-			// Ö÷Ìâ
+			// ä¸»é¢˜
 			String linesubject = summary.getLinesubject();
 			if (linesubject != null) {
 				String[] strs = linesubject.split(", ");
@@ -866,18 +934,18 @@ public class HttpLogin {
 				}
 			}
 
-			// ×ÔÈ»ÈÕor¹¤×÷ÈÕ
+			// è‡ªç„¶æ—¥orå·¥ä½œæ—¥
 			String advancedaytype = "realday", at = "";
 			if (m.line.isAdck()) {
 				at = m.line.getSummary().getAdvancedaytype().trim();
-				// ÌáÇ°±¨Ãû
+				// æå‰æŠ¥å
 				nvps.add(new BasicNameValuePair("advance_day", m.line.getSummary().getAdvanceday().trim()));
 			} else {
 				at = summary.getAdvancedaytype().trim();
-				// ÌáÇ°±¨Ãû
+				// æå‰æŠ¥å
 				nvps.add(new BasicNameValuePair("advance_day", summary.getAdvanceday().trim()));
 			}
-			if (at.equals("¹¤×÷ÈÕ")) {
+			if (at.equals("å·¥ä½œæ—¥")) {
 				advancedaytype = "workday";
 			}
 
@@ -887,29 +955,29 @@ public class HttpLogin {
 			nvps.add(new BasicNameValuePair("advanceDesc", m.line.getSummary().getAdvancedesc()));
 
 			/**
-			 * ÕâÒ»¿éÏÖÔÚÒÑ¾­²»ÓÃ´«ÁË // Àà±ğ String type = ""; String ttype =
-			 * summary.getArrivetype().trim(); if (ttype.equals("¹úÄÚÓÎ") ||
-			 * ttype.equals("ÖÜ±ßÂÃÓÎ")) { type = "0"; } else if
-			 * (ttype.equals("³ö¾³ÓÎ")) { type = "1"; } else { type = "2"; } //
-			 * ÏÖÔÚÊÇÅĞ¶Ï£¬Ö»ÒªÊÇ86¿ªÍ·µÄµØ·½£¬¶¼ÊÇ¹úÄÚÓÎ if (line.getSummary().getPlaceid() != null
+			 * è¿™ä¸€å—ç°åœ¨å·²ç»ä¸ç”¨ä¼ äº† // ç±»åˆ« String type = ""; String ttype =
+			 * summary.getArrivetype().trim(); if (ttype.equals("å›½å†…æ¸¸") ||
+			 * ttype.equals("å‘¨è¾¹æ—…æ¸¸")) { type = "0"; } else if
+			 * (ttype.equals("å‡ºå¢ƒæ¸¸")) { type = "1"; } else { type = "2"; } //
+			 * ç°åœ¨æ˜¯åˆ¤æ–­ï¼Œåªè¦æ˜¯86å¼€å¤´çš„åœ°æ–¹ï¼Œéƒ½æ˜¯å›½å†…æ¸¸ if (line.getSummary().getPlaceid() != null
 			 * && line.getSummary().getPlaceid().startsWith("86")) { type = "0";
 			 * } nvps.add(new BasicNameValuePair("type", type));
 			 **/
 
 			/**
-			 * ÕâÒ»¿éÏÖÔÚÒÑ¾­²»ÓÃ´«ÁË // ³¤/¶ÌÍ¾ String distancetype = ""; String dtype =
-			 * summary.getDistancetype().trim(); if (dtype.equals("³¤Í¾")) {
+			 * è¿™ä¸€å—ç°åœ¨å·²ç»ä¸ç”¨ä¼ äº† // é•¿/çŸ­é€” String distancetype = ""; String dtype =
+			 * summary.getDistancetype().trim(); if (dtype.equals("é•¿é€”")) {
 			 * distancetype = "0"; } else { distancetype = "1"; } nvps.add(new
 			 * BasicNameValuePair("distance_type", distancetype));
 			 */
 
-			// ´ó½»Í¨
-			nvps.add(new BasicNameValuePair("totraffic", summary.getFreetriptotraffic().trim() + "È¥"));
-			nvps.add(new BasicNameValuePair("backtraffic", summary.getFreetripbacktraffic().trim() + "»Ø"));
+			// å¤§äº¤é€š
+			nvps.add(new BasicNameValuePair("totraffic", summary.getFreetriptotraffic().trim() + "å»"));
+			nvps.add(new BasicNameValuePair("backtraffic", summary.getFreetripbacktraffic().trim() + "å›"));
 
-			// ÏÂ¼ÜÈÕÆÚ
+			// ä¸‹æ¶æ—¥æœŸ
 			if (m.line.isDowndatecheck2()) {
-				// ¿ªÊ¼ÈÕÆÚ
+				// å¼€å§‹æ—¥æœŸ
 				nvps.add(new BasicNameValuePair("display_way", "1"));
 				SimpleDateFormat fdf = new SimpleDateFormat("yyyy-MM-dd");
 				SimpleDateFormat edf = new SimpleDateFormat("dd.MM.yyyy");
@@ -918,21 +986,21 @@ public class HttpLogin {
 				} catch (Exception e) {
 					nvps.add(new BasicNameValuePair("publish_time", edf.format(m.line.getDown_date_begin())));
 				}
-				// ½ØÖ¹ÈÕÆÚ
+				// æˆªæ­¢æ—¥æœŸ
 				try {
 					nvps.add(new BasicNameValuePair("expire_time", fdf.format(m.line.getDown_date_end())));
 				} catch (Exception e) {
 					nvps.add(new BasicNameValuePair("expire_time", edf.format(m.line.getDown_date_end())));
 				}
 			} else {
-				// ·¢ÍÅÈÕÇ°ÏÂ¼Ü0,Ö¸¶¨ÈÕÆÚÉÏÏÂ¼Ü1
+				// å‘å›¢æ—¥å‰ä¸‹æ¶0,æŒ‡å®šæ—¥æœŸä¸Šä¸‹æ¶1
 				nvps.add(new BasicNameValuePair("display_way", "0"));
 				nvps.add(new BasicNameValuePair("publish_time", ""));
 				nvps.add(new BasicNameValuePair("expire_time", ""));
 			}
 
 			if (m.line.isPayck()) {
-				// ¸¶¿î·½Ê½,¼´Ê±Ö§¸¶0,È·ÈÏºóÖ§¸¶1
+				// ä»˜æ¬¾æ–¹å¼,å³æ—¶æ”¯ä»˜0,ç¡®è®¤åæ”¯ä»˜1
 				if (m.line.getSummary().isPayway1()) {
 					nvps.add(new BasicNameValuePair("pay_way", "0"));
 				} else if (m.line.getSummary().isPayway2()) {
@@ -945,13 +1013,13 @@ public class HttpLogin {
 			} else {
 				nvps.add(new BasicNameValuePair("pay_way", "0"));
 			}
-			// ÉÏÏÂ¼Ü×´Ì¬,on+saleÉÏ¼Ü£¬offlineÏÂ¼Ü
+			// ä¸Šä¸‹æ¶çŠ¶æ€,on+saleä¸Šæ¶ï¼Œofflineä¸‹æ¶
 			nvps.add(new BasicNameValuePair("status", "offline"));
-			// ·şÎñµç»°
+			// æœåŠ¡ç”µè¯
 			nvps.add(new BasicNameValuePair("phoneinfo", m.line.getPhonenum()));
 
 			/**
-			 * ÕâÒ»¿éÏÖÔÚÒÑ¾­²»ÓÃ´«ÁË // ²úÆ·¸±±êÌâ nvps.add(new
+			 * è¿™ä¸€å—ç°åœ¨å·²ç»ä¸ç”¨ä¼ äº† // äº§å“å‰¯æ ‡é¢˜ nvps.add(new
 			 * BasicNameValuePair("recommendation",
 			 * concatStr(m.line.getSummary().getRecommendation().trim(),
 			 * "{title}", summary.getRecommendation())));
@@ -994,23 +1062,23 @@ public class HttpLogin {
 				nvps.add(new BasicNameValuePair("free_type", "1"));
 				nvps.add(new BasicNameValuePair("first_date", "2013-10-22"));
 				nvps.add(new BasicNameValuePair("last_date", "2013-10-26"));
-				// ×ÔÓÉĞĞÀà±ğ
+				// è‡ªç”±è¡Œç±»åˆ«
 				nvps.add(new BasicNameValuePair("freetrip_traffic", "on"));
 				nvps.add(new BasicNameValuePair("freetrip_hotel", "on"));
 				nvps.add(new BasicNameValuePair("freetrip_othername", ""));
-				// ÂÃ¿ÍĞÅÏ¢
+				// æ—…å®¢ä¿¡æ¯
 				nvps.add(new BasicNameValuePair("need_traveller_info", "1"));
-				// ÌáÇ°Ô¤¶©ÉèÖÃ
+				// æå‰é¢„è®¢è®¾ç½®
 				nvps.add(new BasicNameValuePair("advance_day_new", "0"));
 				nvps.add(new BasicNameValuePair("advance_hour", "23"));
 				nvps.add(new BasicNameValuePair("advance_minute", "59"));
-				// ÌáÇ°Ô¤¶©ÃèÊö
-				nvps.add(new BasicNameValuePair("advanceDesc", "ÇëÔÚµ±ÌìµÄ23µã59·ÖÇ°Ô¤¶©"));
-				// ³ö·¢µØ*
+				// æå‰é¢„è®¢æè¿°
+				nvps.add(new BasicNameValuePair("advanceDesc", "è¯·åœ¨å½“å¤©çš„23ç‚¹59åˆ†å‰é¢„è®¢"));
+				// å‡ºå‘åœ°*
 				nvps.add(new BasicNameValuePair("departure", concatStr(m.line.getSummary().getDeparture(), "{title}", summary.getDeparture().trim())));
-				// Ä¿µÄµØ*
-				nvps.add(new BasicNameValuePair("freeArrive", "ÔÆÄÏ-À¥Ã÷"));
-				// ÀûÈóÂÊ
+				// ç›®çš„åœ°*
+				nvps.add(new BasicNameValuePair("freeArrive", "äº‘å—-æ˜†æ˜"));
+				// åˆ©æ¶¦ç‡
 				nvps.add(new BasicNameValuePair("profit", "0"));
 			}
 
@@ -1019,8 +1087,8 @@ public class HttpLogin {
 			}
 
 			httpost.setEntity(new UrlEncodedFormEntity(nvps, HTTP.UTF_8));
-			updateUI("ÉÏ´«Êı¾İ×¼±¸Íê³É");
-			updateUI("Ö´ĞĞÉÏ´«Êı¾İ¹¦ÄÜ");
+			updateUI("ä¸Šä¼ æ•°æ®å‡†å¤‡å®Œæˆ");
+			updateUI("æ‰§è¡Œä¸Šä¼ æ•°æ®åŠŸèƒ½");
 
 			HttpResponse response = httpclient.execute(httpost);
 
@@ -1045,7 +1113,7 @@ public class HttpLogin {
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("»ù´¡Êı¾İÉÏ´«Íê³É");
+			updateUI("åŸºç¡€æ•°æ®ä¸Šä¼ å®Œæˆ");
 			return content;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1054,15 +1122,15 @@ public class HttpLogin {
 	}
 
 	/**
-	 * ·¢ËÍHTTPS POSTÇëÇó
+	 * å‘é€HTTPS POSTè¯·æ±‚
 	 * 
-	 * @param Òª·ÃÎÊµÄHTTPSµØÖ·
-	 *            POST·ÃÎÊµÄ²ÎÊıMap¶ÔÏó ·µ»ØÏìÓ¦Öµ
+	 * @param è¦è®¿é—®çš„HTTPSåœ°å€
+	 *            POSTè®¿é—®çš„å‚æ•°Mapå¯¹è±¡ è¿”å›å“åº”å€¼
 	 */
 	public String sendHttpsRequestByPost(String url, Map<String, String> params) {
 		String responseContent = null;
 		HttpClient httpClient = new DefaultHttpClient();
-		// ´´½¨TrustManager
+		// åˆ›å»ºTrustManager
 		X509TrustManager xtm = new X509TrustManager() {
 			public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
 			}
@@ -1074,7 +1142,7 @@ public class HttpLogin {
 				return null;
 			}
 		};
-		// Õâ¸öºÃÏñÊÇHOSTÑéÖ¤
+		// è¿™ä¸ªå¥½åƒæ˜¯HOSTéªŒè¯
 		X509HostnameVerifier hostnameVerifier = new X509HostnameVerifier() {
 			public boolean verify(String arg0, SSLSession arg1) {
 				return true;
@@ -1090,23 +1158,23 @@ public class HttpLogin {
 			}
 		};
 		try {
-			// TLS1.0ÓëSSL3.0»ù±¾ÉÏÃ»ÓĞÌ«´óµÄ²î±ğ£¬¿É´ÖÂÔÀí½âÎªTLSÊÇSSLµÄ¼Ì³ĞÕß£¬µ«ËüÃÇÊ¹ÓÃµÄÊÇÏàÍ¬µÄSSLContext
+			// TLS1.0ä¸SSL3.0åŸºæœ¬ä¸Šæ²¡æœ‰å¤ªå¤§çš„å·®åˆ«ï¼Œå¯ç²—ç•¥ç†è§£ä¸ºTLSæ˜¯SSLçš„ç»§æ‰¿è€…ï¼Œä½†å®ƒä»¬ä½¿ç”¨çš„æ˜¯ç›¸åŒçš„SSLContext
 			SSLContext ctx = SSLContext.getInstance("TLS");
-			// Ê¹ÓÃTrustManagerÀ´³õÊ¼»¯¸ÃÉÏÏÂÎÄ£¬TrustManagerÖ»ÊÇ±»SSLµÄSocketËùÊ¹ÓÃ
+			// ä½¿ç”¨TrustManageræ¥åˆå§‹åŒ–è¯¥ä¸Šä¸‹æ–‡ï¼ŒTrustManageråªæ˜¯è¢«SSLçš„Socketæ‰€ä½¿ç”¨
 			ctx.init(null, new TrustManager[] { xtm }, null);
-			// ´´½¨SSLSocketFactory
+			// åˆ›å»ºSSLSocketFactory
 			SSLSocketFactory socketFactory = new SSLSocketFactory(ctx);
 			socketFactory.setHostnameVerifier(hostnameVerifier);
-			// Í¨¹ıSchemeRegistry½«SSLSocketFactory×¢²áµ½ÎÒÃÇµÄHttpClientÉÏ
+			// é€šè¿‡SchemeRegistryå°†SSLSocketFactoryæ³¨å†Œåˆ°æˆ‘ä»¬çš„HttpClientä¸Š
 			httpClient.getConnectionManager().getSchemeRegistry().register(new Scheme("https", socketFactory, 443));
 			HttpPost httpPost = createHttpsPost(url);
-			List<NameValuePair> formParams = new ArrayList<NameValuePair>(); // ¹¹½¨POSTÇëÇóµÄ±íµ¥²ÎÊı
+			List<NameValuePair> formParams = new ArrayList<NameValuePair>(); // æ„å»ºPOSTè¯·æ±‚çš„è¡¨å•å‚æ•°
 			for (Map.Entry<String, String> entry : params.entrySet()) {
 				formParams.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
 			}
 			httpPost.setEntity(new UrlEncodedFormEntity(formParams, "UTF-8"));
 			HttpResponse response = httpClient.execute(httpPost);
-			HttpEntity entity = response.getEntity(); // »ñÈ¡ÏìÓ¦ÊµÌå
+			HttpEntity entity = response.getEntity(); // è·å–å“åº”å®ä½“
 			if (entity != null) {
 				responseContent = EntityUtils.toString(entity, "UTF-8");
 				updateUI(responseContent);
@@ -1124,21 +1192,21 @@ public class HttpLogin {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			// ¹Ø±ÕÁ¬½Ó,ÊÍ·Å×ÊÔ´
+			// å…³é—­è¿æ¥,é‡Šæ”¾èµ„æº
 			httpClient.getConnectionManager().shutdown();
 		}
 		return responseContent;
 	}
 
-	// ²úÆ·ÏêÇéÀïÃæµÄ½»Í¨ĞÅÏ¢£¨×ÔÓÉĞĞ£©
+	// äº§å“è¯¦æƒ…é‡Œé¢çš„äº¤é€šä¿¡æ¯ï¼ˆè‡ªç”±è¡Œï¼‰
 	private void postLineTraffic() {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return;
 		}
 		String url = "http://tb2cadmin.qunar.com/supplier/traffic/add_traffic.qunar";
 		try {
-			updateUI("¿ªÊ¼ÕûÀí×ÔÓÉĞĞ²úÆ·ÏêÇéÀïµÄ½»Í¨Êı¾İÊı¾İ");
+			updateUI("å¼€å§‹æ•´ç†è‡ªç”±è¡Œäº§å“è¯¦æƒ…é‡Œçš„äº¤é€šæ•°æ®æ•°æ®");
 			// HttpPost httpost = createHttpPost(loginurl);
 			// List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 
@@ -1195,22 +1263,22 @@ public class HttpLogin {
 			 * updateUI(e.getMessage()); } finally { instream.close(); } }
 			 * EntityUtils.consume(entity);
 			 */
-			updateUI("×ÔÓÉĞĞ²úÆ·ÏêÇéµÄ½»Í¨Êı¾İÉÏ´«Íê³É:" + re);
+			updateUI("è‡ªç”±è¡Œäº§å“è¯¦æƒ…çš„äº¤é€šæ•°æ®ä¸Šä¼ å®Œæˆ:" + re);
 		} catch (Exception e) {
-			updateUI("×ÔÓÉĞĞ²úÆ·ÏêÇéµÄ½»Í¨Êı¾İÉÏ´«Ê§°Ü:" + e.getMessage());
+			updateUI("è‡ªç”±è¡Œäº§å“è¯¦æƒ…çš„äº¤é€šæ•°æ®ä¸Šä¼ å¤±è´¥:" + e.getMessage());
 		}
 	}
 
-	// ²úÆ·ÏêÇéÀïÃæµÄ¾ÆµêĞÅÏ¢ºÍÏßÂ·ÌØÉ«£¨×ÔÓÉĞĞ£©
+	// äº§å“è¯¦æƒ…é‡Œé¢çš„é…’åº—ä¿¡æ¯å’Œçº¿è·¯ç‰¹è‰²ï¼ˆè‡ªç”±è¡Œï¼‰
 	private void postLineInfoDetail() {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return;
 		}
 		String loginurl = "http://tb2cadmin.qunar.com/supplier/product.do";
 		try {
-			// Êı¾İÉÏ¼Ü
-			updateUI("¿ªÊ¼ÕûÀí²úÆ·ÏêÇéÊı¾İ");
+			// æ•°æ®ä¸Šæ¶
+			updateUI("å¼€å§‹æ•´ç†äº§å“è¯¦æƒ…æ•°æ®");
 			HttpPost httpost = createHttpPost(loginurl);
 			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 			nvps.add(new BasicNameValuePair("method", "updateProductFreeTrip"));
@@ -1222,9 +1290,9 @@ public class HttpLogin {
 			nvps.add(new BasicNameValuePair("tranfer", "no"));
 			nvps.add(new BasicNameValuePair("tranfer", "no"));
 
-			// ÏßÂ·ÌØÉ«
+			// çº¿è·¯ç‰¹è‰²
 			combineFeature("feature", nvps);
-			// ¾ÆµêĞÅÏ¢
+			// é…’åº—ä¿¡æ¯
 			combineHotels(nvps);
 
 			httpost.setEntity(new UrlEncodedFormEntity(nvps, HTTP.UTF_8));
@@ -1250,20 +1318,20 @@ public class HttpLogin {
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("²úÆ·ÏêÇéÊı¾İÉÏ´«Íê³É");
+			updateUI("äº§å“è¯¦æƒ…æ•°æ®ä¸Šä¼ å®Œæˆ");
 		} catch (Exception e) {
-			updateUI("²úÆ·ÏêÇéÊı¾İÉÏ´«³ö´í");
+			updateUI("äº§å“è¯¦æƒ…æ•°æ®ä¸Šä¼ å‡ºé”™");
 			e.printStackTrace();
 		}
 	}
 
-	// http://hs.qunar.com/api/hs/dujiahotel/typeahead?city_code=lijiang&hotel=Àö½­±Ì²¨&removeCallbackValue:callback&_:1448855652858
-	// Æ´×°¾ÆµêĞÅÏ¢£¬ÒòÎª×ÔÓÉĞĞºÍ¸úÍÅÓÎ¶¼ÓĞ£¬µ«²»ÔÚÒ»¸öµØ·½ÉÏ´«
+	// http://hs.qunar.com/api/hs/dujiahotel/typeahead?city_code=lijiang&hotel=ä¸½æ±Ÿç¢§æ³¢&removeCallbackValue:callback&_:1448855652858
+	// æ‹¼è£…é…’åº—ä¿¡æ¯ï¼Œå› ä¸ºè‡ªç”±è¡Œå’Œè·Ÿå›¢æ¸¸éƒ½æœ‰ï¼Œä½†ä¸åœ¨ä¸€ä¸ªåœ°æ–¹ä¸Šä¼ 
 	private void combineHotels(List<NameValuePair> nvps) {
 		List<Day> list = line.getDays();
 		for (int i = 0, j = 0; i < list.size(); i++) {
 			Day d = list.get(i);
-			if (d.getStarname().indexOf("¾Æµê") == -1) {
+			if (d.getStarname().indexOf("é…’åº—") == -1) {
 				continue;
 			}
 
@@ -1271,13 +1339,13 @@ public class HttpLogin {
 			if (cname == null)
 				return;
 			int ind = -1;
-			if ((ind = cname.indexOf("£º")) == -1) {
+			if ((ind = cname.indexOf("ï¼š")) == -1) {
 				return;
 			}
 			String hname = cname.substring(ind + 1);
-			String[] hos = hname.split(";|£»");
+			String[] hos = hname.split(";|ï¼›");
 			if (hos.length > 0) {
-				hname = hos[0].replace("»òÍ¬¼¶", "");
+				hname = hos[0].replace("æˆ–åŒçº§", "");
 			}
 			String recityname = getQunarCityCode(cname.substring(0, ind));
 			cname = analysisCityJson(recityname, cname.substring(0, ind));
@@ -1327,7 +1395,7 @@ public class HttpLogin {
 			nvps.add(new BasicNameValuePair("hotel_" + j, "1"));
 			nvps.add(new BasicNameValuePair("hotelimages_" + j, ""));
 			nvps.add(new BasicNameValuePair("hotelSeq_" + j, hotelseq));
-			nvps.add(new BasicNameValuePair("hotelFeature_" + j, "ÈÈÄÖ"));
+			nvps.add(new BasicNameValuePair("hotelFeature_" + j, "çƒ­é—¹"));
 			nvps.add(new BasicNameValuePair("city_code_" + j, citycode));
 			nvps.add(new BasicNameValuePair("baidu_point_" + j, baidupoint));
 			nvps.add(new BasicNameValuePair("google_point_" + j, googlepoint));
@@ -1340,7 +1408,7 @@ public class HttpLogin {
 			nvps.add(new BasicNameValuePair("book_day_" + j, "1"));
 			nvps.add(new BasicNameValuePair("star_" + j, ""));
 			nvps.add(new BasicNameValuePair("grade_" + j, grade));
-			nvps.add(new BasicNameValuePair("bedtype_" + j, "´ó´²"));
+			nvps.add(new BasicNameValuePair("bedtype_" + j, "å¤§åºŠ"));
 			nvps.add(new BasicNameValuePair("roomtype_" + j, "5"));
 			nvps.add(new BasicNameValuePair("rto_name_" + j, ""));
 			nvps.add(new BasicNameValuePair("rto_english_name_" + j, ""));
@@ -1351,17 +1419,17 @@ public class HttpLogin {
 			nvps.add(new BasicNameValuePair("hoteldesc_" + j, notes));
 			nvps.add(new BasicNameValuePair("rn", ""));
 			nvps.add(new BasicNameValuePair("ftext_" + j, ""));
-			// Ö»È¡Èı×é×¡ËŞĞÅÏ¢
+			// åªå–ä¸‰ç»„ä½å®¿ä¿¡æ¯
 			if (j >= 3) {
 				break;
 			}
 		}
 	}
 
-	// Æ´×°²úÆ·ÌØÉ«£¬ÒòÎª×ÔÓÉĞĞºÍ¸úÍÅÓÎ¶¼ÓĞ£¬µ«²»ÔÚÕâ¸öµØ·½ÉÏ´«
+	// æ‹¼è£…äº§å“ç‰¹è‰²ï¼Œå› ä¸ºè‡ªç”±è¡Œå’Œè·Ÿå›¢æ¸¸éƒ½æœ‰ï¼Œä½†ä¸åœ¨è¿™ä¸ªåœ°æ–¹ä¸Šä¼ 
 	private void combineFeature(String key, List<NameValuePair> nvps) {
 		Summary summary = line.getSummary();
-		// ²úÆ·ÌØÉ«
+		// äº§å“ç‰¹è‰²
 		List<String> flist = summary.getFeature();
 		StringBuffer st = new StringBuffer("");
 		if (flist != null && flist.size() > 0) {
@@ -1374,7 +1442,7 @@ public class HttpLogin {
 					sfu = sfu.substring(0, sfu.indexOf("-")) + "<br/>" + sfu.substring(sfu.indexOf("-") + 1);
 				}
 
-				// ÒÔ//nÎª»»ĞĞ·û
+				// ä»¥//nä¸ºæ¢è¡Œç¬¦
 				StringBuffer sbs = new StringBuffer();
 				for (int i = 0; i < sfu.length(); i++) {
 					sbs.append(sfu.substring(i, i + 1));
@@ -1392,7 +1460,7 @@ public class HttpLogin {
 			}
 			st.append("</p>");
 		}
-		// ÉÏ´«ÌØÉ«Í¼Æ¬
+		// ä¸Šä¼ ç‰¹è‰²å›¾ç‰‡
 		String featurecon = m.line.getSummary().getFeatures();
 		String featureimg = "";
 		if (m.line.getSummary().isFeaturechecked()) {
@@ -1400,14 +1468,14 @@ public class HttpLogin {
 			featureimg = postFeatureImg(ipath);
 		}
 		featurecon = concatStr(featurecon, "{title}", st.toString());
-		featurecon = concatStr(featurecon, "{ÌØÉ«Í¼Æ¬}", featureimg);
+		featurecon = concatStr(featurecon, "{ç‰¹è‰²å›¾ç‰‡}", featureimg);
 		nvps.add(new BasicNameValuePair(key, com.bhc.util.StringUtils.parseCharacter(featurecon)));
 	}
 
-	// ±¸·İµÄ´úÂë
+	// å¤‡ä»½çš„ä»£ç 
 	public String postLineBase_back() {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return null;
 		}
 
@@ -1415,14 +1483,14 @@ public class HttpLogin {
 
 		String loginurl = "http://tb2cadmin.qunar.com/supplier/product.do";
 		try {
-			updateUI("¿ªÊ¼×¼±¸ÉÏ´«Êı¾İ");
+			updateUI("å¼€å§‹å‡†å¤‡ä¸Šä¼ æ•°æ®");
 			HttpPost httpost = createHttpPost(loginurl);
 
 			String pfunction = summary.getPfunction().trim();
 
 			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 
-			// È¡µÃÄ¿µÄµØ
+			// å–å¾—ç›®çš„åœ°
 			StringBuffer arrive = new StringBuffer("");
 			String[] ta = summary.getArrive().split(",");
 			if (ta != null && ta.length > 0) {
@@ -1473,7 +1541,7 @@ public class HttpLogin {
 			}
 			updateUI(arrive.toString());
 
-			// È¡µÃ³ö·¢µØ
+			// å–å¾—å‡ºå‘åœ°
 			String departure = "";
 			String dstr = summary.getDeparture();
 			if (dstr != null && !dstr.trim().equals("")) {
@@ -1491,9 +1559,9 @@ public class HttpLogin {
 				}
 				updateUI(departure);
 			}
-			// Ö÷Í¼
+			// ä¸»å›¾
 			String mainpic = "";
-			// Í¼¿â
+			// å›¾åº“
 			String images = "";
 
 			String img = summary.getImage();
@@ -1555,67 +1623,67 @@ public class HttpLogin {
 			nvps.add(new BasicNameValuePair("main_pic_desc", ""));
 			nvps.add(new BasicNameValuePair("image_desc", ""));
 
-			// ²úÆ·Ãû³Æ
+			// äº§å“åç§°
 			nvps.add(new BasicNameValuePair("title", concatStr(m.line.getSummary().getTitle().trim(), "{title}", summary.getTitle())));
-			// ÍÅºÅ
+			// å›¢å·
 			nvps.add(new BasicNameValuePair("team_no", summary.getTeamno().trim()));
-			// ĞĞ³ÌÌìÊı
+			// è¡Œç¨‹å¤©æ•°
 			nvps.add(new BasicNameValuePair("day", summary.getDay().trim()));
-			// Èë×¡ÍíÊı
+			// å…¥ä½æ™šæ•°
 			nvps.add(new BasicNameValuePair("night", String.valueOf(Integer.parseInt(summary.getDay().trim()) - 1)));
 
-			// ×ÔÈ»ÈÕor¹¤×÷ÈÕ
+			// è‡ªç„¶æ—¥orå·¥ä½œæ—¥
 			String advancedaytype = "realday", at = "";
 			if (m.line.isAdck()) {
 				try {
 					at = m.line.getSummary().getAdvancedaytype().trim();
-					// ÌáÇ°±¨Ãû
+					// æå‰æŠ¥å
 					nvps.add(new BasicNameValuePair("advance_day", m.line.getSummary().getAdvanceday().trim()));
 				} catch (Exception e) {
-					updateUI("Ñ¡ÔñÁËÌáÇ°±¨Ãû,µ«ÊÇÃ»ÓĞÊı¾İ");
+					updateUI("é€‰æ‹©äº†æå‰æŠ¥å,ä½†æ˜¯æ²¡æœ‰æ•°æ®");
 				}
 			} else {
 				at = summary.getAdvancedaytype().trim();
-				// ÌáÇ°±¨Ãû
+				// æå‰æŠ¥å
 				nvps.add(new BasicNameValuePair("advance_day", summary.getAdvanceday().trim()));
 			}
-			if (at.equals("¹¤×÷ÈÕ")) {
+			if (at.equals("å·¥ä½œæ—¥")) {
 				advancedaytype = "workday";
 			}
 
 			nvps.add(new BasicNameValuePair("advance_day_type", advancedaytype));
-			// Àà±ğ
+			// ç±»åˆ«
 			String type = "";
 			String ttype = summary.getArrivetype().trim();
-			if (ttype.equals("¹úÄÚÓÎ")) {
+			if (ttype.equals("å›½å†…æ¸¸")) {
 				type = "0";
-			} else if (ttype.equals("³ö¾³ÓÎ")) {
+			} else if (ttype.equals("å‡ºå¢ƒæ¸¸")) {
 				type = "1";
 			} else {
 				type = "2";
 			}
 			nvps.add(new BasicNameValuePair("type", type));
-			// ³¤/¶ÌÍ¾
+			// é•¿/çŸ­é€”
 			String distancetype = "";
 			String dtype = summary.getDistancetype().trim();
-			if (dtype.equals("³¤Í¾")) {
+			if (dtype.equals("é•¿é€”")) {
 				distancetype = "0";
 			} else {
 				distancetype = "1";
 			}
 			nvps.add(new BasicNameValuePair("distance_type", distancetype));
-			// ´ó½»Í¨
-			nvps.add(new BasicNameValuePair("totraffic", summary.getFreetriptotraffic().trim() + "È¥"));
-			nvps.add(new BasicNameValuePair("backtraffic", summary.getFreetripbacktraffic().trim() + "»Ø"));
-			// ÏÂ¼ÜÈÕÆÚ
-			// ·¢ÍÅÈÕÇ°ÏÂ¼Ü0,Ö¸¶¨ÈÕÆÚÉÏÏÂ¼Ü1
+			// å¤§äº¤é€š
+			nvps.add(new BasicNameValuePair("totraffic", summary.getFreetriptotraffic().trim() + "å»"));
+			nvps.add(new BasicNameValuePair("backtraffic", summary.getFreetripbacktraffic().trim() + "å›"));
+			// ä¸‹æ¶æ—¥æœŸ
+			// å‘å›¢æ—¥å‰ä¸‹æ¶0,æŒ‡å®šæ—¥æœŸä¸Šä¸‹æ¶1
 			nvps.add(new BasicNameValuePair("display_way", "0"));
-			// ¿ªÊ¼ÈÕÆÚ
+			// å¼€å§‹æ—¥æœŸ
 			nvps.add(new BasicNameValuePair("publish_time", ""));
-			// ½ØÖ¹ÈÕÆÚ
+			// æˆªæ­¢æ—¥æœŸ
 			nvps.add(new BasicNameValuePair("expire_time", ""));
 			if (m.line.isPayck()) {
-				// ¸¶¿î·½Ê½,¼´Ê±Ö§¸¶0,È·ÈÏºóÖ§¸¶1
+				// ä»˜æ¬¾æ–¹å¼,å³æ—¶æ”¯ä»˜0,ç¡®è®¤åæ”¯ä»˜1
 				if (m.line.getSummary().isPayway1()) {
 					nvps.add(new BasicNameValuePair("pay_way", "0"));
 				}
@@ -1625,14 +1693,14 @@ public class HttpLogin {
 			} else {
 				nvps.add(new BasicNameValuePair("pay_way", "0"));
 			}
-			// ÉÏÏÂ¼Ü×´Ì¬,on+saleÉÏ¼Ü£¬offlineÏÂ¼Ü
+			// ä¸Šä¸‹æ¶çŠ¶æ€,on+saleä¸Šæ¶ï¼Œofflineä¸‹æ¶
 			nvps.add(new BasicNameValuePair("status", "offline"));
-			// ·şÎñµç»°
+			// æœåŠ¡ç”µè¯
 			nvps.add(new BasicNameValuePair("phoneinfo", "2175"));
-			// ²úÆ·¸±±êÌâ
+			// äº§å“å‰¯æ ‡é¢˜
 			nvps.add(new BasicNameValuePair("recommendation", concatStr(m.line.getSummary().getRecommendation().trim(), "{title}", summary.getTitle())));
 
-			// ²úÆ·ÌØÉ«
+			// äº§å“ç‰¹è‰²
 			List<String> flist = summary.getFeature();
 			StringBuffer st = new StringBuffer("");
 			if (flist != null && flist.size() > 0) {
@@ -1660,26 +1728,26 @@ public class HttpLogin {
 				nvps.add(new BasicNameValuePair("free_type", "1"));
 				nvps.add(new BasicNameValuePair("first_date", "2013-10-22"));
 				nvps.add(new BasicNameValuePair("last_date", "2013-10-26"));
-				// ×ÔÓÉĞĞÀà±ğ
+				// è‡ªç”±è¡Œç±»åˆ«
 				nvps.add(new BasicNameValuePair("freetrip_traffic", "on"));
 				nvps.add(new BasicNameValuePair("freetrip_hotel", "on"));
 				nvps.add(new BasicNameValuePair("freetrip_othername", ""));
-				// ÂÃ¿ÍĞÅÏ¢
+				// æ—…å®¢ä¿¡æ¯
 				nvps.add(new BasicNameValuePair("need_traveller_info", "1"));
-				// ÌáÇ°Ô¤¶©ÉèÖÃ
+				// æå‰é¢„è®¢è®¾ç½®
 				nvps.add(new BasicNameValuePair("advance_day_new", "0"));
 				nvps.add(new BasicNameValuePair("advance_hour", "23"));
 				nvps.add(new BasicNameValuePair("advance_minute", "59"));
-				// ÌáÇ°Ô¤¶©ÃèÊö
-				nvps.add(new BasicNameValuePair("advanceDesc", "ÇëÔÚµ±ÌìµÄ23µã59·ÖÇ°Ô¤¶©"));
+				// æå‰é¢„è®¢æè¿°
+				nvps.add(new BasicNameValuePair("advanceDesc", "è¯·åœ¨å½“å¤©çš„23ç‚¹59åˆ†å‰é¢„è®¢"));
 
-				// Ä¿µÄµØ*
-				nvps.add(new BasicNameValuePair("freeArrive", "ÔÆÄÏ-À¥Ã÷"));
-				// ÀûÈóÂÊ
+				// ç›®çš„åœ°*
+				nvps.add(new BasicNameValuePair("freeArrive", "äº‘å—-æ˜†æ˜"));
+				// åˆ©æ¶¦ç‡
 				nvps.add(new BasicNameValuePair("profit", "0"));
 			}
 
-			// ³ö·¢µØ*
+			// å‡ºå‘åœ°*
 			nvps.add(new BasicNameValuePair("departure", m.line.getSummary().getDeparture().replaceAll("{title}", summary.getDeparture().trim())));
 
 			for (NameValuePair bp : nvps) {
@@ -1687,8 +1755,8 @@ public class HttpLogin {
 			}
 
 			httpost.setEntity(new UrlEncodedFormEntity(nvps, HTTP.UTF_8));
-			updateUI("ÉÏ´«Êı¾İ×¼±¸Íê³É");
-			updateUI("Ö´ĞĞÉÏ´«Êı¾İ¹¦ÄÜ");
+			updateUI("ä¸Šä¼ æ•°æ®å‡†å¤‡å®Œæˆ");
+			updateUI("æ‰§è¡Œä¸Šä¼ æ•°æ®åŠŸèƒ½");
 			HttpResponse response = httpclient.execute(httpost);
 
 			HttpEntity entity = response.getEntity();
@@ -1712,7 +1780,7 @@ public class HttpLogin {
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("»ù´¡Êı¾İÉÏ´«Íê³É");
+			updateUI("åŸºç¡€æ•°æ®ä¸Šä¼ å®Œæˆ");
 			return content;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1722,7 +1790,7 @@ public class HttpLogin {
 
 	public String postLineDays() {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return null;
 		}
 		if (pid == null) {
@@ -1731,15 +1799,15 @@ public class HttpLogin {
 		Summary summary = line.getSummary();
 		String loginurl = "http://tb2cadmin.qunar.com/supplier/product.do";
 		try {
-			updateUI("¿ªÊ¼×¼±¸ÉÏ´«Êı¾İ");
+			updateUI("å¼€å§‹å‡†å¤‡ä¸Šä¼ æ•°æ®");
 			HttpPost httpost = createHttpPost(loginurl);
 			String pfunction = summary.getPfunction().trim();
 			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 
-			// ÉÏ´«ĞĞ³ÌÊı¾İ
-			updateUI("¿ªÊ¼ÉÏ´«ĞĞ³ÌÊı¾İ");
+			// ä¸Šä¼ è¡Œç¨‹æ•°æ®
+			updateUI("å¼€å§‹ä¸Šä¼ è¡Œç¨‹æ•°æ®");
 
-			// Èç¹ûÎª¸úÍÅÓÎÄÇÃ´ÓĞÌØÉ«Êı¾İºÍ¾Æµê
+			// å¦‚æœä¸ºè·Ÿå›¢æ¸¸é‚£ä¹ˆæœ‰ç‰¹è‰²æ•°æ®å’Œé…’åº—
 			if (pfunction.trim().equals("group")) {
 				combineFeature("route_feature", nvps);
 				nvps.add(new BasicNameValuePair("gather_change_flag", "on"));
@@ -1750,8 +1818,8 @@ public class HttpLogin {
 					gt = gt.substring(start - 2);
 					gt = gt.substring(0, 5);
 				}
-				nvps.add(new BasicNameValuePair("gather_time", gt));// ¼¯ºÏÊ±¼ä
-				nvps.add(new BasicNameValuePair("gather_spot", m.line.getGatherspot()));// ¼¯ºÏµØµã
+				nvps.add(new BasicNameValuePair("gather_time", gt));// é›†åˆæ—¶é—´
+				nvps.add(new BasicNameValuePair("gather_spot", m.line.getGatherspot()));// é›†åˆåœ°ç‚¹
 				nvps.add(new BasicNameValuePair("assembly", m.line.getAssembly()));
 			}
 			nvps.add(new BasicNameValuePair("method", "updatDailySchedule2"));
@@ -1767,7 +1835,7 @@ public class HttpLogin {
 					Day d = list.get(j);
 
 					String dst = d.getDaydescription();
-					// Õâ¸öĞĞ³ÌÃèÊöÏÈ²»ÓÃ
+					// è¿™ä¸ªè¡Œç¨‹æè¿°å…ˆä¸ç”¨
 					dst = "";
 					while (true) {
 						int e = dst.indexOf("-");
@@ -1776,7 +1844,7 @@ public class HttpLogin {
 						}
 						dst = dst.substring(0, e) + "<br/>" + dst.substring(e + 1);
 					}
-					// ¸øĞĞ³Ì¹Ø¼ü×Ö×ÅÉ«
+					// ç»™è¡Œç¨‹å…³é”®å­—ç€è‰²
 					if (m.line.isDkeycheck()) {
 						String dkey = m.line.getDkeytxt();
 						if (dkey != null) {
@@ -1811,18 +1879,18 @@ public class HttpLogin {
 
 					StringBuffer daydescription = new StringBuffer(concatStr(m.line.getTxtdiscription(), "{title}", dst));
 
-					// Ê×ÏÈÅĞ¶ÏÖ»ÓĞ´¦ÀíÍ¼Æ¬£¬ÄÇÃ´²ÅÖ´ĞĞ
-					// Í¼¿â
+					// é¦–å…ˆåˆ¤æ–­åªæœ‰å¤„ç†å›¾ç‰‡ï¼Œé‚£ä¹ˆæ‰æ‰§è¡Œ
+					// å›¾åº“
 					String dayimgs = "";
 					if (m.line.isC1noimg()) {
 						String dayimg = d.getSightimage();
-						// Èç¹ûÖ¸¶¨Ê¹ÓÃ±¾µØµÄÍ¼Æ¬£¬ÄÇÃ´ÕÒ³ö±¾µØµÄÍ¼Æ¬À´ÉÏ´«
+						// å¦‚æœæŒ‡å®šä½¿ç”¨æœ¬åœ°çš„å›¾ç‰‡ï¼Œé‚£ä¹ˆæ‰¾å‡ºæœ¬åœ°çš„å›¾ç‰‡æ¥ä¸Šä¼ 
 						if (m.line.isDaysimgcheck()) {
 							m.line.getDayspic().clear();
 							String txtimg = m.line.getTxtdiscription();
 							String fdir = m.line.getViewimgdir();
-							String tag = "{Ëæ»ú¾°µãÍ¼Æ¬}";
-							int itype = 0;// Ö¸ÄÄÖÖÍ¼Æ¬,Ö¸È¡ÄÄ¸ö×Ö¶Î×öÎª±È½Ï
+							String tag = "{éšæœºæ™¯ç‚¹å›¾ç‰‡}";
+							int itype = 0;// æŒ‡å“ªç§å›¾ç‰‡,æŒ‡å–å“ªä¸ªå­—æ®µåšä¸ºæ¯”è¾ƒ
 							String st = daydescription.toString();
 							daydescription.delete(0, daydescription.length());
 							if (txtimg.indexOf(tag) != -1) {
@@ -1837,7 +1905,7 @@ public class HttpLogin {
 								}
 							}
 
-							tag = "{Ëæ»ú¾ÆµêÍ¼Æ¬}";
+							tag = "{éšæœºé…’åº—å›¾ç‰‡}";
 							if (txtimg.indexOf(tag) != -1) {
 								itype = 1;
 								fdir = m.line.getHotelimgdir();
@@ -1850,7 +1918,7 @@ public class HttpLogin {
 									st = concatStr(st, tag, "");
 								}
 							}
-							tag = "{Ëæ»úÃÀÊ³Í¼Æ¬}";
+							tag = "{éšæœºç¾é£Ÿå›¾ç‰‡}";
 							if (txtimg.indexOf(tag) != -1) {
 								itype = 0;
 								fdir = m.line.getFoodimgdir();
@@ -1900,7 +1968,7 @@ public class HttpLogin {
 									}
 								}
 							}
-							// ÏÖÔÚĞÂÍøÕ¾£¬¾ÉÍøÕ¾¶¼¸Ä³ÉÒ»ÑùµÄÁË
+							// ç°åœ¨æ–°ç½‘ç«™ï¼Œæ—§ç½‘ç«™éƒ½æ”¹æˆä¸€æ ·çš„äº†
 							if (m.line.isImg_publish_style1()) {
 								nvps.add(new BasicNameValuePair("images_" + (j + 1), dayimgs));
 							} else if (m.line.isImg_publish_style2()) {
@@ -1912,9 +1980,9 @@ public class HttpLogin {
 						}
 					} else {
 						String st = daydescription.toString();
-						st = concatStr(st, "{Ëæ»ú¾°µãÍ¼Æ¬}", "");
-						st = concatStr(st, "{Ëæ»ú¾ÆµêÍ¼Æ¬}", "");
-						st = concatStr(st, "{Ëæ»úÃÀÊ³Í¼Æ¬}", "");
+						st = concatStr(st, "{éšæœºæ™¯ç‚¹å›¾ç‰‡}", "");
+						st = concatStr(st, "{éšæœºé…’åº—å›¾ç‰‡}", "");
+						st = concatStr(st, "{éšæœºç¾é£Ÿå›¾ç‰‡}", "");
 						st = concatStr(st, "{imgposition}", "");
 						daydescription.delete(0, daydescription.length());
 						daydescription.append(st);
@@ -1929,25 +1997,25 @@ public class HttpLogin {
 					nvps.add(new BasicNameValuePair("day_hotel_star_" + (j + 1), d.getStarname()));
 					nvps.add(new BasicNameValuePair("day_hotel_desc_" + (j + 1), d.getStardesc() + "<br/>" + com.bhc.util.StringUtils.parseCharacter(d.getInnfeature())));
 
-					// ¾ÆµêÇé¿öÊı¾İ
-					String h_type = "1", h_name = "¾Æµê", start = "", level = "";
+					// é…’åº—æƒ…å†µæ•°æ®
+					String h_type = "1", h_name = "é…’åº—", start = "", level = "";
 					if (d.getStarname() != null) {
 						h_name = d.getStarname();
-						if (d.getStarname().trim().equals("¿ÍÕ»") || d.getStarname().trim().equals("Å©¼ÒÔº") || d.getStarname().trim().indexOf("¾Æµê") != -1) {
+						if (d.getStarname().trim().equals("å®¢æ ˆ") || d.getStarname().trim().equals("å†œå®¶é™¢") || d.getStarname().trim().indexOf("é…’åº—") != -1) {
 							h_name = d.getStarname() + d.getInnfeature();
 							h_type = "1";
 							start = "0";
 							level = "0";
-						} else if (d.getStarname().trim().equals("×¡ÔÚ½»Í¨¹¤¾ßÉÏ")) {
+						} else if (d.getStarname().trim().equals("ä½åœ¨äº¤é€šå·¥å…·ä¸Š")) {
 							h_type = "2";
-						} else if (d.getStarname().trim().equals("¾Æµê×ª»ú×¡ËŞ")) {
+						} else if (d.getStarname().trim().equals("é…’åº—è½¬æœºä½å®¿")) {
 							h_type = "3";
 						} else {
 							h_type = "4";
 						}
 					}
 					StringBuffer inn = new StringBuffer("[");
-					String[] hos = d.getStardesc().split(";|£»");
+					String[] hos = d.getStardesc().split(";|ï¼›");
 					if (hos != null && hos.length > 0) {
 						for (int i = 0; i < hos.length; i++) {
 							inn.append("{\"hotel_type\":\"" + h_type + "\",\"name\":\"" + hos[i] + "\",\"hotel_seq\":\"\",\"city_code\":\"\",\"address\":\"" + h_name + "\",\"star\":\"" + start + "\",\"level\":\"" + level
@@ -1959,13 +2027,13 @@ public class HttpLogin {
 					}
 					inn.append("]");
 					updateUI(inn.toString());
-					if (j == list.size() - 1) {// Èç¹ûÊÇ×îºóÒ»Ìì£¬ÄÇÃ´Ã»ÓĞ×¡ËŞ
+					if (j == list.size() - 1) {// å¦‚æœæ˜¯æœ€åä¸€å¤©ï¼Œé‚£ä¹ˆæ²¡æœ‰ä½å®¿
 						inn.setLength(0);
 					}
 
 					// updateUI(inn);
 
-					if (m.line.getCselect().equals("qlyÍøÕ¾")) {
+					if (m.line.getCselect().equals("qlyç½‘ç«™")) {
 						nvps.add(new BasicNameValuePair("shopping_" + (j + 1), d.getShopping()));
 						nvps.add(new BasicNameValuePair("self_pay" + (j + 1), d.getSelfexpense()));
 						nvps.add(new BasicNameValuePair("hotels_" + (j + 1), inn.toString()));
@@ -2010,7 +2078,7 @@ public class HttpLogin {
 								} else {
 									txtdesc = daydescription.toString() + com.bhc.util.StringUtils.parseCharacter(d.getInnmark()) + sb.toString();
 								}
-								// ÒÔ//nÎª»»ĞĞ·û
+								// ä»¥//nä¸ºæ¢è¡Œç¬¦
 								StringBuffer sbs = new StringBuffer();
 								for (int i = 0; i < txtdesc.length(); i++) {
 									sbs.append(txtdesc.substring(i, i + 1));
@@ -2030,20 +2098,20 @@ public class HttpLogin {
 						nvps.add(new BasicNameValuePair("description_" + (j + 1), concatStr(daydescription.toString(), "{imgposition}", "")));
 					}
 
-					if (d.getBreakfirst().equals("Ôç²Í")) {
+					if (d.getBreakfirst().equals("æ—©é¤")) {
 						nvps.add(new BasicNameValuePair("zao_" + (j + 1), "on"));
 						nvps.add(new BasicNameValuePair("breakfast_desc_" + (j + 1), d.getBreakfirstdesc()));
 					}
-					if (d.getLunch().equals("ÖĞ²Í")) {
+					if (d.getLunch().equals("ä¸­é¤")) {
 						nvps.add(new BasicNameValuePair("zhong_" + (j + 1), "on"));
 						nvps.add(new BasicNameValuePair("lunch_desc_" + (j + 1), d.getLunchdesc()));
 					}
-					if (d.getSupper().equals("Íí²Í")) {
+					if (d.getSupper().equals("æ™šé¤")) {
 						nvps.add(new BasicNameValuePair("wan_" + (j + 1), "on"));
 						nvps.add(new BasicNameValuePair("dinner_desc_" + (j + 1), d.getSupperdesc()));
 					}
 
-					// ĞĞ³ÌÀïµÄ½»Í¨
+					// è¡Œç¨‹é‡Œçš„äº¤é€š
 					try {
 						String[] tas = d.getDaytraffic().trim().split(" ");
 						if (pfunction.trim().equals("group")) {
@@ -2053,18 +2121,18 @@ public class HttpLogin {
 								sbt.append("[");
 								for (String tstr : tas) {
 									tstr = tstr.trim();
-									if (tstr.equals("·É»ú")) {
+									if (tstr.equals("é£æœº")) {
 										Pattern p = Pattern.compile("[0-9]?[0-9]:[0-9]?[0-9]");
 
 										for (int i = 0, f = 0; i < line.getVehicleSet().size(); i++) {
 											Vehicle ve = line.getVehicleSet().get(i);
-											// Èç¹ûÊÇµÚÒ»Ìì£¬ÄÇÃ´È¡µÄÊÇÀ´Ê±µÄº½°à
+											// å¦‚æœæ˜¯ç¬¬ä¸€å¤©ï¼Œé‚£ä¹ˆå–çš„æ˜¯æ¥æ—¶çš„èˆªç­
 											if (j == 0) {
-												if (!ve.getFlightype().equals("»Ø³Ì")) {
+												if (!ve.getFlightype().equals("å›ç¨‹")) {
 													continue;
 												}
 											} else {
-												if (!ve.getFlightype().equals("È¥³Ì")) {
+												if (!ve.getFlightype().equals("å»ç¨‹")) {
 													continue;
 												}
 											}
@@ -2087,7 +2155,7 @@ public class HttpLogin {
 											sbt.append("\"traffic_type\":\"1\",\"flight_no\":\"" + ve.getFlightno() + "\",\"flight_cabin\":\"3\",\"departure\":\"" + ve.getDepcity() + "\",\"dep_airport\":\""
 													+ ve.getDepairport() + "\",\"dep_time\":\"" + detime + "\",\"arrive\":\"" + ve.getArrcity() + "\",\"arr_airport\":\"" + ve.getArrairport() + "\",\"arr_time\":\""
 													+ arrtime
-													+ "\",\"arr_time_flag\":\"0\",\"flight_duration\":\"120\",\"duration_hours\":2,\"duration_minutes\":\"\",\"stop_comment\":\"\",\"flight_type\":\"\",\"transfer\":\"0\",\"arr_time_flag_cn\":\"\",\"flight\":true,\"traffic_type_cn\":\"·É»ú\",\"flight_cabin_cn\":\"¾­¼Ã²Õ\",\"stop_comment_tag\":false,\"transfer_tag\":0");
+													+ "\",\"arr_time_flag\":\"0\",\"flight_duration\":\"120\",\"duration_hours\":2,\"duration_minutes\":\"\",\"stop_comment\":\"\",\"flight_type\":\"\",\"transfer\":\"0\",\"arr_time_flag_cn\":\"\",\"flight\":true,\"traffic_type_cn\":\"é£æœº\",\"flight_cabin_cn\":\"ç»æµèˆ±\",\"stop_comment_tag\":false,\"transfer_tag\":0");
 											sbt.append("}]");
 											sbt.append(",\"cases_index\":1");
 											sbt.append(",\"first\":true}]");
@@ -2098,29 +2166,29 @@ public class HttpLogin {
 												break;
 											}
 										}
-									} else if (tstr.equals("»ğ³µ")) {
+									} else if (tstr.equals("ç«è½¦")) {
 										sbt.append("{\"cases\":[{");
 										sbt.append("\"references\":[{");
-										sbt.append("\"traffic_seq\":2,\"traffic_type\":\"2\",\"train_no\":\"´ı¶¨\",\"departure\":\"´ı¶¨\",\"arrive\":\"´ı¶¨\"");
+										sbt.append("\"traffic_seq\":2,\"traffic_type\":\"2\",\"train_no\":\"å¾…å®š\",\"departure\":\"å¾…å®š\",\"arrive\":\"å¾…å®š\"");
 										sbt.append("}]");
 										sbt.append(",\"cases_index\":1");
 										sbt.append(",\"first\":true}]");
 										sbt.append(",\"indexs\":1");
 										sbt.append(",\"len\":2},");
-									} else if (tstr.equals("Æû³µ")) {
+									} else if (tstr.equals("æ±½è½¦")) {
 										sbt.append("{\"cases\":[{");
 										sbt.append("\"references\":[{");
 										sbt.append(
-												"\"traffic_type\":\"3\",\"car_type\":\"ÂÃÓÎ´ó°Í\",\"car_seat\":\"0\",\"departure\":\"´ı¶¨\",\"dep_time\":\"00:00\",\"arrive\":\"²ÎÕÕĞĞ³Ì\",\"arr_time\":\"00:00\",\"arr_time_flag\":\"0\",\"train_duration\":\"0\",\"duration_hours\":\"\",\"duration_minutes\":\"\",\"transfer\":\"0\",\"arr_time_flag_cn\":\"\",\"bus\":true,\"traffic_type_cn\":\"Æû³µ\",\"car_seat_cn\":\"´ı¶¨\",\"stop_comment_tag\":false,\"transfer_tag\":0");
+												"\"traffic_type\":\"3\",\"car_type\":\"æ—…æ¸¸å¤§å·´\",\"car_seat\":\"0\",\"departure\":\"å¾…å®š\",\"dep_time\":\"00:00\",\"arrive\":\"å‚ç…§è¡Œç¨‹\",\"arr_time\":\"00:00\",\"arr_time_flag\":\"0\",\"train_duration\":\"0\",\"duration_hours\":\"\",\"duration_minutes\":\"\",\"transfer\":\"0\",\"arr_time_flag_cn\":\"\",\"bus\":true,\"traffic_type_cn\":\"æ±½è½¦\",\"car_seat_cn\":\"å¾…å®š\",\"stop_comment_tag\":false,\"transfer_tag\":0");
 										sbt.append("}]");
 										sbt.append(",\"cases_index\":1");
 										sbt.append(",\"first\":true}]");
 										sbt.append(",\"indexs\":1");
 										sbt.append(",\"len\":2},");
-									} else if (tstr.equals("ÂÖ´¬")) {
+									} else if (tstr.equals("è½®èˆ¹")) {
 										sbt.append("{\"cases\":[{");
 										sbt.append("\"references\":[{");
-										sbt.append("\"traffic_seq\":4,\"traffic_type\":\"4\",\"cruise_name\":\"´ı¶¨\",\"departure\":\"´ı¶¨\",\"arrive\":\"´ı¶¨\"");
+										sbt.append("\"traffic_seq\":4,\"traffic_type\":\"4\",\"cruise_name\":\"å¾…å®š\",\"departure\":\"å¾…å®š\",\"arrive\":\"å¾…å®š\"");
 										sbt.append("}]");
 										sbt.append(",\"cases_index\":1");
 										sbt.append(",\"first\":true}]");
@@ -2129,7 +2197,7 @@ public class HttpLogin {
 									} else if (d.getOther() != null) {
 										sbt.append("{\"cases\":[{");
 										sbt.append("\"references\":[{");
-										sbt.append("\"traffic_seq\":5,\"traffic_type\":\"5\",\"other\":\"´ı¶¨\"");
+										sbt.append("\"traffic_seq\":5,\"traffic_type\":\"5\",\"other\":\"å¾…å®š\"");
 										sbt.append("}]");
 										sbt.append(",\"cases_index\":1");
 										sbt.append(",\"first\":true}]");
@@ -2145,15 +2213,15 @@ public class HttpLogin {
 								nvps.add(new BasicNameValuePair("traffics_" + (j + 1), sbt.toString()));
 							}
 						} else {
-							if (d.getDaytraffic().trim().equals("Æû³µ")) {
+							if (d.getDaytraffic().trim().equals("æ±½è½¦")) {
 								nvps.add(new BasicNameValuePair("qc_" + (j + 1), "on"));
-							} else if (d.getDaytraffic().trim().equals("·É»ú")) {
+							} else if (d.getDaytraffic().trim().equals("é£æœº")) {
 								nvps.add(new BasicNameValuePair("fj_" + (j + 1), "on"));
-							} else if (d.getDaytraffic().trim().equals("»ğ³µ")) {
+							} else if (d.getDaytraffic().trim().equals("ç«è½¦")) {
 								nvps.add(new BasicNameValuePair("hc_" + (j + 1), "on"));
-							} else if (d.getDaytraffic().trim().equals("Æû³µ")) {
+							} else if (d.getDaytraffic().trim().equals("æ±½è½¦")) {
 								nvps.add(new BasicNameValuePair("qc_" + (j + 1), "on"));
-							} else if (d.getDaytraffic().trim().equals("ÂÖ´¬")) {
+							} else if (d.getDaytraffic().trim().equals("è½®èˆ¹")) {
 								nvps.add(new BasicNameValuePair("lc_" + (j + 1), "on"));
 							} else if (d.getOther() != null) {
 								nvps.add(new BasicNameValuePair("qc_" + (j + 1), "on"));
@@ -2162,7 +2230,7 @@ public class HttpLogin {
 							nvps.add(new BasicNameValuePair("day_traffic_other_" + (j + 1), ""));
 						}
 					} catch (Exception e) {
-						updateUI("ÈÕ³Ì½»Í¨¹¤¾ßÉÏ´«³ö´í");
+						updateUI("æ—¥ç¨‹äº¤é€šå·¥å…·ä¸Šä¼ å‡ºé”™");
 					}
 				}
 			}
@@ -2194,7 +2262,7 @@ public class HttpLogin {
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("ĞĞ³ÌÊı¾İÉÏ´«Íê³É");
+			updateUI("è¡Œç¨‹æ•°æ®ä¸Šä¼ å®Œæˆ");
 			return rc;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -2215,7 +2283,7 @@ public class HttpLogin {
 					return dayimgs;
 				}
 			}
-			String[] dtks = dtk.split("£­|-");
+			String[] dtks = dtk.split("ï¼|-");
 			if (dtks != null && dtks.length > 0) {
 				StringBuffer sbf = new StringBuffer("");
 				for (String tagname : dtks) {
@@ -2308,7 +2376,7 @@ public class HttpLogin {
 
 	public String postLinePrice() {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return null;
 		}
 		if (pid == null) {
@@ -2320,8 +2388,8 @@ public class HttpLogin {
 
 			List<List<NameValuePair>> tlist = new ArrayList<List<NameValuePair>>();
 
-			// ÉÏ´«ĞĞ³ÌÊı¾İ
-			updateUI("¿ªÊ¼ÉÏ´«¼Û¸ñÊı¾İ");
+			// ä¸Šä¼ è¡Œç¨‹æ•°æ®
+			updateUI("å¼€å§‹ä¸Šä¼ ä»·æ ¼æ•°æ®");
 			// if(pfunction.trim().equals("group")){
 
 			boolean bs = false;
@@ -2333,7 +2401,7 @@ public class HttpLogin {
 			calendar.setTime(new Date());
 			/*
 			 * SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
-			 * ÏÖÔÚ²»ÓÃÏÂ¼Ü¾Í¿ÉÒÔ¸ü¸ÄÊı¾İÁË for (int i = 0; i < 6; i++) {// ÏÈ°ÑÒÔÇ°µÄ¼Û¸ñÏÂ¼Ü String
+			 * ç°åœ¨ä¸ç”¨ä¸‹æ¶å°±å¯ä»¥æ›´æ”¹æ•°æ®äº† for (int i = 0; i < 6; i++) {// å…ˆæŠŠä»¥å‰çš„ä»·æ ¼ä¸‹æ¶ String
 			 * dstr = sdf.format(calendar.getTime());
 			 * searchExistLineTeams(dstr); calendar.add(calendar.MONTH, 1); }
 			 */
@@ -2369,10 +2437,10 @@ public class HttpLogin {
 					int fprice = 0;
 					SimpleDateFormat fdf = new SimpleDateFormat("yyyy-MM-dd");
 					SimpleDateFormat edf = new SimpleDateFormat("dd.MM.yyyy");
-					// »ñÈ¡Ö¸¶¨µÄÈÕÆÚ¼Û¸ñ±ä¶¯
-					// £¬ÅĞ¶Ïµ±Ç°µÄÈÕÆÚÊÇ²»ÊÇÔÚÖ¸¶¨µÄÒªµ÷ÕûµÄÈÕÆÚÄÚ£¬Èç¹ûÊÇÄÇÃ´¼ÓÉÏÖ¸¶¨µÄ¼Û¸ñ£¬¿ÉÒÔÎª¸º£¬ÄÇÃ´¾ÍÊÇ¼õÈ¥Ö¸¶¨µÄ¼Û¸ñ
+					// è·å–æŒ‡å®šçš„æ—¥æœŸä»·æ ¼å˜åŠ¨
+					// ï¼Œåˆ¤æ–­å½“å‰çš„æ—¥æœŸæ˜¯ä¸æ˜¯åœ¨æŒ‡å®šçš„è¦è°ƒæ•´çš„æ—¥æœŸå†…ï¼Œå¦‚æœæ˜¯é‚£ä¹ˆåŠ ä¸ŠæŒ‡å®šçš„ä»·æ ¼ï¼Œå¯ä»¥ä¸ºè´Ÿï¼Œé‚£ä¹ˆå°±æ˜¯å‡å»æŒ‡å®šçš„ä»·æ ¼
 					if (m.line.isChangespecial()) {
-						// sdate Ö¸¶¨¿ªÈçÈÕÆÚ, edate ½áÊøÈÕÆÚ, ldate µ±Ç°Õâ¸ö¼Û¸ñµÄÈÕÆÚ
+						// sdate æŒ‡å®šå¼€å¦‚æ—¥æœŸ, edate ç»“æŸæ—¥æœŸ, ldate å½“å‰è¿™ä¸ªä»·æ ¼çš„æ—¥æœŸ
 						Date sdate = null, edate = null, ldate = null;
 						try {
 							sdate = fdf.parse(fdf.format(m.line.getSpecialsatrttime()));
@@ -2394,13 +2462,13 @@ public class HttpLogin {
 							ldate = fdf.parse(t.getTakeoffdate());
 						} catch (Exception e1) {
 						}
-						// µ÷Õû¼Û¸ñ
+						// è°ƒæ•´ä»·æ ¼
 						if (ldate.getTime() >= sdate.getTime() && ldate.getTime() < edate.getTime()) {
 							fprice += Integer.parseInt(m.line.getPriceratedate());
 						}
 					}
 
-					// µÚ¶ş¸ö¼Û¸ñµ÷Õû
+					// ç¬¬äºŒä¸ªä»·æ ¼è°ƒæ•´
 					if (m.line.isChangespecial2()) {
 						Date sdate = null, edate = null, ldate = null;
 						try {
@@ -2435,7 +2503,7 @@ public class HttpLogin {
 						}
 					}
 
-					// µÚÈı¸ö¼Û¸ñµ÷Õû, µ÷Õû·¿²î
+					// ç¬¬ä¸‰ä¸ªä»·æ ¼è°ƒæ•´, è°ƒæ•´æˆ¿å·®
 					if (m.line.isChangespecial3()) {
 						Date sdate = null, edate = null, ldate = null;
 						try {
@@ -2463,7 +2531,7 @@ public class HttpLogin {
 						}
 						try {
 							if (ldate.getTime() >= sdate.getTime() && ldate.getTime() < edate.getTime()) {
-								// Õâ¶ù×÷ÁËÅĞ¶Ï£¬Èç¹ûµ÷ÕûµÄ¼Û¸ñĞ¡ÓÚ0£¬ÄÇÃ´µ¥·¿²îÎª0
+								// è¿™å„¿ä½œäº†åˆ¤æ–­ï¼Œå¦‚æœè°ƒæ•´çš„ä»·æ ¼å°äº0ï¼Œé‚£ä¹ˆå•æˆ¿å·®ä¸º0
 								int rprice = Integer.parseInt(t.getRoomsendprice());
 								int dprice = Integer.parseInt(m.line.getPriceratedate3());
 								rprice = rprice + dprice;
@@ -2495,7 +2563,7 @@ public class HttpLogin {
 						nvps.add(new BasicNameValuePair("is_child_price", "on"));
 						nvps.add(new BasicNameValuePair("child_price", m.line.getKidsprice()));
 					} else {
-						if (m.line.getCselect().equals("ĞÂÍøÕ¾")) {
+						if (m.line.getCselect().equals("æ–°ç½‘ç«™")) {
 							int tprice = Integer.parseInt(t.getMarketprice());
 							// tprice = tprice + (new Random().nextInt(10) *
 							// 10);
@@ -2506,7 +2574,7 @@ public class HttpLogin {
 						try {
 							nvps.add(new BasicNameValuePair("adult_price", String.valueOf(Integer.parseInt(t.getQunarprice()) + fprice)));
 						} catch (Exception e) {
-							System.out.println("Ã»ÓĞÈ¡µ½³ÉÈË¼Û¸ñ");
+							System.out.println("æ²¡æœ‰å–åˆ°æˆäººä»·æ ¼");
 						}
 						nvps.add(new BasicNameValuePair("room_send_price", t.getRoomsendprice()));
 						if (!t.getChildprice().equals("")) {
@@ -2517,7 +2585,7 @@ public class HttpLogin {
 						nvps.add(new BasicNameValuePair("child_price", t.getChildprice()));
 					}
 
-					// ÏßÂ·¿â´æÊıµÄÉèÖÃ
+					// çº¿è·¯åº“å­˜æ•°çš„è®¾ç½®
 					if (m.line.getStorenum() != null && m.line.getStorenum().length() > 0) {
 						nvps.add(new BasicNameValuePair("count", m.line.getStorenum()));
 					} else {
@@ -2535,14 +2603,14 @@ public class HttpLogin {
 					nvps.add(new BasicNameValuePair("child_price_desc", m.line.getKidspricedesc()));
 					nvps.add(new BasicNameValuePair("dateString", dt));
 
-					// ÓÃÀ´¼ÇÂ¼ÉÏ´«µÄ´ÎÊı
+					// ç”¨æ¥è®°å½•ä¸Šä¼ çš„æ¬¡æ•°
 					nvps.add(new BasicNameValuePair("sendcount", "1"));
-					// ÓÃÀ´¼ÇÂ¼×îºóÒ»´ÎµÄÉÏ´«Ê±¼ä
+					// ç”¨æ¥è®°å½•æœ€åä¸€æ¬¡çš„ä¸Šä¼ æ—¶é—´
 					nvps.add(new BasicNameValuePair("sendtime", String.valueOf(System.currentTimeMillis())));
 					tlist.add(nvps);
 				}
 
-				// Õâ¸ö²»ÊÇÉÏ´«²ÎÊı£¬ÊÇÓÃÀ´ÅĞ¶ÏÉÏ´«ÁË¼¸´Î£¬Ä¿Ç°ÊÇ25´Î£¬Èç¹û³¬¹ıÕâ¸ö´ÎÊı£¬ÄÇÃ´¿ÉÄÜÊÇÈ¥ÄÄ¶ù²»Ö§³ÖÕâ¸öÊı¾İ£¬Â·¹ı
+				// è¿™ä¸ªä¸æ˜¯ä¸Šä¼ å‚æ•°ï¼Œæ˜¯ç”¨æ¥åˆ¤æ–­ä¸Šä¼ äº†å‡ æ¬¡ï¼Œç›®å‰æ˜¯25æ¬¡ï¼Œå¦‚æœè¶…è¿‡è¿™ä¸ªæ¬¡æ•°ï¼Œé‚£ä¹ˆå¯èƒ½æ˜¯å»å“ªå„¿ä¸æ”¯æŒè¿™ä¸ªæ•°æ®ï¼Œè·¯è¿‡
 				Map<String, List<NameValuePair>> tmap = new HashMap<String, List<NameValuePair>>();
 				for (Iterator<List<NameValuePair>> it = tlist.iterator(); it.hasNext();) {
 					List<NameValuePair> nv = it.next();
@@ -2588,8 +2656,8 @@ public class HttpLogin {
 					postLinePrice(nvps);
 				}
 			}
-			updateUI("¼Û¸ñÊı¾İÉÏ´«Íê³É,Èç¹û»¹ÓĞ£¬ÄÇÔÚ" + (m.line.getFailinterrupt()) + "Ãëºó¼ÌĞøÉÏ´«");
-			// ¼ä¸ôÉèÖÃµÄÃëÊı
+			updateUI("ä»·æ ¼æ•°æ®ä¸Šä¼ å®Œæˆ,å¦‚æœè¿˜æœ‰ï¼Œé‚£åœ¨" + (m.line.getFailinterrupt()) + "ç§’åç»§ç»­ä¸Šä¼ ");
+			// é—´éš”è®¾ç½®çš„ç§’æ•°
 			Thread.sleep(m.line.getFailinterrupt() * 1000);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -2597,7 +2665,7 @@ public class HttpLogin {
 		return null;
 	}
 
-	// ÉÏ´«ÉÏ´ÎÉÏ´«Ê§°ÜµÄ¼Û¸ñÊı¾İ£¬ËùÓĞµÄÊ§°ÜµÄ¶¼·ÅÔÚ×îºóÉÏ´«
+	// ä¸Šä¼ ä¸Šæ¬¡ä¸Šä¼ å¤±è´¥çš„ä»·æ ¼æ•°æ®ï¼Œæ‰€æœ‰çš„å¤±è´¥çš„éƒ½æ”¾åœ¨æœ€åä¸Šä¼ 
 	public void postErrorPrice() {
 		if (!BaseIni.nvslink.isEmpty()) {
 			List<NameValuePair> nvps = BaseIni.nvslink.peek();
@@ -2605,11 +2673,11 @@ public class HttpLogin {
 				if (np.getName().trim().equals("sendtime")) {
 					Long d = Long.parseLong(np.getValue());
 					if ((System.currentTimeMillis() - d) / 1000 >= line.getFailinterrupt()) {
-						updateUI("´íÎó¶ÓÁĞÈ¡³öÉÏ´«,»¹ÓĞ" + BaseIni.nvslink.size() + "Ìõ");
+						updateUI("é”™è¯¯é˜Ÿåˆ—å–å‡ºä¸Šä¼ ,è¿˜æœ‰" + BaseIni.nvslink.size() + "æ¡");
 						nvps = BaseIni.nvslink.poll();
 						postLinePrice(nvps);
 					} else {
-						updateUI("µÈ´ı" + (System.currentTimeMillis() - d) + "ÃëºóÉÏ´«,»¹ÓĞ"+BaseIni.nvslink.size()+"Ìõ");
+						updateUI("ç­‰å¾…" + (System.currentTimeMillis() - d) + "ç§’åä¸Šä¼ ,è¿˜æœ‰" + BaseIni.nvslink.size() + "æ¡");
 						try {
 							Thread.sleep((System.currentTimeMillis() - d));
 						} catch (InterruptedException e) {
@@ -2620,7 +2688,7 @@ public class HttpLogin {
 		}
 	}
 
-	// ÉÏ´«¼Û¸ñ
+	// ä¸Šä¼ ä»·æ ¼
 	public void postLinePrice(List<NameValuePair> nvps) {
 		String loginurl = "http://tb2cadmin.qunar.com/supplier/productTeamOperation.do";
 		String rc = "";
@@ -2660,7 +2728,7 @@ public class HttpLogin {
 		}
 		if (rc == null || rc.trim().equals("")) {
 			int c = 0;
-			int sf = 0;// ÅĞ¶ÏÊÇ·ñÒÑ¾­µ½3´ÎÁË£¬Èç¹û²»µ½ÄÇ¼ÌĞøÅÅ¶Ó£¬Èç¹ûµ½ÁË£¬ÄÇÒÆ³ı
+			int sf = 0;// åˆ¤æ–­æ˜¯å¦å·²ç»åˆ°3æ¬¡äº†ï¼Œå¦‚æœä¸åˆ°é‚£ç»§ç»­æ’é˜Ÿï¼Œå¦‚æœåˆ°äº†ï¼Œé‚£ç§»é™¤
 			for (int i = 0; i < nvps.size(); i++) {
 				NameValuePair np = nvps.get(i);
 				if (np.getName().trim().equals("sendtime")) {
@@ -2686,17 +2754,17 @@ public class HttpLogin {
 			if (sf == 1) {
 				BaseIni.nvslink.offer(nvps);
 			} else {
-				// ÔÚÕâÀï¿ÉÒÔ°Ñµ±Ç°Ê§°ÜµÄÉÏ´«¼ÇÂ¼ÏÂÀ´
+				// åœ¨è¿™é‡Œå¯ä»¥æŠŠå½“å‰å¤±è´¥çš„ä¸Šä¼ è®°å½•ä¸‹æ¥
 			}
-			updateUI("ÉÏ´«Ê§°Ü£¬½øÈë´ı´«¶ÓÁĞ£ºÒÑ¾­´æÔÚ" + BaseIni.nvslink.size() + "¸ö¡¡´íÎó£º" + rc);
+			updateUI("ä¸Šä¼ å¤±è´¥ï¼Œè¿›å…¥å¾…ä¼ é˜Ÿåˆ—ï¼šå·²ç»å­˜åœ¨" + BaseIni.nvslink.size() + "ä¸ªã€€é”™è¯¯ï¼š" + rc);
 		} else {
-			updateUI("¼ä¸ôÁË" + waittime + "Ãë£º" + rc);
+			updateUI("é—´éš”äº†" + waittime + "ç§’ï¼š" + rc);
 		}
 	}
 
 	public String postLineMarker() {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return null;
 		}
 		if (pid == null) {
@@ -2710,8 +2778,8 @@ public class HttpLogin {
 			String pfunction = summary.getPfunction().trim();
 			List<NameValuePair> nvps = null;
 
-			// ÉÏ´«ĞĞ³ÌÊı¾İ
-			updateUI("¿ªÊ¼ÉÏ´«ÏßÂ·±¸×¢Êı¾İ");
+			// ä¸Šä¼ è¡Œç¨‹æ•°æ®
+			updateUI("å¼€å§‹ä¸Šä¼ çº¿è·¯å¤‡æ³¨æ•°æ®");
 			// if (pfunction.trim().equals("group")) {
 			nvps = new ArrayList<NameValuePair>();
 			nvps.add(new BasicNameValuePair("method", "updateProductOthers"));
@@ -2725,7 +2793,7 @@ public class HttpLogin {
 			System.out.println(sfu);
 			StringBuffer sbs = new StringBuffer();
 			StringBuffer sbs2 = new StringBuffer();
-			if (!m.line.getCselect().equals("qlyÍøÕ¾")) {
+			if (!m.line.getCselect().equals("qlyç½‘ç«™")) {
 				for (int i = 0, j = 1; i < sfu.length(); i++) {
 					String s = sfu.substring(i, i + 1);
 					if (s.equals("-")) {
@@ -2735,9 +2803,9 @@ public class HttpLogin {
 								String tstr2 = tstr.substring(0, 1);
 								String tstr3 = tstr.substring(2);
 								if (StringUtils.isNumeric(tstr2)) {
-									sbs2.append("<p data-oritext=\"" + j + "¡¢" + tstr3 + "\">").append(j + "¡¢" + tstr3).append("</p>");
+									sbs2.append("<p data-oritext=\"" + j + "ã€" + tstr3 + "\">").append(j + "ã€" + tstr3).append("</p>");
 								} else {
-									sbs2.append("<p data-oritext=\"" + j + "¡¢" + sbs + "\">").append(j + "¡¢" + sbs).append("</p>");
+									sbs2.append("<p data-oritext=\"" + j + "ã€" + sbs + "\">").append(j + "ã€" + sbs).append("</p>");
 								}
 							}
 							j++;
@@ -2753,9 +2821,9 @@ public class HttpLogin {
 								String tstr2 = tstr.substring(0, 1);
 								String tstr3 = tstr.substring(2);
 								if (StringUtils.isNumeric(tstr2)) {
-									sbs2.append("<p data-oritext=\"" + j + "¡¢" + tstr3 + "\">").append(j + "¡¢" + tstr3).append("</p>");
+									sbs2.append("<p data-oritext=\"" + j + "ã€" + tstr3 + "\">").append(j + "ã€" + tstr3).append("</p>");
 								} else {
-									sbs2.append("<p data-oritext=\"" + j + "¡¢" + sbs + "\">").append(j + "¡¢" + sbs).append("</p>");
+									sbs2.append("<p data-oritext=\"" + j + "ã€" + sbs + "\">").append(j + "ã€" + sbs).append("</p>");
 								}
 							}
 						}
@@ -2790,7 +2858,7 @@ public class HttpLogin {
 
 			sbs.setLength(0);
 			sbs2.setLength(0);
-			if (!m.line.getCselect().equals("qlyÍøÕ¾")) {
+			if (!m.line.getCselect().equals("qlyç½‘ç«™")) {
 				for (int i = 0, j = 1; i < sfu.length(); i++) {
 					String s = sfu.substring(i, i + 1);
 					if (s.equals("-")) {
@@ -2800,9 +2868,9 @@ public class HttpLogin {
 								String tstr2 = tstr.substring(0, 1);
 								String tstr3 = tstr.substring(2);
 								if (StringUtils.isNumeric(tstr2)) {
-									sbs2.append("<p data-oritext=\"" + j + "¡¢" + tstr3 + "\">").append(j + "¡¢" + tstr3).append("</p>");
+									sbs2.append("<p data-oritext=\"" + j + "ã€" + tstr3 + "\">").append(j + "ã€" + tstr3).append("</p>");
 								} else {
-									sbs2.append("<p data-oritext=\"" + j + "¡¢" + sbs + "\">").append(j + "¡¢" + sbs).append("</p>");
+									sbs2.append("<p data-oritext=\"" + j + "ã€" + sbs + "\">").append(j + "ã€" + sbs).append("</p>");
 								}
 							}
 							j++;
@@ -2818,9 +2886,9 @@ public class HttpLogin {
 								String tstr2 = tstr.substring(0, 1);
 								String tstr3 = tstr.substring(2);
 								if (StringUtils.isNumeric(tstr2)) {
-									sbs2.append("<p data-oritext=\"" + j + "¡¢" + tstr3 + "\">").append(j + "¡¢" + tstr3).append("</p>");
+									sbs2.append("<p data-oritext=\"" + j + "ã€" + tstr3 + "\">").append(j + "ã€" + tstr3).append("</p>");
 								} else {
-									sbs2.append("<p data-oritext=\"" + j + "¡¢" + sbs + "\">").append(j + "¡¢" + sbs).append("</p>");
+									sbs2.append("<p data-oritext=\"" + j + "ã€" + sbs + "\">").append(j + "ã€" + sbs).append("</p>");
 								}
 							}
 						}
@@ -2929,7 +2997,7 @@ public class HttpLogin {
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("ÏßÂ·±¸×¢Êı¾İÉÏ´«Íê³É");
+			updateUI("çº¿è·¯å¤‡æ³¨æ•°æ®ä¸Šä¼ å®Œæˆ");
 			// return rc;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -2939,7 +3007,7 @@ public class HttpLogin {
 
 	public String postActInfo() {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return null;
 		}
 		if (pid == null) {
@@ -2953,8 +3021,8 @@ public class HttpLogin {
 			String pfunction = summary.getPfunction().trim();
 			List<NameValuePair> nvps = null;
 
-			// ÉÏ´«ĞĞ³ÌÊı¾İ
-			updateUI("¿ªÊ¼ÉÏ´«ÏßÂ·ÓÅ»İÊı¾İ");
+			// ä¸Šä¼ è¡Œç¨‹æ•°æ®
+			updateUI("å¼€å§‹ä¸Šä¼ çº¿è·¯ä¼˜æƒ æ•°æ®");
 			// if (pfunction.trim().equals("group")) {
 			nvps = new ArrayList<NameValuePair>();
 			nvps.add(new BasicNameValuePair("multi", ""));
@@ -2963,7 +3031,7 @@ public class HttpLogin {
 			SimpleDateFormat fdf = new SimpleDateFormat("yyyy-MM-dd");
 			SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
-			// ¶àÈËÁ¢¼õ
+			// å¤šäººç«‹å‡
 			String disbegindate = m.line.getDisbegindate();
 			String disenddate = m.line.getDisenddate();
 			String discount = m.line.getDiscount();
@@ -2988,7 +3056,7 @@ public class HttpLogin {
 				nvps.add(new BasicNameValuePair("reduceprice", "1"));
 			}
 
-			// Ôç¶©ÓÅ»İ
+			// æ—©è®¢ä¼˜æƒ 
 			String earlystartdate = m.line.getEarlystartdate();
 			String earlyenddate = m.line.getEarlyenddate();
 			String earlybookday = m.line.getEarlybookday();
@@ -3026,7 +3094,7 @@ public class HttpLogin {
 				sb.append("]");
 			}
 			nvps.add(new BasicNameValuePair("early_book", sb.toString()));
-			// ÓÅ»İ´ÙÏú
+			// ä¼˜æƒ ä¿ƒé”€
 			String favorabledisplaystart = m.line.getFavorabledisplaystart();
 			String favorabledisplayend = m.line.getFavorabledisplayend();
 			if (m.line.isFavorabledisplaycheck()) {
@@ -3077,7 +3145,7 @@ public class HttpLogin {
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("ÏßÂ·ÓÅ»İÊı¾İÉÏ´«Íê³É");
+			updateUI("çº¿è·¯ä¼˜æƒ æ•°æ®ä¸Šä¼ å®Œæˆ");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -3087,10 +3155,10 @@ public class HttpLogin {
 	public void validateUpdate() {
 		// http://tb2cadmin.qunar.com/supplier/product.do?method=validateUpdate&type=up&ids=698364580
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return;
 		}
-		updateUI("ÑéÖ¤ÊÇ·ñ¿ÉÒÔÉÏ¼Ü");
+		updateUI("éªŒè¯æ˜¯å¦å¯ä»¥ä¸Šæ¶");
 
 		URI uri = null;
 		try {
@@ -3128,23 +3196,23 @@ public class HttpLogin {
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("ÑéÖ¤ĞÅÏ¢ÉÏ¼ÜÍê±Ï");
+			updateUI("éªŒè¯ä¿¡æ¯ä¸Šæ¶å®Œæ¯•");
 		} catch (Exception e) {
 			e.printStackTrace();
-			updateUI("ÑéÖ¤ĞÅÏ¢ÉÏ¼Ü³ö´í");
+			updateUI("éªŒè¯ä¿¡æ¯ä¸Šæ¶å‡ºé”™");
 		} finally {
 		}
 	}
 
-	// È¡µÃÈ¥ÄÄ¶ùµÄ¾ÆµêĞÅÏ¢
+	// å–å¾—å»å“ªå„¿çš„é…’åº—ä¿¡æ¯
 	private String getQunarHotelInfo(String citycode, String hname) {
 		// http://hs.qunar.com/api/hs/dujiahotel/typeahead?city_code=lijiang&hotel=
 		String re = null;
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return null;
 		}
-		updateUI("»ñÈ¡¾ÆµêĞÅÏ¢");
+		updateUI("è·å–é…’åº—ä¿¡æ¯");
 		URI uri = null;
 		try {
 			uri = new URIBuilder().setScheme("http").setHost("hs.qunar.com").setPath("/api/hs/dujiahotel/typeahead").setParameter("city_code", citycode).setParameter("hotel", hname).build();
@@ -3176,24 +3244,24 @@ public class HttpLogin {
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("È¡³ö¾ÆµêĞÅÏ¢Íê³É");
+			updateUI("å–å‡ºé…’åº—ä¿¡æ¯å®Œæˆ");
 		} catch (Exception e) {
 			e.printStackTrace();
-			updateUI("È¡³ö¾ÆµêĞÅÏ¢³ö´í:" + e.getMessage());
+			updateUI("å–å‡ºé…’åº—ä¿¡æ¯å‡ºé”™:" + e.getMessage());
 		} finally {
 		}
 		return re;
 	}
 
-	// È¡µÃÈ¥ÄÄ¶ùµÄ¾ÆµêÏêÏ¸ĞÅÏ¢
+	// å–å¾—å»å“ªå„¿çš„é…’åº—è¯¦ç»†ä¿¡æ¯
 	private String getQunarHotelDetailInfo(String hcode) {
 		// https://tb2cadmin.qunar.com/qhotel.do?method=baseInfo&seq=
 		String re = null;
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return null;
 		}
-		updateUI("»ñÈ¡¾ÆµêÏêÏ¸ĞÅÏ¢");
+		updateUI("è·å–é…’åº—è¯¦ç»†ä¿¡æ¯");
 		URI uri = null;
 		try {
 			uri = new URIBuilder().setScheme("http").setHost("tb2cadmin.qunar.com").setPath("/qhotel.do").setParameter("method", "baseInfo").setParameter("seq", hcode).build();
@@ -3224,24 +3292,24 @@ public class HttpLogin {
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("È¡³ö¾ÆµêÏêÏ¸ĞÅÏ¢Íê³É");
+			updateUI("å–å‡ºé…’åº—è¯¦ç»†ä¿¡æ¯å®Œæˆ");
 		} catch (Exception e) {
 			e.printStackTrace();
-			updateUI("È¡³ö¾ÆµêÏêÏ¸ĞÅÏ¢³ö´í:" + e.getMessage());
+			updateUI("å–å‡ºé…’åº—è¯¦ç»†ä¿¡æ¯å‡ºé”™:" + e.getMessage());
 		} finally {
 		}
 		return re;
 	}
 
-	// È¡µÃÈ¥ÄÄ¶ùµÄµØÇø±àÂë
+	// å–å¾—å»å“ªå„¿çš„åœ°åŒºç¼–ç 
 	private String getQunarCityCode(String cityname) {
-		// http://hsuggest.qunar.com/hotel_city_suggestion?city=Àö½­
+		// http://hsuggest.qunar.com/hotel_city_suggestion?city=ä¸½æ±Ÿ
 		String re = null;
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return re;
 		}
-		updateUI("»ñÈ¡È¥ÄÄ¶ùµØÇø±àÂë");
+		updateUI("è·å–å»å“ªå„¿åœ°åŒºç¼–ç ");
 		URI uri = null;
 		try {
 			uri = new URIBuilder().setScheme("http").setHost("hsuggest.qunar.com").setPath("/hotel_city_suggestion").setParameter("city", cityname).build();
@@ -3272,22 +3340,22 @@ public class HttpLogin {
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("È¡³öµØÇø±àÂëÍê³É");
+			updateUI("å–å‡ºåœ°åŒºç¼–ç å®Œæˆ");
 		} catch (Exception e) {
 			e.printStackTrace();
-			updateUI("È¡³öµØÇø±àÂë³ö´í:" + e.getMessage());
+			updateUI("å–å‡ºåœ°åŒºç¼–ç å‡ºé”™:" + e.getMessage());
 		} finally {
 		}
 		return re;
 	}
 
-	// ²éÑ¯Êı¾İ
+	// æŸ¥è¯¢æ•°æ®
 	private String analysisCityJson(String sjson, String cityname) {
 		String ccode = null;
 		try {
 			JSONObject jo = new JSONObject(sjson);
 			JSONArray ja = jo.getJSONArray("result");
-			StringBuffer sbs = new StringBuffer("²éÑ¯³ÇÊĞ£º" + cityname + "\t·µ»Ø½á¹û£º");
+			StringBuffer sbs = new StringBuffer("æŸ¥è¯¢åŸå¸‚ï¼š" + cityname + "\tè¿”å›ç»“æœï¼š");
 			if (ja.length() > 0) {
 				for (int i = 0; i < ja.length(); i++) {
 					JSONObject tjo = ja.getJSONObject(i);
@@ -3310,10 +3378,10 @@ public class HttpLogin {
 		// http://tb2cadmin.qunar.com/supplier/product.do?method=validateUpdate&type=up&ids=698364580
 		// http://tb2cadmin.qunar.com/supplier/product/product.jsp?p_function=freetrip&free_type=normal
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return;
 		}
-		updateUI("µÃµ½·şÎñµç»°");
+		updateUI("å¾—åˆ°æœåŠ¡ç”µè¯");
 		String pfunction = "";
 		try {
 			pfunction = line.getSummary().getPfunction().trim();
@@ -3359,22 +3427,22 @@ public class HttpLogin {
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("È¡³ö·şÎñµç»°ĞÅÏ¢Íê³É");
+			updateUI("å–å‡ºæœåŠ¡ç”µè¯ä¿¡æ¯å®Œæˆ");
 		} catch (Exception e) {
 			e.printStackTrace();
-			updateUI("È¡³ö·şÎñµç»°ĞÅÏ¢³ö´í");
+			updateUI("å–å‡ºæœåŠ¡ç”µè¯ä¿¡æ¯å‡ºé”™");
 		} finally {
 		}
 	}
 
 	public void upLine() {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return;
 		}
 		validateUpdate();
 		if (!isup) {
-			updateUI("Êı¾İ²»ÄÜÉÏ¼Ü");
+			updateUI("æ•°æ®ä¸èƒ½ä¸Šæ¶");
 			return;
 		}
 		String loginurl = "http://tb2cadmin.qunar.com/supplier/product.do";
@@ -3382,8 +3450,8 @@ public class HttpLogin {
 			HttpPost httpost = createHttpPost(loginurl);
 
 			List<NameValuePair> nvps = null;
-			// Êı¾İÉÏ¼Ü
-			updateUI("Ö¸¶¨Êı¾İ¿ªÊ¼ÉÏ¼Ü");
+			// æ•°æ®ä¸Šæ¶
+			updateUI("æŒ‡å®šæ•°æ®å¼€å§‹ä¸Šæ¶");
 			nvps = new ArrayList<NameValuePair>();
 			nvps.add(new BasicNameValuePair("method", "updateStatus"));
 			nvps.add(new BasicNameValuePair("type", "up"));
@@ -3409,10 +3477,10 @@ public class HttpLogin {
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("Ö¸¶¨Êı¾İÉÏ¼ÜÍê³É");
+			updateUI("æŒ‡å®šæ•°æ®ä¸Šæ¶å®Œæˆ");
 			// return rc;
 		} catch (Exception e) {
-			updateUI("Ö¸¶¨Êı¾İÉÏ¼Ü³ö´í");
+			updateUI("æŒ‡å®šæ•°æ®ä¸Šæ¶å‡ºé”™");
 			e.printStackTrace();
 		}
 		isup = false;
@@ -3421,7 +3489,7 @@ public class HttpLogin {
 	// /supplier/generalActivity/cancelActivity.do?ids=1811394922 HTTP/1.1
 	public void cancelAct() {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return;
 		}
 		String loginurl = "http://tb2cadmin.qunar.com/supplier/generalActivity/cancelActivity.do";
@@ -3429,8 +3497,8 @@ public class HttpLogin {
 			HttpPost httpost = createHttpPost(loginurl);
 
 			List<NameValuePair> nvps = null;
-			// Êı¾İÉÏ¼Ü
-			updateUI("Ö¸¶¨Êı¾İÈ¡ÏûÓÅ»İ");
+			// æ•°æ®ä¸Šæ¶
+			updateUI("æŒ‡å®šæ•°æ®å–æ¶ˆä¼˜æƒ ");
 			nvps = new ArrayList<NameValuePair>();
 			nvps.add(new BasicNameValuePair("ids", pid));
 			httpost.setEntity(new UrlEncodedFormEntity(nvps, HTTP.UTF_8));
@@ -3453,17 +3521,17 @@ public class HttpLogin {
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("Ö¸¶¨Êı¾İÈ¡ÏûÓÅ»İ³É¹¦");
+			updateUI("æŒ‡å®šæ•°æ®å–æ¶ˆä¼˜æƒ æˆåŠŸ");
 		} catch (Exception e) {
-			updateUI("Ö¸¶¨Êı¾İÈ¡ÏûÓÅ»İ³ö´í");
+			updateUI("æŒ‡å®šæ•°æ®å–æ¶ˆä¼˜æƒ å‡ºé”™");
 			e.printStackTrace();
 		}
 	}
 
-	// ²úÆ·È¡ÏûÓÅ»İ
+	// äº§å“å–æ¶ˆä¼˜æƒ 
 	public void downLine() {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return;
 		}
 		String loginurl = "http://tb2cadmin.qunar.com/supplier/product.do";
@@ -3471,8 +3539,8 @@ public class HttpLogin {
 			HttpPost httpost = createHttpPost(loginurl);
 
 			List<NameValuePair> nvps = null;
-			// Êı¾İÉÏ¼Ü
-			updateUI("Ö¸¶¨Êı¾İ¿ªÊ¼ÏÂ¼Ü");
+			// æ•°æ®ä¸Šæ¶
+			updateUI("æŒ‡å®šæ•°æ®å¼€å§‹ä¸‹æ¶");
 			nvps = new ArrayList<NameValuePair>();
 			nvps.add(new BasicNameValuePair("method", "updateStatus"));
 			nvps.add(new BasicNameValuePair("type", "down"));
@@ -3492,23 +3560,23 @@ public class HttpLogin {
 						sb.append(new String(b, 0, i, "utf-8"));
 					}
 					rc = sb.toString();
-					updateUI("Êı¾İÏÂ¼Ü£º" + rc);
+					updateUI("æ•°æ®ä¸‹æ¶ï¼š" + rc);
 				} finally {
 					instream.close();
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("Ö¸¶¨Êı¾İÏÂ¼ÜÍê³É");
+			updateUI("æŒ‡å®šæ•°æ®ä¸‹æ¶å®Œæˆ");
 		} catch (Exception e) {
-			updateUI("Ö¸¶¨Êı¾İÏÂ¼Ü³ö´í");
+			updateUI("æŒ‡å®šæ•°æ®ä¸‹æ¶å‡ºé”™");
 			e.printStackTrace();
 		}
 	}
 
-	// ÉèÖÃ²úÆ·µÄÏŞ¹ºÊıÁ¿
+	// è®¾ç½®äº§å“çš„é™è´­æ•°é‡
 	public void setLineLimiteCount() {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return;
 		}
 		String loginurl = "http://tb2cadmin.qunar.com/api/modifyProductBuyLimitCount.qunar";
@@ -3516,8 +3584,8 @@ public class HttpLogin {
 			HttpPost httpost = createHttpPost(loginurl);
 
 			List<NameValuePair> nvps = null;
-			// Êı¾İÉÏ¼Ü
-			updateUI("ÉèÖÃ²úÆ·µÄÏŞ¹ºÊıÁ¿");
+			// æ•°æ®ä¸Šæ¶
+			updateUI("è®¾ç½®äº§å“çš„é™è´­æ•°é‡");
 			nvps = new ArrayList<NameValuePair>();
 			nvps.add(new BasicNameValuePair("count", m.line.getLimitcount() + ""));
 			nvps.add(new BasicNameValuePair("id", pid));
@@ -3536,22 +3604,22 @@ public class HttpLogin {
 						sb.append(new String(b, 0, i, "utf-8"));
 					}
 					rc = sb.toString();
-					updateUI("·µ»ØĞÅÏ¢£º" + rc);
+					updateUI("è¿”å›ä¿¡æ¯ï¼š" + rc);
 				} finally {
 					instream.close();
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("ÉèÖÃ²úÆ·µÄÏŞ¹ºÊıÁ¿Íê³É");
+			updateUI("è®¾ç½®äº§å“çš„é™è´­æ•°é‡å®Œæˆ");
 		} catch (Exception e) {
-			updateUI("ÉèÖÃ²úÆ·µÄÏŞ¹ºÊıÁ¿³ö´í");
+			updateUI("è®¾ç½®äº§å“çš„é™è´­æ•°é‡å‡ºé”™");
 			e.printStackTrace();
 		}
 	}
 
 	public void delLine() {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return;
 		}
 		String loginurl = "http://tb2cadmin.qunar.com/supplier/product.do";
@@ -3559,8 +3627,8 @@ public class HttpLogin {
 			HttpPost httpost = createHttpPost(loginurl);
 
 			List<NameValuePair> nvps = null;
-			// Êı¾İÉÏ¼Ü
-			updateUI("¿ªÊ¼É¾³ıÊı¾İ");
+			// æ•°æ®ä¸Šæ¶
+			updateUI("å¼€å§‹åˆ é™¤æ•°æ®");
 			nvps = new ArrayList<NameValuePair>();
 			nvps.add(new BasicNameValuePair("method", "updateStatus"));
 			nvps.add(new BasicNameValuePair("type", "delete"));
@@ -3586,9 +3654,9 @@ public class HttpLogin {
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("É¾³ıÊı¾İÍê³É");
+			updateUI("åˆ é™¤æ•°æ®å®Œæˆ");
 		} catch (Exception e) {
-			updateUI("É¾³ıÊı¾İ³ö´í");
+			updateUI("åˆ é™¤æ•°æ®å‡ºé”™");
 			e.printStackTrace();
 		}
 		pid = "";
@@ -3596,15 +3664,15 @@ public class HttpLogin {
 
 	public void downLineTeam() {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return;
 		}
 		String loginurl = "http://tb2cadmin.qunar.com/supplier/productTeamOperation.do";
 		try {
 			HttpPost httpost = createHttpPost(loginurl);
 			List<NameValuePair> nvps = null;
-			// Êı¾İÉÏ¼Ühttp://tb2cadmin.qunar.com/supplier/productTeamOperation.do?method=operatProductTeams&op=offline&pId=2428625279&dateString=2013-12-31%2C
-			updateUI("¿ªÊ¼É¾³ı¼Û¸ñÊı¾İ");
+			// æ•°æ®ä¸Šæ¶http://tb2cadmin.qunar.com/supplier/productTeamOperation.do?method=operatProductTeams&op=offline&pId=2428625279&dateString=2013-12-31%2C
+			updateUI("å¼€å§‹åˆ é™¤ä»·æ ¼æ•°æ®");
 			nvps = new ArrayList<NameValuePair>();
 			nvps.add(new BasicNameValuePair("method", "operatProductTeams"));
 			nvps.add(new BasicNameValuePair("op", "offline"));
@@ -3631,16 +3699,16 @@ public class HttpLogin {
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("É¾³ıÊı¾İÍê³É");
+			updateUI("åˆ é™¤æ•°æ®å®Œæˆ");
 		} catch (Exception e) {
-			updateUI("É¾³ıÊı¾İ³ö´í");
+			updateUI("åˆ é™¤æ•°æ®å‡ºé”™");
 			e.printStackTrace();
 		}
 	}
 
 	public void downLoadImage(String ifile) {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return;
 		}
 		try {
@@ -3655,10 +3723,10 @@ public class HttpLogin {
 
 	public String getSupperid() {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return null;
 		}
-		updateUI("¿ªÊ¼»ñÈ¡¹©Ó¦ÉÌID");
+		updateUI("å¼€å§‹è·å–ä¾›åº”å•†ID");
 
 		URI uri = null;
 		try {
@@ -3694,16 +3762,16 @@ public class HttpLogin {
 							supperid = content = content.substring(0, edi);
 						}
 					}
-					updateUI("¹©Ó¦ÉÌID£º" + content);
+					updateUI("ä¾›åº”å•†IDï¼š" + content);
 				} finally {
 					instream.close();
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("»ñÈ¡µØÇøĞÅÏ¢Íê±Ï");
+			updateUI("è·å–åœ°åŒºä¿¡æ¯å®Œæ¯•");
 		} catch (Exception e) {
 			e.printStackTrace();
-			updateUI("»ñÈ¡µØÇøĞÅÏ¢³ö´í");
+			updateUI("è·å–åœ°åŒºä¿¡æ¯å‡ºé”™");
 		} finally {
 			try {
 				if (instream != null)
@@ -3717,10 +3785,10 @@ public class HttpLogin {
 
 	public String getStartAreaInfo(String aname) {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return null;
 		}
-		updateUI("¿ªÊ¼»ñÈ¡µØÇøĞÅÏ¢");
+		updateUI("å¼€å§‹è·å–åœ°åŒºä¿¡æ¯");
 
 		URI uri = null;
 		try {
@@ -3755,10 +3823,10 @@ public class HttpLogin {
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("»ñÈ¡µØÇøĞÅÏ¢Íê±Ï");
+			updateUI("è·å–åœ°åŒºä¿¡æ¯å®Œæ¯•");
 		} catch (Exception e) {
 			e.printStackTrace();
-			updateUI("»ñÈ¡µØÇøĞÅÏ¢³ö´í");
+			updateUI("è·å–åœ°åŒºä¿¡æ¯å‡ºé”™");
 		} finally {
 			try {
 				if (instream != null)
@@ -3772,10 +3840,10 @@ public class HttpLogin {
 
 	public String getDestAreaInfo(String aname) {
 		if (!loginstatus) {
-			updateUI("ÇëÏÈµÇÂ¼");
+			updateUI("è¯·å…ˆç™»å½•");
 			return null;
 		}
-		updateUI("¿ªÊ¼»ñÈ¡µØÇøĞÅÏ¢");
+		updateUI("å¼€å§‹è·å–åœ°åŒºä¿¡æ¯");
 
 		URI uri = null;
 		try {
@@ -3808,10 +3876,10 @@ public class HttpLogin {
 				}
 			}
 			EntityUtils.consume(entity);
-			updateUI("»ñÈ¡µØÇøĞÅÏ¢Íê±Ï");
+			updateUI("è·å–åœ°åŒºä¿¡æ¯å®Œæ¯•");
 		} catch (Exception e) {
 			e.printStackTrace();
-			updateUI("»ñÈ¡µØÇøĞÅÏ¢³ö´í");
+			updateUI("è·å–åœ°åŒºä¿¡æ¯å‡ºé”™");
 		} finally {
 			try {
 				if (instream != null)
@@ -3826,7 +3894,7 @@ public class HttpLogin {
 	public void searchExistLine(String tno, String type, int cur) {
 		tno = tno.trim();
 		StringBuffer sb = new StringBuffer();
-		int c = 0;// ¼ÆËãÈ¡³öÀ´¶àÉÙ
+		int c = 0;// è®¡ç®—å–å‡ºæ¥å¤šå°‘
 		try {
 			URI uri = null;
 			try {
@@ -3881,7 +3949,7 @@ public class HttpLogin {
 		}
 	}
 
-	// É¾³ıÓÃµ½£¬µÃµ½ËùÓĞµÄÖØ¸´Êı¾İ
+	// åˆ é™¤ç”¨åˆ°ï¼Œå¾—åˆ°æ‰€æœ‰çš„é‡å¤æ•°æ®
 	public void getExistLines(String ptitle, String type, List<DupRecords> plist) {
 		ptitle = ptitle.trim();
 		StringBuffer sb = new StringBuffer();
@@ -4003,10 +4071,10 @@ public class HttpLogin {
 	}
 
 	/**
-	 * ·Ö±ğ¶Á´¿ÎÄ±¾ºÍÁ´½Ó.
+	 * åˆ†åˆ«è¯»çº¯æ–‡æœ¬å’Œé“¾æ¥.
 	 * 
 	 * @param result
-	 *            ÍøÒ³µÄÄÚÈİ
+	 *            ç½‘é¡µçš„å†…å®¹
 	 * @throws Exception
 	 */
 	public void readLink(StringBuffer result, List<String> list) {
@@ -4033,9 +4101,9 @@ public class HttpLogin {
 				String tag = lt.getLink();
 				if (tag.startsWith("CityLineToXmlQnTTL")) {
 					list.add("http://yn.gayosite.com/kuxun_api/" + lt.getLink());
-				} else if (m.line.getCselect().equals("ĞÂÍøÕ¾")) {
+				} else if (m.line.getCselect().equals("æ–°ç½‘ç«™")) {
 					list.add(lt.getLink());
-				} else if (m.line.getCselect().equals("qlyÍøÕ¾")) {
+				} else if (m.line.getCselect().equals("qlyç½‘ç«™")) {
 					list.add(lt.getLink());
 				}
 			}
@@ -4074,7 +4142,7 @@ public class HttpLogin {
 			EntityUtils.consume(entity);
 			if (sb.length() > 0) {
 				Map dmap = readJson(sb.toString());
-				// Èç¹ûÃ»ÓĞ¶ÁÈ¡µ½ĞÅÏ¢£¬ÄÇÃ´·µ»Ø
+				// å¦‚æœæ²¡æœ‰è¯»å–åˆ°ä¿¡æ¯ï¼Œé‚£ä¹ˆè¿”å›
 				if (dmap == null)
 					return;
 				if (dmap.get("ret").toString().trim().equals("1")) {
@@ -4095,7 +4163,7 @@ public class HttpLogin {
 						downLineTeam();
 					}
 				} else {
-					updateUI("»ñÈ¡¼Û¸ñÊı¾İ³ö´í");
+					updateUI("è·å–ä»·æ ¼æ•°æ®å‡ºé”™");
 				}
 			}
 		} catch (Exception e) {
@@ -4172,7 +4240,7 @@ public class HttpLogin {
 	public void writImage(byte[] b, String spath) {
 		try {
 			byte[] data = b;
-			// newÒ»¸öÎÄ¼ş¶ÔÏóÓÃÀ´±£´æÍ¼Æ¬£¬Ä¬ÈÏ±£´æµ±Ç°¹¤³Ì¸ùÄ¿Â¼
+			// newä¸€ä¸ªæ–‡ä»¶å¯¹è±¡ç”¨æ¥ä¿å­˜å›¾ç‰‡ï¼Œé»˜è®¤ä¿å­˜å½“å‰å·¥ç¨‹æ ¹ç›®å½•
 			File imageFile = new File(spath);
 			if (!imageFile.exists()) {
 				imageFile.mkdirs();
@@ -4180,11 +4248,11 @@ public class HttpLogin {
 			}
 			imageFile.createNewFile();
 
-			// ´´½¨Êä³öÁ÷
+			// åˆ›å»ºè¾“å‡ºæµ
 			FileOutputStream outStream = new FileOutputStream(imageFile);
-			// Ğ´ÈëÊı¾İ
+			// å†™å…¥æ•°æ®
 			outStream.write(data);
-			// ¹Ø±ÕÊä³öÁ÷
+			// å…³é—­è¾“å‡ºæµ
 			outStream.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -4193,18 +4261,18 @@ public class HttpLogin {
 
 	public static byte[] readInputStream(InputStream inStream) throws Exception {
 		ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-		// ´´½¨Ò»¸öBuffer×Ö·û´®
+		// åˆ›å»ºä¸€ä¸ªBufferå­—ç¬¦ä¸²
 		byte[] buffer = new byte[1024];
-		// Ã¿´Î¶ÁÈ¡µÄ×Ö·û´®³¤¶È£¬Èç¹ûÎª-1£¬´ú±íÈ«²¿¶ÁÈ¡Íê±Ï
+		// æ¯æ¬¡è¯»å–çš„å­—ç¬¦ä¸²é•¿åº¦ï¼Œå¦‚æœä¸º-1ï¼Œä»£è¡¨å…¨éƒ¨è¯»å–å®Œæ¯•
 		int len = 0;
-		// Ê¹ÓÃÒ»¸öÊäÈëÁ÷´ÓbufferÀï°ÑÊı¾İ¶ÁÈ¡³öÀ´
+		// ä½¿ç”¨ä¸€ä¸ªè¾“å…¥æµä»bufferé‡ŒæŠŠæ•°æ®è¯»å–å‡ºæ¥
 		while ((len = inStream.read(buffer)) != -1) {
-			// ÓÃÊä³öÁ÷ÍùbufferÀïĞ´ÈëÊı¾İ£¬ÖĞ¼ä²ÎÊı´ú±í´ÓÄÄ¸öÎ»ÖÃ¿ªÊ¼¶Á£¬len´ú±í¶ÁÈ¡µÄ³¤¶È
+			// ç”¨è¾“å‡ºæµå¾€bufferé‡Œå†™å…¥æ•°æ®ï¼Œä¸­é—´å‚æ•°ä»£è¡¨ä»å“ªä¸ªä½ç½®å¼€å§‹è¯»ï¼Œlenä»£è¡¨è¯»å–çš„é•¿åº¦
 			outStream.write(buffer, 0, len);
 		}
-		// ¹Ø±ÕÊäÈëÁ÷
+		// å…³é—­è¾“å…¥æµ
 		inStream.close();
-		// °ÑoutStreamÀïµÄÊı¾İĞ´ÈëÄÚ´æ
+		// æŠŠoutStreamé‡Œçš„æ•°æ®å†™å…¥å†…å­˜
 		return outStream.toByteArray();
 	}
 
@@ -4252,7 +4320,7 @@ public class HttpLogin {
 		@Override
 		public void run() {
 			try {
-				updateUI("¿ª»ñÈ¡Í¼Æ¬..." + httpget.getRequestLine());
+				updateUI("å¼€è·å–å›¾ç‰‡..." + httpget.getRequestLine());
 				HttpResponse response = httpClients.execute(httpget, context);
 				try {
 					HttpEntity entity = response.getEntity();
@@ -4261,7 +4329,7 @@ public class HttpLogin {
 						try {
 							writImage(readInputStream(instream), tempimg);
 							if (m.line.isWaterck()) {
-								// ¸øÍ¼Æ¬´òË®Ó¡
+								// ç»™å›¾ç‰‡æ‰“æ°´å°
 								Random rd = new Random();
 								int rimg = rd.nextInt(6);
 								String waterprint = "";
@@ -4297,9 +4365,9 @@ public class HttpLogin {
 					e.printStackTrace();
 				}
 			} catch (ClientProtocolException ex) {
-				updateUI("»ñÈ¡Í¼Æ¬³ö´í");
+				updateUI("è·å–å›¾ç‰‡å‡ºé”™");
 			} catch (IOException ex) {
-				updateUI("»ñÈ¡Í¼Æ¬³ö´í");
+				updateUI("è·å–å›¾ç‰‡å‡ºé”™");
 			}
 			downover = true;
 		}
@@ -4377,7 +4445,7 @@ public class HttpLogin {
 	}
 
 	/**
-	 * ¶ÁÈ¡·şÎñµç»°
+	 * è¯»å–æœåŠ¡ç”µè¯
 	 */
 	public void readServerPhone(String result, Label lab_show_phono_txt, Combo com_s_p) throws Exception {
 		NodeList nodelist;

@@ -110,6 +110,7 @@ import com.bhc.util.BaseIni;
 import com.bhc.util.ComparatorLine;
 import com.bhc.util.FileUtil;
 import com.bhc.util.ImageUtils;
+import com.bhc.util.ParseHtml;
 
 public class HttpLogin {
 	private boolean downover = true;
@@ -300,9 +301,9 @@ public class HttpLogin {
 		/// 得到QN1=O5cLNle6mN4SPnH9RoVaAg==; expires=Thu, 31-Dec-37 23:55:55 GMT;
 		// domain=qunar.com; path=/
 		Map<String, Object> pm = new HashMap<String, Object>();
-		String url = "https://user.qunar.com/passport/login.jsp";// "https://user.qunar.com/passport/addICK.jsp";
-		// pm.put("ssl", "");
+		String url = "https://user.qunar.com/passport/login.jsp";
 		String html=HttpUtil.doPostSSL(url, null, pm);
+		ParseHtml.parseImgCode(html);
 
 		// 得到QN25=4cc0c32c-703b-4f1f-8599-87d9105aaec8-9f992f90;
 		// Domain=.qunar.com; Path=/

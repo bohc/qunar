@@ -267,12 +267,12 @@ public class HttpUtil {
 	 *            参数map
 	 * @return
 	 */
-	public static Result doPostSSL(String apiUrl,List<Header> headers, Map<String, Object> params) {
+	public static String doPostSSL(String apiUrl,List<Header> headers, Map<String, Object> params) {
 		CloseableHttpClient httpClient = null;
 		HttpPost httpPost = null;
 		CloseableHttpResponse response = null;
+		String recontent="";
 		// 封装返回的参数
-		Result result = new Result();
 		try {
 			httpPost = new HttpPost(apiUrl);
 			httpPost.setConfig(requestConfig);
@@ -301,24 +301,6 @@ public class HttpUtil {
 				System.out.println("store\t"+k.toString());
 			}
 			
-			Header[] hd = response.getAllHeaders();
-			if (hd != null) {
-				for (Header h : hd) {
-					//if (h.getName().equals("Set-Cookie") || h.getName().equals("Cookie")) {
-						System.out.println("response\t"+h.getName() + ":" + h.getValue());
-					//}
-				}
-			}
-			
-			hd = httpPost.getAllHeaders();
-			if (hd != null) {
-				for (Header h : hd) {
-					//if (h.getName().equals("Set-Cookie") || h.getName().equals("Cookie")) {
-					System.out.println("post\t"+h.getName() + ":" + h.getValue());
-					//}
-				}
-			}
-
 			if (statusCode != HttpStatus.SC_OK) {
 				return null;
 			}
@@ -340,31 +322,20 @@ public class HttpUtil {
 				out.close();
 				file.getAbsolutePath();
 			} else {
-				// httpStr = EntityUtils.toString(entity, "utf-8");
+				 recontent = EntityUtils.toString(entity, "utf-8");
 			}
-
-			// 设置返回状态代码
-			result.setStatusCode(response.getStatusLine().getStatusCode());
-			// 设置返回的头部信息
-			result.setHeaders(response.getAllHeaders());
-			// result.setCookies(httpPost.getCookieStore().getCookies());
-			// 设置返回的cookie信心
-
-			// result.setCookie(SendRequest.assemblyCookie(client.getCookieStore().getCookies()));
-			// 设置返回到信息
-			result.setHttpEntity(entity);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			// if (response != null) {
-			// try {
-			// EntityUtils.consume(response.getEntity());
-			// } catch (IOException e) {
-			// e.printStackTrace();
-			// }
-			// }
+			if (response != null) {
+				try {
+					EntityUtils.consume(response.getEntity());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		return result;
+		return recontent;
 	}
 
 	/**
@@ -527,7 +498,7 @@ public class HttpUtil {
 	public static void main(String[] args) throws Exception {
 		String url = "";
 		Map<String, Object> ps = new HashMap<String, Object>();
-		Result str = doPostSSL(url,null, ps);
+		String str = doPostSSL(url,null, ps);
 		System.out.println(str);
 	}
 }

@@ -297,21 +297,15 @@ public class HttpLogin {
 	// 去哪儿登陆
 	public void loginForm3() throws ClientProtocolException, IOException {
 		// 这是下载验证码‎‎
-		/// https://user.qunar.com/captcha/api/image?k={en7mni(z&p=ucenter_login&c=ef7d278eca6d25aa6aec7272d57f0a9a&t=1471579221997
-		String url = "https://user.qunar.com/passport/login.jsp";// "https://user.qunar.com/passport/addICK.jsp";
+		/// 得到QN1=O5cLNle6mN4SPnH9RoVaAg==; expires=Thu, 31-Dec-37 23:55:55 GMT;
+		// domain=qunar.com; path=/
 		Map<String, Object> pm = new HashMap<String, Object>();
+		String url = "https://user.qunar.com/passport/login.jsp";// "https://user.qunar.com/passport/addICK.jsp";
 		// pm.put("ssl", "");
-		HttpUtil.doPostSSL(url, null, pm);
+		String html=HttpUtil.doPostSSL(url, null, pm);
 
-		//https://rmcsdf.qunar.com/js/df.js?org_id=ucenter.login&js_type=0
-		
-		
-		url = "https://rmcsdf.qunar.com/js/device.js";
-		pm.clear();
-		pm.put("orgId", "ucenter.login");
-		pm.put("sessionId", "db81b521-e25f-485d-9e90-eb149994c705");
-		HttpUtil.doPostSSL(url, pm);
-		
+		// 得到QN25=4cc0c32c-703b-4f1f-8599-87d9105aaec8-9f992f90;
+		// Domain=.qunar.com; Path=/
 		url = "https://user.qunar.com/captcha/api/image";
 		pm.clear();
 		pm.put("k", "{en7mni(z");
@@ -320,7 +314,28 @@ public class HttpLogin {
 		pm.put("t", String.valueOf(new Date().getTime()));
 		HttpUtil.doPostSSL(url, null, pm);
 
-		
+		// 得到JSESSIONID=FFE3404E8FA2987DF51EF69E9CE853D7; Path=/; HttpOnly
+		url = "https://rmcsdf.qunar.com/js/df.js";
+		pm.clear();
+		pm.put("orgId", "ucenter.login");
+		pm.put("js_type", "0");
+		HttpUtil.doPostSSL(url, pm);
+
+		// 得到_i=ueHd8L9YbOoXnY3XPEY3wwfOEuoX; Domain=.qunar.com; Expires=Sat,
+		// 09-Sep-2084 09:31:10 GMT; Path=/
+		// 得到_vi=vQpYffyLHk8N4rCqSjkLKw-qF9H4RI3B-TeHhF3Px3uc9A1a0dqy3IUOdR4ssZ5ywfmH595jYBzBD5x7TlXDwIhH6u1bBg1k9DH7Fd0lM0ho7XxyXMAPl8LcSfsABGgP21RvMyEzMHGrYIssc-S_Ow-M25pQLmY63i5MAnYpYxF4;Path=/;Domain=.qunar.com;Expires=Sun,
+		// 20 Nov 2016 06:17:03 GMT;HTTPOnly
+		url = "https://user.qunar.com/passport/addICK.jsp";
+		pm.clear();
+		pm.put("ssl", "");
+		HttpUtil.doPostSSL(url, pm);
+
+		//更新JSESSIONID=9A615B9DF900B89152D7A07AC9008F8F; Path=/; HttpOnly
+		url = "https://rmcsdf.qunar.com/js/device.js";
+		pm.clear();
+		pm.put("orgId", "ucenter.login");
+		pm.put("sessionId", "db81b521-e25f-485d-9e90-eb149994c705");
+		HttpUtil.doPostSSL(url, pm);
 
 		url = "https://user.qunar.com/passport/loginx.jsp";
 		pm.clear();
@@ -339,12 +354,8 @@ public class HttpLogin {
 
 		// Result r = SendRequest.sendPost(purl, headers, parameters, "utf-8");
 		List<Header> hs = HttpUtil.createHeader();
-		Result r = HttpUtil.doPostSSL(url, hs, pm);
-		HttpEntity entity = r.getHttpEntity();
-		if (entity != null) {
-			System.out.println(EntityUtils.toString(entity));
-			EntityUtils.consume(entity);
-		}
+		String r = HttpUtil.doPostSSL(url, hs, pm);
+		
 		/**
 		 * if (r.getStatusCode() == 200) { cookie = r.getCookie();
 		 * cookies.clear(); for (Cookie c : r.getCookies()) {

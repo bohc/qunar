@@ -49,5 +49,6 @@
 	<classpathentry kind="lib" path="lib/org.eclipse.ui.forms_3.6.200.v20150506-2029.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.ui.workbench_3.107.0.v20150510-1732.jar"/>
 	<classpathentry kind="lib" path="lib/com.ibm.icu_54.1.1.v201501272100.jar"/>
+	<classpathentry kind="lib" path="lib/jsoup-1.7.3.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

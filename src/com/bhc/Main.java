@@ -354,8 +354,8 @@ public class Main extends ApplicationWindow {
 		line.setSpecialsatrttime(new Date());
 		line.setSpecialendtime(new Date());
 		line.setHttpmodel(true);
-		line.setUsername("vieye");
-		line.setPassword("zln4310526");
+		line.setUsername("13888269845");
+		line.setPassword("bhc197811");
 		line.setTnuname("11218");
 		line.setTnpwd("123456");
 	}
@@ -507,11 +507,11 @@ public class Main extends ApplicationWindow {
 		https_model.setText("\u6A21\u5F0F2");
 
 		username = new Text(composite_1, SWT.BORDER);
-		username.setText("vieye");
+		username.setText("13888269845");
 		username.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
 		password = new Text(composite_1, SWT.BORDER);
-		password.setText("zln4310526");
+		password.setText("bhc197811");
 		password.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
 		vcode = new Text(composite_1, SWT.BORDER);

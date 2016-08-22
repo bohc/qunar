@@ -1,5 +1,9 @@
 package com.bhc.test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -58,5 +62,11 @@ public class Test {
 		// } catch (Exception e) {
 		// System.out.println("Error exec!");
 		// }
+	}
+	
+	@org.junit.Test
+	public void testSdf() throws ParseException{
+		SimpleDateFormat sdfs = new SimpleDateFormat("EEE, dd-MMM-yyyy HH:mm:ss 'GMT'", Locale.US);
+		System.out.println(sdfs.parse("Thu, 31-Dec-37 23:55:55 GMT"));
 	}
 }

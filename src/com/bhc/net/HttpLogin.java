@@ -298,45 +298,50 @@ public class HttpLogin {
 	public void loginForm3() throws ClientProtocolException, IOException {
 		// 这是下载验证码‎‎
 		/// https://user.qunar.com/captcha/api/image?k={en7mni(z&p=ucenter_login&c=ef7d278eca6d25aa6aec7272d57f0a9a&t=1471579221997
-		URI uri = null;
-		try {
-			uri = new URIBuilder().setScheme("https").setHost("user.qunar.com").setPath("/captcha/api/image").setParameter("k", "{en7mni(z").setParameter("p", "ucenter_login")
-					.setParameter("c", "ef7d278eca6d25aa6aec7272d57f0a9a").setParameter("t", String.valueOf(new Date().getTime())).build();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-		String apiUrl = "https://user.qunar.com/captcha/api/image";
+		String url = "https://user.qunar.com/passport/login.jsp";// "https://user.qunar.com/passport/addICK.jsp";
 		Map<String, Object> pm = new HashMap<String, Object>();
+		// pm.put("ssl", "");
+		HttpUtil.doPostSSL(url, null, pm);
+
+		//https://rmcsdf.qunar.com/js/df.js?org_id=ucenter.login&js_type=0
+		
+		
+		url = "https://rmcsdf.qunar.com/js/device.js";
+		pm.clear();
+		pm.put("orgId", "ucenter.login");
+		pm.put("sessionId", "db81b521-e25f-485d-9e90-eb149994c705");
+		HttpUtil.doPostSSL(url, pm);
+		
+		url = "https://user.qunar.com/captcha/api/image";
+		pm.clear();
 		pm.put("k", "{en7mni(z");
 		pm.put("p", "ucenter_login");
 		pm.put("c", "ef7d278eca6d25aa6aec7272d57f0a9a");
 		pm.put("t", String.valueOf(new Date().getTime()));
-		Result ri = HttpUtil.doPostSSL(apiUrl, null, pm);
+		HttpUtil.doPostSSL(url, null, pm);
 
-		System.out.println(ri);
+		
 
-		Long lflag = new Date().getTime();
-		// Result ri = VerificationcCode.showGetVerificationcCode(uri, null,
-		// realpath + "/1.png");
-
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("remember", "1");
-		parameters.put("username", m.line.getUsername());
-		parameters.put("password", m.line.getPassword());
-		parameters.put("loginType", "0");
+		url = "https://user.qunar.com/passport/loginx.jsp";
+		pm.clear();
+		pm.put("remember", "1");
+		pm.put("username", m.line.getUsername());
+		pm.put("password", m.line.getPassword());
+		pm.put("loginType", "0");
 		// loginType=0&ret=https%3A%2F%2Ftb2cadmin.qunar.com%2F&username=13888269845&password=bhc197811&remember=1&vcode=4hfm
-		parameters.put("vcode", JOptionPane.showInputDialog(null, "<html><img src=\"file:///" + realpath + "/1.png\" width=\33\" height=\55\" id=\"vcodeImg\"><br><center>请输入验证码</center><br></html>"));
-		updateUI(parameters.get("vcode").toString());
-		parameters.put("ret", "https://tb2cadmin.qunar.com/");
+		pm.put("vcode", JOptionPane.showInputDialog(null, "<html><img src=\"file:///" + realpath + "/1.png\" width=\33\" height=\55\" id=\"vcodeImg\"><br><center>请输入验证码</center><br></html>"));
+		updateUI(pm.get("vcode").toString());
+		pm.put("ret", "https://tb2cadmin.qunar.com/");
 
-		Map<String, String> headers = new HashMap<String, String>();
-		headers.put("Cookie", ri.getCookie());
-		String purl = "http://user.qunar.com/webApi/logins.jsp";
-		purl = "https://user.qunar.com/passport/loginx.jsp";
+		// Map<String, String> headers = new HashMap<String, String>();
+		// headers.put("Cookie", ri.getCookie());
+		// String purl = "http://user.qunar.com/webApi/logins.jsp";
+
 		// Result r = SendRequest.sendPost(purl, headers, parameters, "utf-8");
-		Result r = HttpUtil.doPostSSL(purl, ri.getHeaders(), parameters);
-		HttpEntity entity=r.getHttpEntity();
-		if(entity!=null){
+		List<Header> hs = HttpUtil.createHeader();
+		Result r = HttpUtil.doPostSSL(url, hs, pm);
+		HttpEntity entity = r.getHttpEntity();
+		if (entity != null) {
 			System.out.println(EntityUtils.toString(entity));
 			EntityUtils.consume(entity);
 		}

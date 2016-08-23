@@ -108,6 +108,8 @@ public class Line extends OrderModel implements Serializable, PropertyChangeList
 	private List<String> dayspic = new ArrayList<String>();
 
 	private int failinterrupt = 30;
+	
+	private String cookiestr;
 
 	public boolean isWaterck() {
 		return waterck;
@@ -1251,4 +1253,13 @@ public class Line extends OrderModel implements Serializable, PropertyChangeList
 		propertyChangeSupport.firePropertyChange("failinterrupt", this.failinterrupt, this.failinterrupt = failinterrupt);
 	}
 
+	public String getCookiestr() {
+		return cookiestr;
+	}
+
+	public void setCookiestr(String cookiestr) {
+		propertyChangeSupport.firePropertyChange("cookiestr", this.cookiestr, this.cookiestr = cookiestr);
+	}
+
+	
 }

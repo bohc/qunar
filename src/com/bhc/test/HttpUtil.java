@@ -10,13 +10,10 @@ import java.nio.charset.Charset;
 import java.security.GeneralSecurityException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.net.ssl.SSLContext;
@@ -28,6 +25,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
 import org.apache.http.HeaderElement;
 import org.apache.http.HeaderElementIterator;
+import org.apache.http.HeaderIterator;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -43,7 +41,6 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
-import org.apache.http.config.Lookup;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.ConnectionKeepAliveStrategy;
@@ -56,7 +53,6 @@ import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.conn.util.PublicSuffixMatcher;
 import org.apache.http.conn.util.PublicSuffixMatcherLoader;
 import org.apache.http.cookie.Cookie;
-import org.apache.http.cookie.CookieSpecProvider;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -70,8 +66,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
-
-import com.bhc.net.Result;
+import org.eclipse.swt.browser.Browser;
 
 /**
  * HTTP 请求工具类
@@ -88,6 +83,7 @@ public class HttpUtil {
 	private static final int MAX_TIMEOUT = 7000;
 	public static SSLConnectionSocketFactory sslf;
 	public static CookieStore cookieStore = null;
+	public static List<Header> hsl = new ArrayList<Header>();
 
 	static {
 		cookieStore = new BasicCookieStore();
@@ -257,6 +253,11 @@ public class HttpUtil {
 		return httpStr;
 	}
 
+	public static CloseableHttpClient getHttpClient() {
+		CloseableHttpClient httpClient = HttpClients.custom().setKeepAliveStrategy(myStrategy).setConnectionManager(connMgr).setDefaultCookieStore(cookieStore).setDefaultRequestConfig(requestConfig).build();
+		return httpClient;
+	}
+
 	/**
 	 * 发送 SSL POST 请求（HTTPS），K-V形式
 	 * 
@@ -275,11 +276,18 @@ public class HttpUtil {
 		try {
 			httpPost = new HttpPost(apiUrl);
 			httpPost.setConfig(requestConfig);
+			boolean iscookie = false;
 			if (headers != null) {
-				httpPost.setHeader("Cookie", assemblyCookie());
 				for (Header h : headers) {
+					if (h.getName().trim().equals("Cookie")) {
+						iscookie = true;
+					}
 					httpPost.addHeader(h);
 				}
+			}
+			// 如果已经加了cookie,那么这儿不再设置
+			if (!iscookie) {
+				httpPost.setHeader("Cookie", assemblyCookie());
 			}
 
 			httpClient = HttpClients.custom().setKeepAliveStrategy(myStrategy).setConnectionManager(connMgr).setDefaultCookieStore(cookieStore).setDefaultRequestConfig(requestConfig).build();
@@ -316,6 +324,14 @@ public class HttpUtil {
 			if (entity == null) {
 				return null;
 			}
+
+			HeaderIterator hit = response.headerIterator();
+			hsl.clear();
+			while (hit.hasNext()) {
+				Header header = (Header) hit.next();
+				hsl.add(header);
+			}
+
 			String ct = entity.getContentType().getValue();
 			if (ct.equals("image/jpeg")) {
 				String realpath = System.getProperty("user.dir");
@@ -396,7 +412,7 @@ public class HttpUtil {
 	 *
 	 * @return
 	 */
-	private static SSLConnectionSocketFactory createSSLConnSocketFactory() {
+	public static SSLConnectionSocketFactory createSSLConnSocketFactory() {
 		SSLConnectionSocketFactory sslsf = null;
 		try {
 			SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
@@ -441,6 +457,28 @@ public class HttpUtil {
 		if (sbu.length() > 0)
 			sbu.setLength(sbu.length() - 1);
 		return sbu.toString();
+	}
+
+	// 这是组装cookie
+	public static void setCookie(String cookieStr) {
+		if (cookieStr == null)
+			return;
+		String[] scs = cookieStr.split(";");
+		if (scs.length > 0) {
+			for (String str : scs) {
+				int i = str.indexOf("=");
+				if (i != -1) {
+					String key = str.substring(0, i);
+					String value = str.substring(i + 1);
+					for (Cookie cookie : cookieStore.getCookies()) {
+						if(cookie.getName().trim().equals(key.trim())){
+//							cookie.
+						}
+					}
+				}
+				Browser.setCookie(str, "http://tb2cadmin.qunar.com");
+			}
+		}
 	}
 
 	private static DefaultHostnameVerifier createHostNameVerifier(String url) throws MalformedURLException, IOException { // 创建默认的httpClient实例.

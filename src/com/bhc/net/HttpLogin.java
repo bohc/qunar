@@ -139,7 +139,8 @@ public class HttpLogin {
 		pxd = new ParseXmlDo();
 		pxdnew = new ParseXmlDoNew();
 		pxQLy = new ParseXmlDoQly();
-		getHttpClient();
+		// getHttpClient();
+		getHttpClientSSL();
 		this.m = m;
 	}
 
@@ -187,6 +188,10 @@ public class HttpLogin {
 		RequestConfig globalconfig = RequestConfig.custom().setCookieSpec(CookieSpecs.BEST_MATCH).build();
 
 		httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).setDefaultRequestConfig(globalconfig).setKeepAliveStrategy(keepAliveStrat).setConnectionManager(cm).build();
+	}
+
+	public void getHttpClientSSL() {
+		httpclient = HttpUtil.getHttpClient();
 	}
 
 	public void getVimage() {
@@ -303,14 +308,7 @@ public class HttpLogin {
 		// domain=qunar.com; path=/
 		List<Header> hs = new ArrayList<Header>();
 		Map<String, Object> pm = new HashMap<String, Object>();
-		String url="", html="", urls="";
-		
-		BasicHeader cookie=new BasicHeader("Cookie", "QN1=O5cLNle7ESILpnH5SwSsAg==; QN25=14e88660-ccba-497d-9ff4-d02ee3a700c3-9f992f90; QN271=3230363e-c56a-448b-8639-4fa37f9fb3b1; QN43=2; QN42=gcvu3942; _q=U.hnmmvpx0170; _t=24640805; csrfToken=gjaO8joFE6lzkKagtVfgqovNsAdyHyAA; _s=s_M57K7RRM4NVJBPGZLFKBG3B3CM; _v=zGTyVvi7dpWsV1yoeAO7FgeaHpNC3Y5NO2cSODkLmosy1Z675BGlzQK5UB7-j9NLCEIAyFvbsKuD4jhpJjHRQJbKGvhtsu4noPUK9jjCdcatTXPIRkLR7PvYd19QispmLDO-ogyhPVrmPMX6Zepxg3TQMRebiSZgb6mSViInROvQ; QN269=365C88D0688211E6AC90FA163E95E91F; PHPSESSID=ul4vdbae004sjid72nkk51l9c5; QN268=|1471882689983_fb9b7b7d6a2ee539; QN44=hnmmvpx0170; JSESSIONID=AC72B3256D07F55DC79241B0250A7616; _i=RBTje0ouSLTxOk4RsZCAXxu7VIKx; _vi=9_m4yT-X81UHO9luOLuJXZ0AFxvmD_bEx80NPndo45SeaGpa_zrbMgC4UPw9uwvFMxTGIN9ePmzkSfb6TYMTR7JoRw0BGZSwYxmUJmw5P8e1x8CAwuDkPSXO-aubRBNM2PiDizXN0O9XdLIPOIm2bYxXqCfcxNybXUet8-9UyM7W");
-		hs.add(cookie);
-		url = "https://pay.qunar.com/member/";
-		html = HttpUtil.doPostSSL(url, hs, pm);
-		System.out.println(html);
-		
+		String url = "", html = "", urls = "";
 
 		url = "https://user.qunar.com/passport/login.jsp";
 		html = HttpUtil.doPostSSL(url, null, pm);
@@ -353,21 +351,6 @@ public class HttpLogin {
 		HttpUtil.doPostSSL(url, null, pm);
 
 		// 更新模拟验证用户名
-		url = "https://user.qunar.com/webApi/getPwdType.jsp";
-		pm.clear();
-		pm.put("username", m.line.getUsername());
-		pm.put("t", new Date().getTime());
-		html = HttpUtil.doPostSSL(url, null, pm);
-		System.out.println(html);
-
-		// 更新模拟验证用户名
-		url = "https://user.qunar.com/webApi/isNeedCaptcha.jsp";
-		pm.clear();
-		pm.put("username", m.line.getUsername());
-		html = HttpUtil.doPostSSL(url, null, pm);
-		System.out.println(html);
-
-		// 更新模拟验证用户名
 		url = "https://rmcsdf.qunar.com/api/device/challenge.json";
 		pm.clear();
 		pm.put("callback", "callback_" + new Date().getTime());
@@ -389,22 +372,26 @@ public class HttpLogin {
 		hs = HttpUtil.createHeader();
 		String r = HttpUtil.doPostSSL(url, hs, pm);
 		System.out.println(r);
-		/**
-		 * if (r.getStatusCode() == 200) { cookie = r.getCookie();
-		 * cookies.clear(); for (Cookie c : r.getCookies()) {
-		 * Browser.setCookie(c.getName() + "=" + c.getValue(),
-		 * "http://tb2cadmin.qunar.com"); cookies.add(c); } // for (Cookie c :
-		 * ri.getCookies()) { // Browser.setCookie(c.getName() + "=" +
-		 * c.getValue(), "http://tb2cadmin.qunar.com"); // cookies.add(c); // }
-		 * if (cookie != null && cookie.length() > 0) { loginstatus = true;
-		 * getSupperid(); } // Map<String,Header> m=r.getHeaders(); } HttpEntity
-		 * entity = r.getHttpEntity(); if (entity != null) { InputStream
-		 * instream = entity.getContent(); try { int i = -1; byte[] b = new
-		 * byte[1024]; StringBuffer sb = new StringBuffer(); while ((i =
-		 * instream.read(b)) != -1) { sb.append(new String(b, 0, i, "utf-8")); }
-		 * String content = sb.toString(); System.out.println(content); }
-		 * finally { instream.close(); } } EntityUtils.consume(entity);
-		 */
+	}
+
+	// 去哪儿登陆
+	public void loginForm4() throws ClientProtocolException, IOException {
+		List<Header> hs = new ArrayList<Header>();
+		Map<String, Object> pm = new HashMap<String, Object>();
+		String url = "", html = "", urls = "";
+
+//		BasicHeader cookie = new BasicHeader("Cookie", m.line.getCookiestr());
+//		hs.add(cookie);
+//		url = "http://user.qunar.com/index/page";
+//		html = HttpUtil.doPostSSL(url, hs, pm);
+//		System.out.println(html);
+
+		cookie=m.line.getCookiestr();
+		String []scs=m.line.getCookiestr().split(";");
+		for(String str:scs){
+			Browser.setCookie(str, "http://tb2cadmin.qunar.com");
+		}
+		loginstatus=true;
 	}
 
 	@SuppressWarnings("deprecation")
@@ -4229,6 +4216,7 @@ public class HttpLogin {
 		httpget.addHeader("Connection", "keep-alive");
 		httpget.addHeader("Cache-Control", "max-age=0");
 		httpget.addHeader("Cookie", cookie);
+		
 		for (Cookie c : cookies) {
 			httpget.addHeader(c.getName(), c.getValue());
 		}

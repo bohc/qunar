@@ -91,9 +91,8 @@ public class HttpUtil {
 
 	static {
 		cookieStore = new BasicCookieStore();
-//		BasicClientCookie bci=new BasicClientCookie("", value);
-		
-		
+		// BasicClientCookie bci=new BasicClientCookie("", value);
+
 		RequestConfig.Builder configBuilder = RequestConfig.custom();
 		// 设置连接超时
 		configBuilder.setConnectTimeout(MAX_TIMEOUT);
@@ -267,24 +266,23 @@ public class HttpUtil {
 	 *            参数map
 	 * @return
 	 */
-	public static String doPostSSL(String apiUrl,List<Header> headers, Map<String, Object> params) {
+	public static String doPostSSL(String apiUrl, List<Header> headers, Map<String, Object> params) {
 		CloseableHttpClient httpClient = null;
 		HttpPost httpPost = null;
 		CloseableHttpResponse response = null;
-		String recontent="";
+		String recontent = "";
 		// 封装返回的参数
 		try {
 			httpPost = new HttpPost(apiUrl);
 			httpPost.setConfig(requestConfig);
-			httpPost.setHeader("Cookie",assemblyCookie());
-			if(headers!=null){
-				for(Header h:headers){
+			if (headers != null) {
+				httpPost.setHeader("Cookie", assemblyCookie());
+				for (Header h : headers) {
 					httpPost.addHeader(h);
 				}
 			}
 
-			httpClient = HttpClients.custom().setKeepAliveStrategy(myStrategy).setSSLHostnameVerifier(createHostNameVerifier(httpPost.getURI().toString())).setConnectionManager(connMgr).setDefaultCookieStore(cookieStore)
-					.setDefaultRequestConfig(requestConfig).build();
+			httpClient = HttpClients.custom().setKeepAliveStrategy(myStrategy).setConnectionManager(connMgr).setDefaultCookieStore(cookieStore).setDefaultRequestConfig(requestConfig).build();
 
 			List<NameValuePair> pairList = new ArrayList<NameValuePair>(params.size());
 			for (Map.Entry<String, Object> entry : params.entrySet()) {
@@ -297,10 +295,20 @@ public class HttpUtil {
 			int statusCode = response.getStatusLine().getStatusCode();
 			// fetchCookie(response.getAllHeaders());
 
-			for(Cookie k:cookieStore.getCookies()){
-				System.out.println("store\t"+k.toString());
+			for (Cookie k : cookieStore.getCookies()) {
+				System.out.println("store\t" + k.toString());
 			}
-			
+
+			HeaderElementIterator it = new BasicHeaderElementIterator(httpPost.headerIterator());
+			while (it.hasNext()) {
+				HeaderElement elem = it.nextElement();
+				System.out.println(elem.getName() + " = " + elem.getValue());
+				NameValuePair[] ps = elem.getParameters();
+				for (int i = 0; i < ps.length; i++) {
+					System.out.println(" " + ps[i]);
+				}
+			}
+
 			if (statusCode != HttpStatus.SC_OK) {
 				return null;
 			}
@@ -322,7 +330,7 @@ public class HttpUtil {
 				out.close();
 				file.getAbsolutePath();
 			} else {
-				 recontent = EntityUtils.toString(entity, "utf-8");
+				recontent = EntityUtils.toString(entity, "utf-8");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -427,16 +435,11 @@ public class HttpUtil {
 		if (cookieStore.getCookies() == null || cookieStore.getCookies().size() == 0)
 			return "";
 		StringBuffer sbu = new StringBuffer();
-
 		for (Cookie cookie : cookieStore.getCookies()) {
-			System.out.println("====================================================");
-			System.out.println(cookie.getName() + "=" + cookie.getValue());
-			System.out.println("====================================================");
-			sbu.append(cookie.getName()).append("=").append(cookie.getValue()).append(";");
+			sbu.append(cookie.getName()).append("=").append(cookie.getValue()).append("; ");
 		}
 		if (sbu.length() > 0)
 			sbu.setLength(sbu.length() - 1);
-
 		return sbu.toString();
 	}
 
@@ -473,23 +476,23 @@ public class HttpUtil {
 
 	};
 
-	public static List<Header> createHeader(){
+	public static List<Header> createHeader() {
 		List<Header> hs = new ArrayList<Header>();
-		hs.add(new BasicHeader("Accept","application/json, text/javascript, */*; q=0.01"));
-		hs.add(new BasicHeader("Accept-Encoding","gzip, deflate"));
-		hs.add(new BasicHeader("Accept-Language","zh-CN,zh;q=0.8"));
-		hs.add(new BasicHeader("Cache-Control","no-cache"));
-		hs.add(new BasicHeader("Connection","keep-alive"));
-		hs.add(new BasicHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8"));
-		hs.add(new BasicHeader("Host","user.qunar.com"));
-		hs.add(new BasicHeader("Origin","https://user.qunar.com"));
-		hs.add(new BasicHeader("Pragma","no-cache"));
-		hs.add(new BasicHeader("Referer","https://user.qunar.com/passport/login.jsp?ret=https%3A%2F%2Ftb2cadmin.qunar.com%2F"));
-		hs.add(new BasicHeader("User-Agent","Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"));
-		hs.add(new BasicHeader("X-Requested-With","XMLHttpRequest"));
+		hs.add(new BasicHeader("Accept", "application/json, text/javascript, */*; q=0.01"));
+		hs.add(new BasicHeader("Accept-Encoding", "gzip, deflate"));
+		hs.add(new BasicHeader("Accept-Language", "zh-CN,zh;q=0.8"));
+		hs.add(new BasicHeader("Cache-Control", "no-cache"));
+		hs.add(new BasicHeader("Connection", "keep-alive"));
+		hs.add(new BasicHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8"));
+		hs.add(new BasicHeader("Host", "user.qunar.com"));
+		hs.add(new BasicHeader("Origin", "https://user.qunar.com"));
+		hs.add(new BasicHeader("Pragma", "no-cache"));
+		hs.add(new BasicHeader("Referer", "https://user.qunar.com/passport/login.jsp?ret=https%3A%2F%2Ftb2cadmin.qunar.com%2F"));
+		hs.add(new BasicHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"));
+		hs.add(new BasicHeader("X-Requested-With", "XMLHttpRequest"));
 		return hs;
 	}
-	
+
 	/**
 	 * 测试方法
 	 * 
@@ -498,7 +501,7 @@ public class HttpUtil {
 	public static void main(String[] args) throws Exception {
 		String url = "";
 		Map<String, Object> ps = new HashMap<String, Object>();
-		String str = doPostSSL(url,null, ps);
+		String str = doPostSSL(url, null, ps);
 		System.out.println(str);
 	}
 }

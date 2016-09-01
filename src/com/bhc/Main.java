@@ -66,6 +66,7 @@ import com.bhc.net.HttpLogin;
 import com.bhc.provider.ContentProvider;
 import com.bhc.provider.ListLabelProvider;
 import com.bhc.util.BaseIni;
+import com.bhc.util.FileManger;
 import com.bhc.util.XmlPersistence;
 
 import org.eclipse.core.databinding.beans.PojoProperties;
@@ -287,6 +288,7 @@ public class Main extends ApplicationWindow {
 	private Text txt_cookie;
 	private Composite composite_35;
 	private Button button_2;
+	private Button button_11;
 
 	/**
 	 * Create the application window.
@@ -361,6 +363,13 @@ public class Main extends ApplicationWindow {
 		line.setPassword("bhc197811");
 		line.setTnuname("11218");
 		line.setTnpwd("123456");
+
+		String fpath = System.getProperty("user.dir") + "/cookie/cookie";
+		File f = new File(fpath);
+		if (f.exists()) {
+			String str = FileManger.readFile(fpath, "UTF-8");
+			line.setCookiestr(str);
+		}
 	}
 
 	/**
@@ -651,59 +660,72 @@ public class Main extends ApplicationWindow {
 		loginstatustn.setText("\u767B\u5F55\u72B6\u6001");
 
 		composite_50 = new Composite(composite_43, SWT.NONE);
-		GridData gd_composite_50 = new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1);
+		GridData gd_composite_50 = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1);
 		gd_composite_50.widthHint = 397;
 		composite_50.setLayoutData(gd_composite_50);
 		composite_50.setLayout(new GridLayout(1, false));
-		
+
 		composite_35 = new Composite(composite_50, SWT.NONE);
-				composite_35.setLayout(new GridLayout(2, false));
-		
-				Button btnNewButton_2 = new Button(composite_35, SWT.NONE);
-				btnNewButton_2.addSelectionListener(new SelectionAdapter() {
-					@Override
-					public void widgetSelected(SelectionEvent e) {
-						browser.setUrl("http://tb2cadmin.qunar.com/home.jsp");
-						hl.setLoginstatus(true);
-						log_txt.append(Browser.getCookie("QN25", "http://tb2cadmin.qunar.com") + "\r\n");
-						log_txt.append(Browser.getCookie("QN42", "http://tb2cadmin.qunar.com") + "\r\n");
-						log_txt.append(Browser.getCookie("QN43", "http://tb2cadmin.qunar.com") + "\r\n");
-						log_txt.append(Browser.getCookie("_q", "http://tb2cadmin.qunar.com") + "\r\n");
-						log_txt.append(Browser.getCookie("_t", "http://tb2cadmin.qunar.com") + "\r\n");
-						log_txt.append(Browser.getCookie("csrfToken", ".qunar.com") + "\r\n");
-						log_txt.append(Browser.getCookie("_v", ".qunar.com") + "\r\n");
-						log_txt.append(Browser.getCookie("_vi", ".qunar.com") + "\r\n");
-						hl.cookie = "QN25=" + Browser.getCookie("QN25", "http://tb2cadmin.qunar.com");
-						hl.getPhontoForServer(lab_show_phono_txt, server_phone_com);
-					}
-				});
-				btnNewButton_2.setText("\u6D4B\u8BD5");
-				
-				button_2 = new Button(composite_35, SWT.NONE);
-				button_2.addSelectionListener(new SelectionAdapter() {
-					@Override
-					public void widgetSelected(SelectionEvent e) {
-						if(line.getCookiestr()==null){
-							loginstatus.setText("Cookie不能为空");
-							return;
-						}
-						try {
-							hl.loginForm4();
-						} catch (Exception e1) {
-							e1.printStackTrace();
-							loginstatus.setText("获取验证码失败");
-							return;
-						}
-						loginstatus.setText("登录成功");
-						browser.setUrl("http://user.qunar.com/index/page");
-						browser.refresh();
-						// browser.setUrl("http://dujia.pro.qunar.com");
-						// 取得服务电话号码
-						hl.getPhontoForServer(lab_show_phono_txt, server_phone_com);
-					}
-				});
-				button_2.setText("\u767B\u5F55");
-		
+		composite_35.setLayout(new GridLayout(3, false));
+
+		Button btnNewButton_2 = new Button(composite_35, SWT.NONE);
+		btnNewButton_2.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				browser.setUrl("http://tb2cadmin.qunar.com/home.jsp");
+				hl.setLoginstatus(true);
+				log_txt.append(Browser.getCookie("QN25", "http://tb2cadmin.qunar.com") + "\r\n");
+				log_txt.append(Browser.getCookie("QN42", "http://tb2cadmin.qunar.com") + "\r\n");
+				log_txt.append(Browser.getCookie("QN43", "http://tb2cadmin.qunar.com") + "\r\n");
+				log_txt.append(Browser.getCookie("_q", "http://tb2cadmin.qunar.com") + "\r\n");
+				log_txt.append(Browser.getCookie("_t", "http://tb2cadmin.qunar.com") + "\r\n");
+				log_txt.append(Browser.getCookie("csrfToken", ".qunar.com") + "\r\n");
+				log_txt.append(Browser.getCookie("_v", ".qunar.com") + "\r\n");
+				log_txt.append(Browser.getCookie("_vi", ".qunar.com") + "\r\n");
+				hl.cookie = "QN25=" + Browser.getCookie("QN25", "http://tb2cadmin.qunar.com");
+				hl.getPhontoForServer(lab_show_phono_txt, server_phone_com);
+			}
+		});
+		btnNewButton_2.setText("\u6D4B\u8BD5");
+
+		button_2 = new Button(composite_35, SWT.NONE);
+		button_2.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if (line.getCookiestr() == null) {
+					loginstatus.setText("Cookie不能为空");
+					return;
+				}
+				try {
+					hl.loginForm4();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					loginstatus.setText("获取验证码失败");
+					return;
+				}
+				loginstatus.setText("登录成功");
+				browser.setUrl("http://user.qunar.com/index/page");
+				browser.refresh();
+				// browser.setUrl("http://dujia.pro.qunar.com");
+				// 取得服务电话号码
+				hl.getPhontoForServer(lab_show_phono_txt, server_phone_com);
+			}
+		});
+		button_2.setText("\u767B\u5F55");
+
+		button_11 = new Button(composite_35, SWT.NONE);
+		button_11.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				String fpath = System.getProperty("user.dir") + "/cookie/cookie";
+				if (txt_cookie.getText() != "") {
+					FileManger.writeFile(fpath, txt_cookie.getText(), "UTF-8");
+					log_txt.append("Cookie保存成功\r\n");
+				}
+			}
+		});
+		button_11.setText("\u4FDD\u5B58");
+
 		txt_cookie = new Text(composite_50, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.MULTI);
 		txt_cookie.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 
@@ -2734,7 +2756,7 @@ public class Main extends ApplicationWindow {
 								}
 								plist.clear();
 							}
-							
+
 							// 上传出错的价格数据
 							hl.postErrorPrice();
 
@@ -2803,6 +2825,7 @@ public class Main extends ApplicationWindow {
 		}
 		line.setLimitcountchk(ls.isLimitcountchk());
 	}
+
 	protected DataBindingContext initDataBindings() {
 		DataBindingContext bindingContext = new DataBindingContext();
 		//
@@ -3419,19 +3442,19 @@ public class Main extends ApplicationWindow {
 		IObservableValue lineFlashshowuseObserveValue = BeansObservables.observeValue(line, "flashshowuse");
 		bindingContext.bindValue(flash_show_useObserveSelectionObserveWidget, lineFlashshowuseObserveValue, null, null);
 		//
-		IObservableValue observeTextTn_unameObserveWidget = WidgetProperties.text(new int[]{SWT.Modify, SWT.DefaultSelection}).observe(tn_uname);
+		IObservableValue observeTextTn_unameObserveWidget = WidgetProperties.text(new int[] { SWT.Modify, SWT.DefaultSelection }).observe(tn_uname);
 		IObservableValue tnunameLineObserveValue = BeanProperties.value("tnuname").observe(line);
 		bindingContext.bindValue(observeTextTn_unameObserveWidget, tnunameLineObserveValue, null, null);
 		//
-		IObservableValue observeTextTn_pwdObserveWidget = WidgetProperties.text(new int[]{SWT.Modify, SWT.DefaultSelection}).observe(tn_pwd);
+		IObservableValue observeTextTn_pwdObserveWidget = WidgetProperties.text(new int[] { SWT.Modify, SWT.DefaultSelection }).observe(tn_pwd);
 		IObservableValue tnpwdLineObserveValue = BeanProperties.value("tnpwd").observe(line);
 		bindingContext.bindValue(observeTextTn_pwdObserveWidget, tnpwdLineObserveValue, null, null);
 		//
-		IObservableValue observeTextTn_randObserveWidget = WidgetProperties.text(new int[]{SWT.Modify, SWT.DefaultSelection}).observe(tn_rand);
+		IObservableValue observeTextTn_randObserveWidget = WidgetProperties.text(new int[] { SWT.Modify, SWT.DefaultSelection }).observe(tn_rand);
 		IObservableValue tnrandLineObserveValue = BeanProperties.value("tnrand").observe(line);
 		bindingContext.bindValue(observeTextTn_randObserveWidget, tnrandLineObserveValue, null, null);
 		//
-		IObservableValue observeTextAssemblyObserveWidget = WidgetProperties.text(new int[]{SWT.Modify, SWT.DefaultSelection}).observe(assembly);
+		IObservableValue observeTextAssemblyObserveWidget = WidgetProperties.text(new int[] { SWT.Modify, SWT.DefaultSelection }).observe(assembly);
 		IObservableValue assemblyLineObserveValue = BeanProperties.value("assembly").observe(line);
 		bindingContext.bindValue(observeTextAssemblyObserveWidget, assemblyLineObserveValue, null, null);
 		//

@@ -31,4 +31,5 @@ public class StringUtils {
 		if(str==null)return "";
 		return str.replace("%20","&nbsp;").replace("%21","&mdash;").replace("%22","&ldquo;").replace("%22","&rdquo;").replace("%22","&bull;");
 	}
+	
 }

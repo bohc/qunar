@@ -6,12 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
-import org.apache.http.NameValuePair;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.BeanProperties;
 import org.eclipse.core.databinding.beans.BeansObservables;
+import org.eclipse.core.databinding.beans.PojoProperties;
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
@@ -21,10 +20,8 @@ import org.eclipse.jface.action.StatusLineManager;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
-import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.window.ApplicationWindow;
-import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.custom.CTabFolder;
@@ -52,6 +49,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
@@ -68,8 +67,6 @@ import com.bhc.provider.ListLabelProvider;
 import com.bhc.util.BaseIni;
 import com.bhc.util.FileManger;
 import com.bhc.util.XmlPersistence;
-
-import org.eclipse.core.databinding.beans.PojoProperties;
 
 public class Main extends ApplicationWindow {
 	private DataBindingContext m_bindingContext;
@@ -704,8 +701,7 @@ public class Main extends ApplicationWindow {
 					return;
 				}
 				loginstatus.setText("登录成功");
-				browser.setUrl("http://user.qunar.com/index/page");
-				browser.refresh();
+				browser.setUrl("https://tb2cadmin.qunar.com/home.jsp");
 				// browser.setUrl("http://dujia.pro.qunar.com");
 				// 取得服务电话号码
 				hl.getPhontoForServer(lab_show_phono_txt, server_phone_com);
@@ -2265,6 +2261,8 @@ public class Main extends ApplicationWindow {
 		return container;
 	}
 
+	
+	
 	/**
 	 * 文件选择
 	 * 

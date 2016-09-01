@@ -108,6 +108,7 @@ import com.bhc.bean.Team;
 import com.bhc.bean.Vehicle;
 import com.bhc.test.HttpUtil;
 import com.bhc.util.BaseIni;
+import com.bhc.util.CharacterSetToolkit;
 import com.bhc.util.ComparatorLine;
 import com.bhc.util.FileUtil;
 import com.bhc.util.ImageUtils;
@@ -376,16 +377,6 @@ public class HttpLogin {
 
 	// 去哪儿登陆
 	public void loginForm4() throws ClientProtocolException, IOException {
-		List<Header> hs = new ArrayList<Header>();
-		Map<String, Object> pm = new HashMap<String, Object>();
-		String url = "", html = "", urls = "";
-
-//		BasicHeader cookie = new BasicHeader("Cookie", m.line.getCookiestr());
-//		hs.add(cookie);
-//		url = "http://user.qunar.com/index/page";
-//		html = HttpUtil.doPostSSL(url, hs, pm);
-//		System.out.println(html);
-
 		cookie=m.line.getCookiestr();
 		String []scs=m.line.getCookiestr().split(";");
 		for(String str:scs){
@@ -3222,7 +3213,7 @@ public class HttpLogin {
 					String content = sb.toString();
 					updateUI("" + content);
 					Map dmap = readJson(content);
-					if (dmap.get("ret").toString().trim().equals("1")) {
+					if (CharacterSetToolkit.stringNotNull(dmap.get("ret")).trim().equals("1")) {
 						isup = true;
 					} else {
 						isup = false;
@@ -3417,7 +3408,7 @@ public class HttpLogin {
 			updateUI("请先登录");
 			return;
 		}
-		updateUI("得到服务电话");
+		updateUI("取出服务电话");
 		String pfunction = "";
 		try {
 			pfunction = line.getSummary().getPfunction().trim();
@@ -3444,6 +3435,7 @@ public class HttpLogin {
 		StringBuffer sb = null;
 		InputStream instream = null;
 		try {
+			httpclient=HttpUtil.getHttpClient();
 			response = httpclient.execute(httpget);
 			HttpEntity entity = response.getEntity();
 			if (entity != null) {

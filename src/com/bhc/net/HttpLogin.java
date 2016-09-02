@@ -110,6 +110,7 @@ import com.bhc.test.HttpUtil;
 import com.bhc.util.BaseIni;
 import com.bhc.util.CharacterSetToolkit;
 import com.bhc.util.ComparatorLine;
+import com.bhc.util.FileManger;
 import com.bhc.util.FileUtil;
 import com.bhc.util.ImageUtils;
 import com.bhc.util.ParseHtml;
@@ -377,12 +378,12 @@ public class HttpLogin {
 
 	// 去哪儿登陆
 	public void loginForm4() throws ClientProtocolException, IOException {
-		cookie=m.line.getCookiestr();
-		String []scs=m.line.getCookiestr().split(";");
-		for(String str:scs){
+		cookie = m.line.getCookiestr().trim();
+		String[] scs = cookie.split(";");
+		for (String str : scs) {
 			Browser.setCookie(str, "http://tb2cadmin.qunar.com");
 		}
-		loginstatus=true;
+		loginstatus = true;
 	}
 
 	@SuppressWarnings("deprecation")
@@ -2599,7 +2600,12 @@ public class HttpLogin {
 							nvps.add(new BasicNameValuePair("market_price", String.valueOf(Integer.parseInt(t.getMarketprice()) + fprice)));
 						}
 						try {
-							nvps.add(new BasicNameValuePair("adult_price", String.valueOf(Integer.parseInt(t.getQunarprice()) + fprice)));
+							if (m.line.isAvgpriceck()) {// 这个是传平均价
+								nvps.add(new BasicNameValuePair("adult_price", String.valueOf(Integer.parseInt(t.getQunarprice()) + fprice)));
+							} else if (m.line.isMarketpriceck()) {// 这个是传成人价
+								nvps.add(new BasicNameValuePair("adult_price", String.valueOf(Integer.parseInt(t.getAdultprice()) + fprice)));
+							}
+
 						} catch (Exception e) {
 							System.out.println("没有取到成人价格");
 						}
@@ -3435,7 +3441,7 @@ public class HttpLogin {
 		StringBuffer sb = null;
 		InputStream instream = null;
 		try {
-			httpclient=HttpUtil.getHttpClient();
+			httpclient = HttpUtil.getHttpClient();
 			response = httpclient.execute(httpget);
 			HttpEntity entity = response.getEntity();
 			if (entity != null) {
@@ -4208,7 +4214,7 @@ public class HttpLogin {
 		httpget.addHeader("Connection", "keep-alive");
 		httpget.addHeader("Cache-Control", "max-age=0");
 		httpget.addHeader("Cookie", cookie);
-		
+
 		for (Cookie c : cookies) {
 			httpget.addHeader(c.getName(), c.getValue());
 		}

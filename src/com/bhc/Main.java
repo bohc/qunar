@@ -286,6 +286,8 @@ public class Main extends ApplicationWindow {
 	private Composite composite_35;
 	private Button button_2;
 	private Button button_11;
+	private Button m_p_ck;
+	private Button a_p_ck;
 
 	/**
 	 * Create the application window.
@@ -338,6 +340,8 @@ public class Main extends ApplicationWindow {
 		line.setLoc(true);
 		line.setLpc(true);
 		line.setPrate("0");
+		line.setMarketpriceck(false);
+		line.setAvgpriceck(true);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cd = Calendar.getInstance();
@@ -772,7 +776,7 @@ public class Main extends ApplicationWindow {
 		Composite composite_55 = new Composite(composite_54, SWT.NONE);
 		composite_55.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		composite_55.setBounds(0, 0, 64, 64);
-		GridLayout gl_composite_55 = new GridLayout(8, false);
+		GridLayout gl_composite_55 = new GridLayout(10, false);
 		composite_55.setLayout(gl_composite_55);
 
 		Button btnNewButton_1 = new Button(composite_55, SWT.NONE);
@@ -827,6 +831,13 @@ public class Main extends ApplicationWindow {
 		GridData gd_txt_failinterrupt = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
 		gd_txt_failinterrupt.widthHint = 50;
 		txt_failinterrupt.setLayoutData(gd_txt_failinterrupt);
+		
+		m_p_ck = new Button(composite_55, SWT.RADIO);
+		m_p_ck.setText("\u6807\u51C6\u4EF7");
+		
+		a_p_ck = new Button(composite_55, SWT.RADIO);
+		a_p_ck.setSelection(true);
+		a_p_ck.setText("\u5E73\u5747\u4EF7");
 
 		tbtmNewItem_4 = new TabItem(tabFolder_3, SWT.NONE);
 		tbtmNewItem_4.setText("\u6BCF\u4E00\u7CFB\u5217\u7EBF\u8DEF\u8BE6\u7EC6\u5217\u8868");
@@ -2823,7 +2834,6 @@ public class Main extends ApplicationWindow {
 		}
 		line.setLimitcountchk(ls.isLimitcountchk());
 	}
-
 	protected DataBindingContext initDataBindings() {
 		DataBindingContext bindingContext = new DataBindingContext();
 		//
@@ -3440,19 +3450,19 @@ public class Main extends ApplicationWindow {
 		IObservableValue lineFlashshowuseObserveValue = BeansObservables.observeValue(line, "flashshowuse");
 		bindingContext.bindValue(flash_show_useObserveSelectionObserveWidget, lineFlashshowuseObserveValue, null, null);
 		//
-		IObservableValue observeTextTn_unameObserveWidget = WidgetProperties.text(new int[] { SWT.Modify, SWT.DefaultSelection }).observe(tn_uname);
+		IObservableValue observeTextTn_unameObserveWidget = WidgetProperties.text(new int[]{SWT.Modify, SWT.DefaultSelection}).observe(tn_uname);
 		IObservableValue tnunameLineObserveValue = BeanProperties.value("tnuname").observe(line);
 		bindingContext.bindValue(observeTextTn_unameObserveWidget, tnunameLineObserveValue, null, null);
 		//
-		IObservableValue observeTextTn_pwdObserveWidget = WidgetProperties.text(new int[] { SWT.Modify, SWT.DefaultSelection }).observe(tn_pwd);
+		IObservableValue observeTextTn_pwdObserveWidget = WidgetProperties.text(new int[]{SWT.Modify, SWT.DefaultSelection}).observe(tn_pwd);
 		IObservableValue tnpwdLineObserveValue = BeanProperties.value("tnpwd").observe(line);
 		bindingContext.bindValue(observeTextTn_pwdObserveWidget, tnpwdLineObserveValue, null, null);
 		//
-		IObservableValue observeTextTn_randObserveWidget = WidgetProperties.text(new int[] { SWT.Modify, SWT.DefaultSelection }).observe(tn_rand);
+		IObservableValue observeTextTn_randObserveWidget = WidgetProperties.text(new int[]{SWT.Modify, SWT.DefaultSelection}).observe(tn_rand);
 		IObservableValue tnrandLineObserveValue = BeanProperties.value("tnrand").observe(line);
 		bindingContext.bindValue(observeTextTn_randObserveWidget, tnrandLineObserveValue, null, null);
 		//
-		IObservableValue observeTextAssemblyObserveWidget = WidgetProperties.text(new int[] { SWT.Modify, SWT.DefaultSelection }).observe(assembly);
+		IObservableValue observeTextAssemblyObserveWidget = WidgetProperties.text(new int[]{SWT.Modify, SWT.DefaultSelection}).observe(assembly);
 		IObservableValue assemblyLineObserveValue = BeanProperties.value("assembly").observe(line);
 		bindingContext.bindValue(observeTextAssemblyObserveWidget, assemblyLineObserveValue, null, null);
 		//
@@ -3555,6 +3565,14 @@ public class Main extends ApplicationWindow {
 		IObservableValue observeTextTxt_cookieObserveWidget = WidgetProperties.text(SWT.Modify).observe(txt_cookie);
 		IObservableValue cookiestrLineObserveValue = BeanProperties.value("cookiestr").observe(line);
 		bindingContext.bindValue(observeTextTxt_cookieObserveWidget, cookiestrLineObserveValue, null, null);
+		//
+		IObservableValue observeSelectionA_p_ckObserveWidget = WidgetProperties.selection().observe(a_p_ck);
+		IObservableValue avgpriceckLineObserveValue = BeanProperties.value("avgpriceck").observe(line);
+		bindingContext.bindValue(observeSelectionA_p_ckObserveWidget, avgpriceckLineObserveValue, null, null);
+		//
+		IObservableValue observeSelectionP_ckObserveWidget = WidgetProperties.selection().observe(m_p_ck);
+		IObservableValue marketpriceckLineObserveValue = BeanProperties.value("marketpriceck").observe(line);
+		bindingContext.bindValue(observeSelectionP_ckObserveWidget, marketpriceckLineObserveValue, null, null);
 		//
 		return bindingContext;
 	}

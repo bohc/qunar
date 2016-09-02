@@ -8,8 +8,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 @SuppressWarnings("serial")
 public class Line extends OrderModel implements Serializable, PropertyChangeListener {
+	@XStreamOmitField
 	private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 	private String username, password, tnuname, tnpwd;
 	private Summary summary = new Summary();
@@ -96,6 +99,7 @@ public class Line extends OrderModel implements Serializable, PropertyChangeList
 	private boolean promise_booking_current_day;// 当日可定
 	private boolean promise_truthful_description_free;// 如实描述
 	private boolean promise_refund_anytime_not_consume;// 未验证消费 随时退
+	private boolean marketpriceck, avgpriceck;// 市场价和平均价选择
 
 	private boolean have_shopping0, have_shopping1;// 现在已经不用，保留只是为了加载以前的xml数据不出错；
 
@@ -108,7 +112,7 @@ public class Line extends OrderModel implements Serializable, PropertyChangeList
 	private List<String> dayspic = new ArrayList<String>();
 
 	private int failinterrupt = 30;
-	
+
 	private String cookiestr;
 
 	public boolean isWaterck() {
@@ -1155,8 +1159,6 @@ public class Line extends OrderModel implements Serializable, PropertyChangeList
 		propertyChangeSupport.firePropertyChange("assembly", this.assembly, this.assembly = assembly);
 	}
 
-	
-	
 	public String getGathertime() {
 		return gathertime;
 	}
@@ -1261,5 +1263,20 @@ public class Line extends OrderModel implements Serializable, PropertyChangeList
 		propertyChangeSupport.firePropertyChange("cookiestr", this.cookiestr, this.cookiestr = cookiestr);
 	}
 
-	
+	public boolean isMarketpriceck() {
+		return marketpriceck;
+	}
+
+	public void setMarketpriceck(boolean marketpriceck) {
+		propertyChangeSupport.firePropertyChange("marketpriceck", this.marketpriceck, this.marketpriceck = marketpriceck);
+	}
+
+	public boolean isAvgpriceck() {
+		return avgpriceck;
+	}
+
+	public void setAvgpriceck(boolean avgpriceck) {
+		propertyChangeSupport.firePropertyChange("avgpriceck", this.avgpriceck, this.avgpriceck = avgpriceck);
+	}
+
 }

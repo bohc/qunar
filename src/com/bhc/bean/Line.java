@@ -113,7 +113,9 @@ public class Line extends OrderModel implements Serializable, PropertyChangeList
 
 	private int failinterrupt = 30;
 
-	private String cookiestr;
+	private String cookiestr;// 保存登录用的cookie初始化的时候不在这儿取
+	private boolean usedateflag;// 指定是否只上传指定日期段的价格
+	private Date udatebegin, udateend;// 指定上传的开如和结束日期
 
 	public boolean isWaterck() {
 		return waterck;
@@ -1277,6 +1279,30 @@ public class Line extends OrderModel implements Serializable, PropertyChangeList
 
 	public void setAvgpriceck(boolean avgpriceck) {
 		propertyChangeSupport.firePropertyChange("avgpriceck", this.avgpriceck, this.avgpriceck = avgpriceck);
+	}
+
+	public boolean isUsedateflag() {
+		return usedateflag;
+	}
+
+	public void setUsedateflag(boolean usedateflag) {
+		propertyChangeSupport.firePropertyChange("usedateflag", this.usedateflag, this.usedateflag = usedateflag);
+	}
+
+	public Date getUdatebegin() {
+		return udatebegin;
+	}
+
+	public void setUdatebegin(Date udatebegin) {
+		propertyChangeSupport.firePropertyChange("udatebegin", this.udatebegin, this.udatebegin = udatebegin);
+	}
+
+	public Date getUdateend() {
+		return udateend;
+	}
+
+	public void setUdateend(Date udateend) {
+		propertyChangeSupport.firePropertyChange("udateend", this.udateend, this.udateend = udateend);
 	}
 
 }

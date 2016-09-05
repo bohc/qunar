@@ -30,6 +30,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 import java.util.Stack;
@@ -2439,6 +2440,22 @@ public class HttpLogin {
 				List<NameValuePair> nvps = null;
 				for (int j = 0; j < list.size(); j++) {
 					Team t = list.get(j);
+					//如果选择了时间段，那么只上传时间段内有数据
+					if(m.line.isUsedateflag()){
+						SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+						Calendar tc=Calendar.getInstance(Locale.getDefault());
+						tc.setTime(sdf.parse(t.getTakeoffdate()));
+						Calendar bc=Calendar.getInstance(Locale.getDefault());
+						bc.setTime(m.line.getUdatebegin());
+						Calendar ec=Calendar.getInstance(Locale.getDefault());
+						ec.setTime(m.line.getUdateend());
+						if(tc.after(ec) || tc.before(bc)){
+							continue;
+						}
+					}
+					
+					
+					
 					String dt = t.getTakeoffdate().trim().substring(0, 10);
 					if (bs) {
 						boolean ex = false;

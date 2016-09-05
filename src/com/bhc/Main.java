@@ -288,6 +288,10 @@ public class Main extends ApplicationWindow {
 	private Button button_11;
 	private Button m_p_ck;
 	private Button a_p_ck;
+	private Composite composite_59;
+	private Button usedateflagck;
+	private DateTime udatebegin;
+	private DateTime udateend;
 
 	/**
 	 * Create the application window.
@@ -756,7 +760,7 @@ public class Main extends ApplicationWindow {
 
 		composite_54 = new Composite(tabFolder_3, SWT.NONE);
 		tbtmNewItem_5.setControl(composite_54);
-		composite_54.setLayout(new GridLayout(1, false));
+		composite_54.setLayout(new GridLayout(2, false));
 
 		listViewer = new ListViewer(composite_54, SWT.BORDER | SWT.V_SCROLL);
 		seriesline = listViewer.getList();
@@ -772,6 +776,26 @@ public class Main extends ApplicationWindow {
 		listViewer.setLabelProvider(new ListLabelProvider());
 		listViewer.setContentProvider(new ContentProvider());
 		listViewer.setInput(new Object());
+		
+		composite_59 = new Composite(composite_54, SWT.NONE);
+		GridData gd_composite_59 = new GridData(SWT.FILL, SWT.FILL, false, true, 1, 2);
+		gd_composite_59.heightHint = 429;
+		composite_59.setLayoutData(gd_composite_59);
+		composite_59.setLayout(new GridLayout(1, false));
+		
+		usedateflagck = new Button(composite_59, SWT.CHECK);
+		usedateflagck.setSelection(true);
+		usedateflagck.setText("\u542F\u7528\u6307\u5B9A\u65E5\u671F");
+		
+		Label label_44 = new Label(composite_59, SWT.NONE);
+		label_44.setText("\u66F4\u65B0\u65E5\u671F\u4ECE");
+		
+		udatebegin = new DateTime(composite_59, SWT.CALENDAR);
+		
+		Label label_45 = new Label(composite_59, SWT.NONE);
+		label_45.setText("\u66F4\u65B0\u65E5\u671F\u5230");
+		
+		udateend = new DateTime(composite_59, SWT.CALENDAR);
 
 		Composite composite_55 = new Composite(composite_54, SWT.NONE);
 		composite_55.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
@@ -809,7 +833,7 @@ public class Main extends ApplicationWindow {
 		send_wait_begin = new Text(composite_55, SWT.BORDER);
 		send_wait_begin.setText("2");
 		GridData gd_send_wait_begin = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
-		gd_send_wait_begin.widthHint = 50;
+		gd_send_wait_begin.widthHint = 20;
 		send_wait_begin.setLayoutData(gd_send_wait_begin);
 
 		label_41 = new Label(composite_55, SWT.NONE);
@@ -819,7 +843,7 @@ public class Main extends ApplicationWindow {
 		send_wait_end = new Text(composite_55, SWT.BORDER);
 		send_wait_end.setText("4");
 		GridData gd_send_wait_end = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
-		gd_send_wait_end.widthHint = 50;
+		gd_send_wait_end.widthHint = 20;
 		send_wait_end.setLayoutData(gd_send_wait_end);
 
 		label_42 = new Label(composite_55, SWT.NONE);
@@ -829,7 +853,7 @@ public class Main extends ApplicationWindow {
 		txt_failinterrupt = new Text(composite_55, SWT.BORDER);
 		txt_failinterrupt.setText("30");
 		GridData gd_txt_failinterrupt = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
-		gd_txt_failinterrupt.widthHint = 50;
+		gd_txt_failinterrupt.widthHint = 30;
 		txt_failinterrupt.setLayoutData(gd_txt_failinterrupt);
 		
 		m_p_ck = new Button(composite_55, SWT.RADIO);
@@ -2261,7 +2285,7 @@ public class Main extends ApplicationWindow {
 		log_txt = new Text(composite_3, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.CANCEL | SWT.MULTI);
 
 		tabFolder.setSelection(0);
-		sashForm_1.setWeights(new int[] { 467, 180 });
+		sashForm_1.setWeights(new int[] {519, 128});
 		// hl.getVimage();
 		m_bindingContext = initDataBindings();
 
@@ -3573,6 +3597,26 @@ public class Main extends ApplicationWindow {
 		IObservableValue observeSelectionP_ckObserveWidget = WidgetProperties.selection().observe(m_p_ck);
 		IObservableValue marketpriceckLineObserveValue = BeanProperties.value("marketpriceck").observe(line);
 		bindingContext.bindValue(observeSelectionP_ckObserveWidget, marketpriceckLineObserveValue, null, null);
+		//
+		IObservableValue observeSelectionUsedateflagckObserveWidget = WidgetProperties.selection().observe(usedateflagck);
+		IObservableValue observeEnabledUdatebeginObserveWidget = WidgetProperties.enabled().observe(udatebegin);
+		bindingContext.bindValue(observeSelectionUsedateflagckObserveWidget, observeEnabledUdatebeginObserveWidget, null, null);
+		//
+		IObservableValue observeSelectionUsedateflagckObserveWidget_1 = WidgetProperties.selection().observe(usedateflagck);
+		IObservableValue observeEnabledUdateendObserveWidget = WidgetProperties.enabled().observe(udateend);
+		bindingContext.bindValue(observeSelectionUsedateflagckObserveWidget_1, observeEnabledUdateendObserveWidget, null, null);
+		//
+		IObservableValue observeSelectionUsedateflagckObserveWidget_2 = WidgetProperties.selection().observe(usedateflagck);
+		IObservableValue usedateflagLineObserveValue = BeanProperties.value("usedateflag").observe(line);
+		bindingContext.bindValue(observeSelectionUsedateflagckObserveWidget_2, usedateflagLineObserveValue, null, null);
+		//
+		IObservableValue observeSelectionUdatebeginObserveWidget = WidgetProperties.selection().observe(udatebegin);
+		IObservableValue udatebeginLineObserveValue = BeanProperties.value("udatebegin").observe(line);
+		bindingContext.bindValue(observeSelectionUdatebeginObserveWidget, udatebeginLineObserveValue, null, null);
+		//
+		IObservableValue observeSelectionUdateendObserveWidget = WidgetProperties.selection().observe(udateend);
+		IObservableValue udateendLineObserveValue = BeanProperties.value("udateend").observe(line);
+		bindingContext.bindValue(observeSelectionUdateendObserveWidget, udateendLineObserveValue, null, null);
 		//
 		return bindingContext;
 	}

@@ -2772,6 +2772,7 @@ public class HttpLogin {
 		if (m.line.getSendwaitbegin() >= 0) {
 			waittime = r.nextInt(m.line.getSendwaitend() - m.line.getSendwaitbegin()) + m.line.getSendwaitbegin();
 			try {
+				updateUI("等待时间："+(waittime)+"秒");
 				Thread.sleep(waittime * 1000);
 			} catch (InterruptedException e) {
 			}

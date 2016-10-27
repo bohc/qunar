@@ -175,18 +175,6 @@
               </java.beans.PropertyChangeSupport> 
             </entry>  
             <entry> 
-              <string>udateend</string>  
-              <java.beans.PropertyChangeSupport serialization="custom"> 
-                <java.beans.PropertyChangeSupport> 
-                  <default> 
-                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/>  
-                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion> 
-                  </default>  
-                  <null/> 
-                </java.beans.PropertyChangeSupport> 
-              </java.beans.PropertyChangeSupport> 
-            </entry>  
-            <entry> 
               <string>promise_truthful_description_free</string>  
               <java.beans.PropertyChangeSupport serialization="custom"> 
                 <java.beans.PropertyChangeSupport> 
@@ -512,18 +500,6 @@
             </entry>  
             <entry> 
               <string>downdatecheck1</string>  
-              <java.beans.PropertyChangeSupport serialization="custom"> 
-                <java.beans.PropertyChangeSupport> 
-                  <default> 
-                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/>  
-                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion> 
-                  </default>  
-                  <null/> 
-                </java.beans.PropertyChangeSupport> 
-              </java.beans.PropertyChangeSupport> 
-            </entry>  
-            <entry> 
-              <string>udatebegin</string>  
               <java.beans.PropertyChangeSupport serialization="custom"> 
                 <java.beans.PropertyChangeSupport> 
                   <default> 
@@ -1147,18 +1123,6 @@
               </java.beans.PropertyChangeSupport> 
             </entry>  
             <entry> 
-              <string>usedateflag</string>  
-              <java.beans.PropertyChangeSupport serialization="custom"> 
-                <java.beans.PropertyChangeSupport> 
-                  <default> 
-                    <source class="com.bhc.bean.Line" reference="../../../../../../../../.."/>  
-                    <propertyChangeSupportSerializedDataVersion>2</propertyChangeSupportSerializedDataVersion> 
-                  </default>  
-                  <null/> 
-                </java.beans.PropertyChangeSupport> 
-              </java.beans.PropertyChangeSupport> 
-            </entry>  
-            <entry> 
               <string>httpsmodel</string>  
               <java.beans.PropertyChangeSupport serialization="custom"> 
                 <java.beans.PropertyChangeSupport> 
@@ -1748,23 +1712,17 @@
       <title>{title}</title>  
       <recommendation>{title}</recommendation>  
       <teamno>{title}</teamno>  
-      <advanceday>２</advanceday>  
-      <advancedaytype>自然日</advancedaytype>  
-      <advancehour>23</advancehour>  
-      <advanceminute>59</advanceminute>  
-      <advancedesc>请游客于当晚23点59分之前预订并支付成功,否则价格另议！</advancedesc>  
       <departure>{title}</departure>  
       <feature/>  
       <feeinclude>{title}</feeinclude>  
       <feeexclude>{title}</feeexclude>  
       <attention>{title}</attention>  
-      <tip>{title}&lt;div align="left" style="line-height:23px;"&gt; &lt;div style="background:url(http://img1.qunarzz.com/p/tts7/201303/17/c5071fabff385d6d93835fbb.png);height:43px;" &gt; &lt;font style="font-size:16px; line-height:35PX; color:#FFFFFF"&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;常见问题：&lt;/b&gt;&lt;/font&gt;&lt;/div&gt; &lt;div style="padding-left:15px; padding-right:5px;"&gt; &lt;font style="font-size:14px; color:#00add1;"&gt;因为在我们网店报名的游客比较多，咨询也较多，有时候可能忙不过来，请见谅！现在我们把游客基本上都会问的一些较突出的问题，游客随时会关注想了解的问题我们也整理了一些，供更多的游客朋友们参考！ &lt;/font&gt; &lt;div style="background-color: #F5F5F5; border-top:#E0E0E0 solid 1px; margin-top:20px; margin-bottom:20px;"&gt;&lt;b&gt;&amp;nbsp;&lt;font style="font-size:22px; font-style:italic"&gt;1.&lt;/font&gt;关于是否包含机票问题&lt;/b&gt; &lt;div style="background-color:#FAFFF4"&gt; &lt;b style="color:#0099FF; font-size:14px"&gt;答：&lt;/b&gt;关于我们网店的行程有时候游客分不清楚那些是包含游客当地出发含往返机票的，那些是不包含机票的，现在我给大家解答一下：有包含机票的行程参团号类似1F33，中间的字母有带“F”， 不包含机票的行程参团号类似3D290，中间的字母有带“D”，就这么简单。&lt;/div&gt;&lt;/div&gt; &lt;div style="background-color: #F5F5F5; border-top:#E0E0E0 solid 1px;margin-bottom:20px;"&gt;&lt;b&gt;&amp;nbsp;&lt;font style="font-size:22px; font-style:italic"&gt;2.&lt;/font&gt;关于价格浮动问题&lt;/b&gt; &lt;div style="background-color:#FAFFF4"&gt; &lt;b style="color:#0099FF; font-size:14px"&gt;答：&lt;/b&gt;关于康辉网站有包含机票行程价格浮动的问题，我们网店平台的行程价格一般都是“去哪儿价：人均￥XXX起”，主要因为机票的价格每天都有一定的浮动，所以咱们有包含机票的旅游行程的价格也会跟着有一定的浮动，有可能上浮，也有可能下浮，但浮动的不会太大的，所以具体会根据游客的出团时间和人数核价。&lt;/div&gt;&lt;/div&gt; &lt;div style="background-color: #F5F5F5; border-top:#E0E0E0 solid 1px;margin-bottom:20px;"&gt;&lt;b&gt;&amp;nbsp;&lt;font style="font-size:22px; font-style:italic"&gt;3.&lt;/font&gt;关于拼房的问题&lt;/b&gt; &lt;div style="background-color:#FAFFF4"&gt; &lt;b style="color:#0099FF; font-size:14px"&gt;答：&lt;/b&gt;现在单人出游的游客也较多，目前我们康辉网店安排的团大部分都是高品质的团，这种团游客只能出一个单房差，拼不了房，因为其它人也不太愿意和陌生人一起住，即使有单人，也不知道是单男还是单女的，住着也不安全！所以从大家利益出发，请在报团的时候单个的游客请补单房差！&lt;/div&gt; &lt;/div&gt; &lt;div style="background-color: #F5F5F5; border-top:#E0E0E0 solid 1px;margin-bottom:20px;"&gt;&lt;b&gt;&amp;nbsp;&lt;font style="font-size:22px; font-style:italic"&gt;4.&lt;/font&gt;关于年龄限制的问题&lt;/b&gt; &lt;div style="background-color:#FAFFF4"&gt; &lt;b style="color:#0099FF; font-size:14px"&gt;答：&lt;/b&gt; 云南的旅游团大部分都有年纪方面的限制，原因在于:&lt;br&gt; 1，云南属于高原区，年纪太大或者太小的游客怕不太适应环境容易产生高原反应，容易引发意外事故，所以如果全是老人和孩子是没有办法安排接待的，需要有家人陪同！&lt;br&gt; 2，我们不同的行程有针对性的年龄收客，这样才能保证我们品质团的质量，这样玩下来大家才没有更多的意见，不然一个团里老老少少都有，不同层次的人都有，可能会因为不同的观念和理念引发一些矛盾，或者跟团的时候大家有可能你等我我等你，特别是年青就会觉得受到托累和牵连！所以我们针对不同年纪的这部分游客参团报名有更适合的行程供大家选择参考！&lt;/div&gt;&lt;/div&gt; &lt;div style="background-color: #F5F5F5; border-top:#E0E0E0 solid 1px;margin-bottom:20px;"&gt;&lt;b&gt;&amp;nbsp;&lt;font style="font-size:22px; font-style:italic"&gt;5.&lt;/font&gt;关于儿童费用说明&lt;/b&gt; &lt;div style="background-color:#FAFFF4"&gt; &lt;b style="color:#0099FF; font-size:14px"&gt;答：&lt;/b&gt;咱们网店上的行程儿童（2-12周岁）只包含旅游车餐导费，不包含景点门票和酒店住宿还有游客往返的大交通，因为儿童可以和成人一起住，没有必要产生这个酒店的住宿，还有门票方面到了景区根据情况看，如果产生半票补半票，不产生票就不用补了，这样较划算些！&lt;/div&gt;&lt;/div&gt; &lt;div style="background-color: #F5F5F5; border-top:#E0E0E0 solid 1px;margin-bottom:20px;"&gt;&lt;b&gt;&amp;nbsp;&lt;font style="font-size:22px; font-style:italic"&gt;6.&lt;/font&gt;关于怎么取机票的问题&lt;/b&gt; &lt;div style="background-color:#FAFFF4"&gt; &lt;b style="color:#0099FF; font-size:14px"&gt;答：&lt;/b&gt;目前我社出的机票都是属于电子客票，所谓电子客票就是用你们的相关证件上的名字和证件号出的票，出好后航空公司系统是有记录的，游客朋友们只需要提前2小时，带好证件去机场的对应航空公司柜台换取登机牌就可以了，是不需要纸制机票的！&lt;/div&gt;&lt;/div&gt; &lt;div style="background-color: #F5F5F5; border-top:#E0E0E0 solid 1px;margin-bottom:20px;"&gt;&lt;b&gt;&amp;nbsp;&lt;font style="font-size:22px; font-style:italic"&gt;7.&lt;/font&gt;关于持有相关证件有没有优惠的问题&lt;/b&gt; &lt;div style="background-color:#FAFFF4"&gt; &lt;b style="color:#0099FF; font-size:14px"&gt;答：&lt;/b&gt;目前我社安排的旅游团所购买的门票都是属于景区对咱们旅行社的协议价了，已经是打过折扣的了，所以无论是游客持有什么证件，我社原则上是均不退任何费用的，因为那个证件只针对您个人自己去景区消费时才有用的！&lt;/div&gt;&lt;/div&gt; &lt;div style="background-color: #F5F5F5; border-top:#E0E0E0 solid 1px;margin-bottom:20px;"&gt;&lt;b&gt;&amp;nbsp;&lt;font style="font-size:22px; font-style:italic"&gt;8.&lt;/font&gt;关于临时退团的问题&lt;/b&gt; &lt;div style="background-color:#FAFFF4"&gt; &lt;b style="color:#0099FF; font-size:14px"&gt;答：&lt;/b&gt;如果有相关的游客临时有事情需要退团，相关说明如下：&lt;br&gt; （1）.游客如果报的是有包含机票的旅行团，需要注意的是有些机票是属于特价套票，这个是不可以退改签的，有些机票可以退的，具体以航空公司退票损失说明为准。&lt;br&gt; （2.）不包含机票的旅行团，一般情况下提前三天申请退团可以全额退款，提前一天和两天推团的如果有产生相关的费用，按相关损失折算，如果当天才退团或者在旅途中要退团或者脱团则产生全部费用，团款不退！&lt;/div&gt;&lt;/div&gt; &lt;div style="background-color: #F5F5F5; border-top:#E0E0E0 solid 1px;margin-bottom:20px;"&gt;&lt;b&gt;&amp;nbsp;&lt;font style="font-size:22px; font-style:italic"&gt;9.&lt;/font&gt;关于团队餐的问题&lt;/b&gt; &lt;div style="background-color:#FAFFF4"&gt; &lt;b style="color:#0099FF; font-size:14px"&gt;答：&lt;/b&gt;团队餐大家都是统一安排的，基本上都能吃饱的，不能保证能吃好，因为众口难调哦，不同地区的游客朋友们口味不太一样，所以希望游客朋友们多多包含和希望，同一个团中无论是住三星，四星，或者是五星酒店的游客，团队餐提供的标准都是一样的，除非您觉得团队餐实吃不习惯，您可以和导游协商，加钱看看可不可以吃自己想吃的餐了。&lt;/div&gt;&lt;/div&gt; &lt;div style="background-color: #F5F5F5; border-top:#E0E0E0 solid 1px;margin-bottom:20px;"&gt;&lt;b&gt;&amp;nbsp;&lt;font style="font-size:22px; font-style:italic"&gt;10.&lt;/font&gt;关于提前多久报名适合的问题&lt;/b&gt; &lt;div style="background-color:#FAFFF4"&gt; &lt;b style="color:#0099FF; font-size:14px"&gt;答：&lt;/b&gt;咱们康辉网店每一个行程都有注明一般提前多少天报名较适合的，因为不同的行程提供的团量不一样，特别是有包含机票的团，且有注明是团购或者特价促销的产品，只要你们提前确定了旅游时间和人数就不要犹豫了，请早点安排报团，不然这种物美价廉的产品，基本上在很短时间内就会被动别人抢光的。&lt;/div&gt;&lt;/div&gt; &lt;div style="background-color: #F5F5F5; border-top:#E0E0E0 solid 1px;margin-bottom:20px;"&gt;&lt;b&gt;&amp;nbsp;&lt;font style="font-size:22px; font-style:italic"&gt;11.&lt;/font&gt;你们的团都是属于散客拼团吗？&lt;/b&gt; &lt;div style="background-color:#FAFFF4"&gt; &lt;b style="color:#0099FF; font-size:14px"&gt;答：&lt;/b&gt;您好，我们的团都是属于全国各地的游客拼在一起成团的，整个团是由不同的组团社一起收客，然后交由同一地接社统一安排操作的，不是康辉旅行社独立自主发团的，但是我们的合同，保险程序是属于康辉旅行社提供的，所以有什么问题的话走的赔付流程能很大程度上得到保障的，这就是为什么很多人都会选择康辉旅行社报团的原因。&lt;/div&gt;&lt;/div&gt; &lt;/div&gt;&lt;/div&gt; &lt;div align="left" style="line-height:23px;"&gt; &lt;div style="background:url(http://img1.qunarzz.com/p/tts7/201303/17/c5071fabff385d6d93835fbb.png);height:43px;" &gt; &lt;font style="font-size:16px; line-height:35PX; color:#FFFFFF"&gt;&lt;b&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;昆明康辉旅行社旅游合同样本&lt;/b&gt;&lt;/font&gt;&lt;/div&gt; &lt;div style="padding-left:15px; padding-right:10px;"&gt; &lt;font style="font-size:14px; color:#00add1;"&gt; 样本属于昆明康辉旅行社最新（201３版）合同样本，与正规旅游合同完全相符，样本总计有17页，有需要的游客请向客服人员索取，游客可以用点时间多了解一下合同的相关条款，游客到了云南昆明后，我社将与您签订正规的旅游合同，并附上旅游行程单，保险单，以确保游客自身利益！ &lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt; &lt;/div&gt;</tip>  
-      <features>&lt;img alt="" src="https://imgs.qunarzz.com/p/tts0/1502/6b/203efbddf4d13a.jpg" /&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts8/1502/35/99dde1fe898655.jpg" /&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts2/1502/7b/57f012f402f35f.jpg" /&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts0/1502/b9/1705d790e0289f.jpg" /&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts9/1502/c6/19004f59f0656.jpg" /&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts5/1502/fd/bca55b651fdef6.jpg" /&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts4/1502/9c/26c7a6aedc2771.jpg" /&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts0/1502/26/f47ee029a3ea3.jpg" /&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts2/1502/86/4b18cef0ba56e0.jpg" /&gt; &lt;a href="" target="_blank"&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts6/1502/94/b6605b70a823db.jpg" style="opacity:1;filter:alpha (opacity=100)"onmouseover="this.style.opacity=0.8;this.filters.alpha.opacity=80"onmouseout="this.style.opacity=1;this.filters.alpha.opacity=100" border="0"/&gt;&lt;/a&gt; &lt;a href="" target="_blank"&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts6/1502/6e/b60abc1d122c50.jpg" style="opacity:1;filter:alpha (opacity=100)"onmouseover="this.style.opacity=0.8;this.filters.alpha.opacity=80"onmouseout="this.style.opacity=1;this.filters.alpha.opacity=100" border="0"/&gt;&lt;/a&gt; &lt;a href="" target="_blank"&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts4/1502/2c/31884830b3c17.jpg" style="opacity:1;filter:alpha (opacity=100)"onmouseover="this.style.opacity=0.8;this.filters.alpha.opacity=80"onmouseout="this.style.opacity=1;this.filters.alpha.opacity=100" border="0"/&gt;&lt;/a&gt; &lt;a href=""&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts1/1502/d8/11824c8612180e.jpg" style="opacity:1;filter:alpha (opacity=100)"onmouseover="this.style.opacity=0.8;this.filters.alpha.opacity=80"onmouseout="this.style.opacity=1;this.filters.alpha.opacity=100" border="0"/&gt;&lt;/a&gt; {特色图片}&lt;div style="color:#009933;font-size:17px;"&gt;&lt;b&gt;参团序言：什么样的旅游产品值得购买，旅游产品性价比和哪些因素有关，价格的高低由哪些因素确定，为什么看起来差不多的产品价格会有很大的出入，怎么报团或者选择什么样的产品才是自己所需要的。如果您相信我们，请把您的旅行计划交给我们，我们会根据您的情况量身定制推荐一个适合您的产品，让您不须此行。&lt;/b&gt;&lt;/div&gt; &lt;div&gt;{title} &lt;/div&gt;</features>  
+      <tip>{title}</tip>  
+      <features>{title}{特色图片}</features>  
       <payway1>true</payway1>  
       <payway2>false</payway2>  
       <payway3>false</payway3>  
-      <txtfeaturepath/>  
-      <confeature>&lt;img alt="" src="https://imgs.qunarzz.com/p/tts0/1502/6b/203efbddf4d13a.jpg" /&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts8/1502/35/99dde1fe898655.jpg" /&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts2/1502/7b/57f012f402f35f.jpg" /&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts0/1502/b9/1705d790e0289f.jpg" /&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts9/1502/c6/19004f59f0656.jpg" /&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts5/1502/fd/bca55b651fdef6.jpg" /&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts4/1502/9c/26c7a6aedc2771.jpg" /&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts0/1502/26/f47ee029a3ea3.jpg" /&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts2/1502/86/4b18cef0ba56e0.jpg" /&gt; &lt;a href="" target="_blank"&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts6/1502/94/b6605b70a823db.jpg" style="opacity:1;filter:alpha (opacity=100)"onmouseover="this.style.opacity=0.8;this.filters.alpha.opacity=80"onmouseout="this.style.opacity=1;this.filters.alpha.opacity=100" border="0"/&gt;&lt;/a&gt; &lt;a href="" target="_blank"&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts6/1502/6e/b60abc1d122c50.jpg" style="opacity:1;filter:alpha (opacity=100)"onmouseover="this.style.opacity=0.8;this.filters.alpha.opacity=80"onmouseout="this.style.opacity=1;this.filters.alpha.opacity=100" border="0"/&gt;&lt;/a&gt; &lt;a href="" target="_blank"&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts4/1502/2c/31884830b3c17.jpg" style="opacity:1;filter:alpha (opacity=100)"onmouseover="this.style.opacity=0.8;this.filters.alpha.opacity=80"onmouseout="this.style.opacity=1;this.filters.alpha.opacity=100" border="0"/&gt;&lt;/a&gt; &lt;a href=""&gt; &lt;img alt="" src="https://imgs.qunarzz.com/p/tts1/1502/d8/11824c8612180e.jpg" style="opacity:1;filter:alpha (opacity=100)"onmouseover="this.style.opacity=0.8;this.filters.alpha.opacity=80"onmouseout="this.style.opacity=1;this.filters.alpha.opacity=100" border="0"/&gt;&lt;/a&gt; {特色图片}&lt;div style="color:#009933;font-size:17px;"&gt;&lt;b&gt;参团序言：什么样的旅游产品值得购买，旅游产品性价比和哪些因素有关，价格的高低由哪些因素确定，为什么看起来差不多的产品价格会有很大的出入，怎么报团或者选择什么样的产品才是自己所需要的。如果您相信我们，请把您的旅行计划交给我们，我们会根据您的情况量身定制推荐一个适合您的产品，让您不须此行。&lt;/b&gt;&lt;/div&gt; &lt;div&gt;{title} &lt;/div&gt;</confeature>  
+      <confeature>{title}{特色图片}</confeature>  
       <featurechecked>false</featurechecked> 
     </summary>  
     <days/>  
@@ -1773,36 +1731,32 @@
     <vehicleSet/>  
     <agelimit>{title}</agelimit>  
     <btcprice>false</btcprice>  
-    <includefee>此行程有包含往返机票，机票价格可能会有一定的浮动，出行航班时间具体以我社出票的航班为准，本旅游产品只接待飞机当天抵达昆明对应出发城市身份的游客，云南人和外籍人,港澳台同胞以及长期在云南工作人员暂时无法安排，23周岁以下和58周岁以上的人群需要有家人的陪团方可参团,游客收客范围起价说明详见注意事项收客标准！请游客于当晚23点59分前预订并支付成功,否则订单无效，价格另议！</includefee>  
-    <excludefee>此行程报价为昆明当地接团价格，节假期间价格可能会有一定浮动，出行航班时间具体以我社出票的航班为准，本旅游产品只接待飞机当天抵达昆明对应出发城市身份的游客，云南人和外籍人,港澳台同胞以及长期在云南工作人员暂时无法安排，23周岁以下和58周岁以上的人群需要有家人的陪团方可参团,游客收客范围起价说明详见注意事项收客标准！请游客于当晚23点59分前预订并支付成功,否则订单无效，价格另议！</excludefee>  
-    <kidspricedesc>12周岁以下儿童报价只含旅游车餐费，不包含往返大交通,景点门票和酒店费用，产生费用自理！</kidspricedesc>  
-    <kidsprice>{title}</kidsprice>  
-    <adultprice>{title}</adultprice>  
-    <marketprice>{title}</marketprice>  
-    <sigledistance>{title}</sigledistance>  
-    <storenum>8</storenum>  
+    <includefee>此行程有包含往返昆明机票及机场建设费和燃油税，但机票价格可能会根据不同时间有一定的浮动，特别是节假日前后浮动会更大，所列航班及时间为参考航班，航班时间具体以我社出票的航班为准，如果游客要指定航班，请联系客服人员具体查询和核价！</includefee>  
+    <excludefee>此行程报价为昆明当地接团价格，须游客自行坐飞机或者火车到昆明，我社在昆明安排接待参团，节假期间价格可能会有一定浮动，请游客下订单前咨询一下客服游客往返机票自理，也可以让我社代订机票</excludefee>  
+    <kidspricedesc>12周岁以下儿童报价只含旅游车餐费，不含景点门票和酒店费用，若产生费用则自理！</kidspricedesc>  
+    <storenum>10</storenum>  
     <minnumtime>1</minnumtime>  
     <maxnumtime>6</maxnumtime>  
     <daysimgcheck>false</daysimgcheck>  
-    <viewimgdir/>  
-    <hotelimgdir/>  
-    <foodimgdir/>  
+    <viewimgdir>D:\greensoft\LB_soft\qunar</viewimgdir>  
+    <hotelimgdir>D:\greensoft\LB_soft\qunar</hotelimgdir>  
+    <foodimgdir>D:\greensoft\LB_soft\qunar</foodimgdir>  
     <txtdiscription>{title}</txtdiscription>  
     <prate>0</prate>  
     <singlelist>true</singlelist>  
     <multilist>false</multilist>  
-    <lupath>http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86110100FMFFY13&amp;pname=86110100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86120100FMFFY13&amp;pname=86120100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86130100FMFFY13&amp;pname=86130100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86140100FMFFY13&amp;pname=86140100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86210200FMFFY13&amp;pname=86210200 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86310100FMFFY13&amp;pname=86310100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86320100FMFFY13&amp;pname=86320100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86330100FMFFY13&amp;pname=86330100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86340100FMFFY13&amp;pname=86340100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86370100FMFFY13&amp;pname=86370100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86410100FMFFY13&amp;pname=86410100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86420100FMFFY13&amp;pname=86420100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86430100FMFFY13&amp;pname=86430100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86610100FMFFY13&amp;pname=86610100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86350200FMFFY13&amp;pname=86350200 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86360100FMFFY13&amp;pname=86360100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86440100FMFFY13&amp;pname=86440100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86440300FMFFY13&amp;pname=86440300 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86440400FMFFY13&amp;pname=86440400 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86500100FMFFY13&amp;pname=86500100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86510100FMFFY13&amp;pname=86510100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86460200FMFFY13&amp;pname=86460200 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86530100FMFFY13&amp;pname=86530100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86620100FMFFY13&amp;pname=86620100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86450100FMFFY13&amp;pname=86450100 http://211.149.235.153:8080/qly/px!lxml.do?id=135&amp;linecode=86520100FMFFY13&amp;pname=86520100</lupath>  
-    <mupath>http://211.149.235.153:8888/qly/px!lxml.do?id=97&amp;linecode=86530100FQLY-ZFLJ01&amp;pname=86530100</mupath>  
+    <lupath>http://211.149.235.153:8888/qly/px!lxml.do?id=187&amp;linecode=86110100FZYZZ03&amp;pname=86110100 http://211.149.235.153:8888/qly/px!lxml.do?id=187&amp;linecode=86120100FZYZZ03&amp;pname=86120100 http://211.149.235.153:8888/qly/px!lxml.do?id=187&amp;linecode=86310100FZYZZ03&amp;pname=86310100 http://211.149.235.153:8888/qly/px!lxml.do?id=187&amp;linecode=86320100FZYZZ03&amp;pname=86320100 http://211.149.235.153:8888/qly/px!lxml.do?id=187&amp;linecode=86420100FZYZZ03&amp;pname=86420100 http://211.149.235.153:8888/qly/px!lxml.do?id=187&amp;linecode=86430100FZYZZ03&amp;pname=86430100 http://211.149.235.153:8888/qly/px!lxml.do?id=187&amp;linecode=86440100FZYZZ03&amp;pname=86440100 http://211.149.235.153:8888/qly/px!lxml.do?id=187&amp;linecode=86440300FZYZZ03&amp;pname=86440300 http://211.149.235.153:8888/qly/px!lxml.do?id=187&amp;linecode=86500100FZYZZ03&amp;pname=86500100 http://211.149.235.153:8888/qly/px!lxml.do?id=187&amp;linecode=86510100FZYZZ03&amp;pname=86510100</lupath>  
+    <mupath>http://211.149.235.153:8888/qly/px!lxml.do?id=187&amp;linecode=86110100FZYZZ03&amp;pname=86110100</mupath>  
     <btc1>true</btc1>  
     <btc2>false</btc2>  
-    <adck>true</adck>  
-    <payck>true</payck>  
+    <adck>false</adck>  
+    <payck>false</payck>  
     <btc2ac>false</btc2ac>  
     <btc2acc>false</btc2acc>  
     <limitcountchk>false</limitcountchk>  
-    <lbc>true</lbc>  
+    <lbc>false</lbc>  
     <ldc>false</ldc>  
-    <lpc>false</lpc>  
+    <lpc>true</lpc>  
     <loc>false</loc>  
     <lic>false</lic>  
     <c1up>false</c1up>  
@@ -1814,33 +1768,29 @@
     <c2dn>false</c2dn>  
     <sendwaitbegin>1</sendwaitbegin>  
     <sendwaitend>3</sendwaitend>  
+    <disbegindate>2016-07-05</disbegindate>  
+    <disenddate>2016-08-24</disenddate>  
     <reduceprice>false</reduceprice>  
     <earlybookcheck>false</earlybookcheck>  
     <favorabledisplaycheck>false</favorabledisplaycheck>  
-    <earlybookday>6</earlybookday>  
-    <earlydiscount>50</earlydiscount>  
+    <earlystartdate>2016-07-05</earlystartdate>  
+    <earlyenddate>2016-08-24</earlyenddate>  
     <favorabledisplaytype1>false</favorabledisplaytype1>  
     <favorabledisplaytype2>false</favorabledisplaytype2>  
     <favorabledisplaytype3>false</favorabledisplaytype3>  
-    <dkeycheck>true</dkeycheck>  
-    <dkeytxt>“木府风云”,【石林】风景区,【大理古城】,洋人街,【崇圣寺三塔】,【蝴蝶泉】,【大游船】,洱海,【大理土巴碗】,【木府】,【纳西喜宴】,【虎跳峡】,参加藏民家访,【普达措国家森林公园】,【属都湖】,【碧塔海】,山路十八湾,观景台远眺泸沽湖全景,情人沙滩,里格观景台,乘猪槽船游湖,登里务比岛,参观里务比寺,土司墓,摩梭风情家访《泸沽湖博物馆》,【玉龙雪山景区】,【印象?丽江】,（含进山费、含云杉坪索道、含环保车）,云杉坪,甘海子,白水河,东巴圣地【玉水寨】,【东巴谷】,【束河古镇】,【黑龙谭公园】,【野象谷】,【原始森林公园】,丽江古城,四方街,玉龙雪山景区,温馨提示</dkeytxt>  
-    <dkeystyle>&lt;span style="color:#ff00ff; font-size:16px"&gt;&lt;b&gt;{tag}&lt;/b&gt;&lt;/span&gt;</dkeystyle>  
-    <priceratedate>800</priceratedate>  
-    <priceratedate3>-180</priceratedate3>  
+    <favorabledisplaystart>2016-07-05</favorabledisplaystart>  
+    <favorabledisplayend>2016-08-24</favorabledisplayend>  
+    <dkeycheck>false</dkeycheck>  
     <changespecial>false</changespecial>  
     <changespecial2>false</changespecial2>  
     <changespecial3>false</changespecial3>  
-    <specialsatrttime>2015-09-28 16:00:00.0 UTC</specialsatrttime>  
-    <specialendtime>2015-10-06 16:00:00.0 UTC</specialendtime>  
-    <specialsatrttime2>2014-09-26 16:00:00.0 UTC</specialsatrttime2>  
-    <specialendtime2>2014-10-07 16:00:00.0 UTC</specialendtime2>  
-    <specialsatrttime3>2014-10-11 16:00:00.0 UTC</specialsatrttime3>  
-    <specialendtime3>2014-11-24 16:00:00.0 UTC</specialendtime3>  
+    <specialsatrttime>2016-07-05 02:22:47.684 UTC</specialsatrttime>  
+    <specialendtime>2016-07-05 02:22:47.684 UTC</specialendtime>  
     <httpmodel>true</httpmodel>  
     <httpsmodel>false</httpsmodel>  
     <changespecial4>true</changespecial4>  
     <specialdate>3</specialdate>  
-    <specealprice>280</specealprice>  
+    <specealprice>100</specealprice>  
     <downdatecheck1>false</downdatecheck1>  
     <downdatecheck2>false</downdatecheck2>  
     <pricedates/>  
@@ -1848,15 +1798,12 @@
     <waterck>false</waterck>  
     <mainpicselect>false</mainpicselect>  
     <flashshowuse>false</flashshowuse>  
-    <mainpictxt>E:\TTS\TTS推广图片\新店\木府风云\木府直达游\木府风云（大理丽江4晚5天）\封面</mainpictxt>  
-    <phonenum/>  
-    <cselect>qly网站</cselect>  
-    <group__method0>true</group__method0>  
+    <group__method0>false</group__method0>  
     <group__method1>false</group__method1>  
-    <promise__ironclad__group>true</promise__ironclad__group>  
-    <promise__no__self__pay>true</promise__no__self__pay>  
+    <promise__ironclad__group>false</promise__ironclad__group>  
+    <promise__no__self__pay>false</promise__no__self__pay>  
     <promise__no__shopping>false</promise__no__shopping>  
-    <promise__truthful__description>true</promise__truthful__description>  
+    <promise__truthful__description>false</promise__truthful__description>  
     <promise__guarantee__go>false</promise__guarantee__go>  
     <promise__booking__current__day>false</promise__booking__current__day>  
     <promise__truthful__description__free>false</promise__truthful__description__free>  
@@ -1865,13 +1812,11 @@
     <avgpriceck>true</avgpriceck>  
     <have__shopping0>false</have__shopping0>  
     <have__shopping1>false</have__shopping1>  
-    <assembly>全国各地游客飞机抵达昆明，坐机场前往火车站，当晚火车前往大理，第二天早上到大理后统一集合！</assembly>  
     <img__publish__style1>false</img__publish__style1>  
-    <img__publish__style2>true</img__publish__style2>  
+    <img__publish__style2>false</img__publish__style2>  
     <img__publish__style3>false</img__publish__style3>  
     <dayspic/>  
     <failinterrupt>30</failinterrupt>  
-    <cookiestr>QN1=O5cLNVe77UQIKHjuA1gcAg==; QN43=6; QN42=gayosite; _q=U.gayosite; _t=24641670; csrfToken=F7StufcqGVo9mb9skPpnGreHNLarR7ye; _s=s_UN7L6KONDVLK2VXU6BAGIPGYOY; _v=9MM9NSth-g7GGvPWcCLKi9XCfGMaQCw3-x8p5_2zEtlY4xw35adOD9xmO7oiXVKme355XxcP29M2MmF0c_vQ_RZtKgwfL9vRnpYqt4uxkr2CGbC8qddt-AWOWWPIZfPLhmo2mqFW9OYGXabJiqEkPKUGeCO7m73Myfy1WHaPrLb2; QN269=0FE191E268FB11E69BC0FA163EEB30AF; _i=ueHd8Z9YbOoXU_ryPEI7pVjq5pVX; _vi=GZJS7b6NNsb-nAFOaykvo90qB3UPOqG6VteorZVlMB26aJqscLoZxDE4Hoe1R-c39pCoH3-xISYnEUBUJt_lIK46gcf3miDV4E6p0OW2CgjYRukgDznYqYvKn5oFQDFjsuP1Jker-ypSKd5W5C86YufUfWZPS9iNyjr7ELqohdgv; QN48=tc_a85abc84a91ca6fd_156e4d15b3e_117f; QunarGlobal=192.168.255.14_12bf9dd8_156e0662e8d_-7c89|1472717740940; __ag_cm_=1472717745221; fload_ad_pop=1; QN52=https%3A%2F%2Ftb2cadmin.qunar.com; JSESSIONID=08B7FC6F15E3A3E612C8D9768E761F6F; QN44=gayosite; QN243=3; ag_fid=W78z1G6N5xSrc4FF</cookiestr>  
-    <usedateflag>false</usedateflag> 
+    <cookiestr>QN1=O5cLNVe77UQIKHjuA1gcAg==; QN43=6; QN42=gayosite; _q=U.gayosite; _t=24641670; csrfToken=F7StufcqGVo9mb9skPpnGreHNLarR7ye; _s=s_UN7L6KONDVLK2VXU6BAGIPGYOY; _v=9MM9NSth-g7GGvPWcCLKi9XCfGMaQCw3-x8p5_2zEtlY4xw35adOD9xmO7oiXVKme355XxcP29M2MmF0c_vQ_RZtKgwfL9vRnpYqt4uxkr2CGbC8qddt-AWOWWPIZfPLhmo2mqFW9OYGXabJiqEkPKUGeCO7m73Myfy1WHaPrLb2; QN269=0FE191E268FB11E69BC0FA163EEB30AF; _i=ueHd8Z9YbOoXU_ryPEI7pVjq5pVX; _vi=GZJS7b6NNsb-nAFOaykvo90qB3UPOqG6VteorZVlMB26aJqscLoZxDE4Hoe1R-c39pCoH3-xISYnEUBUJt_lIK46gcf3miDV4E6p0OW2CgjYRukgDznYqYvKn5oFQDFjsuP1Jker-ypSKd5W5C86YufUfWZPS9iNyjr7ELqohdgv; QN48=tc_a85abc84a91ca6fd_156e4d15b3e_117f; QunarGlobal=192.168.255.14_12bf9dd8_156e0662e8d_-7c89|1472717740940; __ag_cm_=1472717745221; fload_ad_pop=1; QN52=https%3A%2F%2Ftb2cadmin.qunar.com; JSESSIONID=08B7FC6F15E3A3E612C8D9768E761F6F; QN44=gayosite; QN243=3; ag_fid=W78z1G6N5xSrc4FF</cookiestr> 
   </com.bhc.bean.Line>
 </root>

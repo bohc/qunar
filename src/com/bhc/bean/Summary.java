@@ -15,7 +15,9 @@ public class Summary extends OrderModel implements Serializable, PropertyChangeL
 	private String placeid;
 	private String resourceid;
 	private String pfunction;
-	private String pcomposition,linesubject;
+	private String extfunction;
+	private String subfunction;
+	private String pcomposition, linesubject;
 	private String day;
 	private String advanceday;
 	private String advancedaytype;
@@ -54,8 +56,7 @@ public class Summary extends OrderModel implements Serializable, PropertyChangeL
 	}
 
 	public void setAdvanceminute(String advanceminute) {
-		propertyChangeSupport.firePropertyChange("advanceminute", this.advanceminute,
-				this.advanceminute = advanceminute);
+		propertyChangeSupport.firePropertyChange("advanceminute", this.advanceminute, this.advanceminute = advanceminute);
 	}
 
 	public String getAdvancedesc() {
@@ -97,8 +98,7 @@ public class Summary extends OrderModel implements Serializable, PropertyChangeL
 
 	public void setFeaturechecked(boolean featurechecked) {
 		// this.featurechecked = featurechecked;
-		propertyChangeSupport.firePropertyChange("featurechecked", this.featurechecked,
-				this.featurechecked = featurechecked);
+		propertyChangeSupport.firePropertyChange("featurechecked", this.featurechecked, this.featurechecked = featurechecked);
 	}
 
 	public String getConfeature() {
@@ -114,8 +114,7 @@ public class Summary extends OrderModel implements Serializable, PropertyChangeL
 	}
 
 	public void setTxtfeaturepath(String txtfeaturepath) {
-		propertyChangeSupport.firePropertyChange("txtfeaturepath", this.txtfeaturepath,
-				this.txtfeaturepath = txtfeaturepath);
+		propertyChangeSupport.firePropertyChange("txtfeaturepath", this.txtfeaturepath, this.txtfeaturepath = txtfeaturepath);
 	}
 
 	public boolean isPayway1() {
@@ -151,8 +150,7 @@ public class Summary extends OrderModel implements Serializable, PropertyChangeL
 
 	public void setRecommendation(String recommendation) {
 		// this.recommendation = recommendation;
-		propertyChangeSupport.firePropertyChange("recommendation", this.recommendation,
-				this.recommendation = recommendation);
+		propertyChangeSupport.firePropertyChange("recommendation", this.recommendation, this.recommendation = recommendation);
 	}
 
 	public String getTeamno() {
@@ -186,8 +184,23 @@ public class Summary extends OrderModel implements Serializable, PropertyChangeL
 	}
 
 	public void setPfunction(String pfunction) {
-		// this.pfunction = pfunction;
 		propertyChangeSupport.firePropertyChange("pfunction", this.pfunction, this.pfunction = pfunction);
+	}
+
+	public String getExtfunction() {
+		return extfunction;
+	}
+
+	public void setExtfunction(String extfunction) {
+		propertyChangeSupport.firePropertyChange("extfunction", this.extfunction, this.extfunction = extfunction);
+	}
+
+	public String getSubfunction() {
+		return subfunction;
+	}
+
+	public void setSubfunction(String subfunction) {
+		propertyChangeSupport.firePropertyChange("subfunction", this.subfunction, this.subfunction = subfunction);
 	}
 
 	public String getPcomposition() {
@@ -223,8 +236,7 @@ public class Summary extends OrderModel implements Serializable, PropertyChangeL
 
 	public void setAdvancedaytype(String advancedaytype) {
 		// this.advancedaytype = advancedaytype;
-		propertyChangeSupport.firePropertyChange("advancedaytype", this.advancedaytype,
-				this.advancedaytype = advancedaytype);
+		propertyChangeSupport.firePropertyChange("advancedaytype", this.advancedaytype, this.advancedaytype = advancedaytype);
 	}
 
 	public String getDeparture() {
@@ -277,8 +289,7 @@ public class Summary extends OrderModel implements Serializable, PropertyChangeL
 
 	public void setFreetriptotraffic(String freetriptotraffic) {
 		// this.freetriptotraffic = freetriptotraffic;
-		propertyChangeSupport.firePropertyChange("freetriptotraffic", this.freetriptotraffic,
-				this.freetriptotraffic = freetriptotraffic);
+		propertyChangeSupport.firePropertyChange("freetriptotraffic", this.freetriptotraffic, this.freetriptotraffic = freetriptotraffic);
 	}
 
 	public String getFreetripbacktraffic() {
@@ -287,8 +298,7 @@ public class Summary extends OrderModel implements Serializable, PropertyChangeL
 
 	public void setFreetripbacktraffic(String freetripbacktraffic) {
 		// this.freetripbacktraffic = freetripbacktraffic;
-		propertyChangeSupport.firePropertyChange("freetripbacktraffic", this.freetripbacktraffic,
-				this.freetripbacktraffic = freetripbacktraffic);
+		propertyChangeSupport.firePropertyChange("freetripbacktraffic", this.freetripbacktraffic, this.freetripbacktraffic = freetripbacktraffic);
 	}
 
 	public String getImage() {

@@ -1074,6 +1074,11 @@ public class HttpLogin {
 				} else {
 					nvps.add(new BasicNameValuePair("group_method", "1"));
 				}
+				// 判断是不是半自由行
+				if (summary.getExtfunction() != null && !summary.getExtfunction().trim().equals("")) {
+					nvps.add(new BasicNameValuePair("ext_function", summary.getExtfunction()));
+					nvps.add(new BasicNameValuePair("sub_function", summary.getSubfunction()));
+				}
 			} else if (pfunction.trim().equals("free")) {
 				if (m.line.isPromise_guarantee_go()) {
 					nvps.add(new BasicNameValuePair("promise_guarantee_go", "on"));
@@ -1110,6 +1115,8 @@ public class HttpLogin {
 				// 利润率
 				nvps.add(new BasicNameValuePair("profit", "0"));
 			}
+			// 产品特色
+			nvps.add(new BasicNameValuePair("productFeatures", "优质的服务"));
 
 			for (NameValuePair bp : nvps) {
 				System.out.println(bp.getName() + ":" + bp.getValue());
@@ -2440,22 +2447,20 @@ public class HttpLogin {
 				List<NameValuePair> nvps = null;
 				for (int j = 0; j < list.size(); j++) {
 					Team t = list.get(j);
-					//如果选择了时间段，那么只上传时间段内有数据
-					if(m.line.isUsedateflag()){
-						SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-						Calendar tc=Calendar.getInstance(Locale.getDefault());
+					// 如果选择了时间段，那么只上传时间段内有数据
+					if (m.line.isUsedateflag()) {
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+						Calendar tc = Calendar.getInstance(Locale.getDefault());
 						tc.setTime(sdf.parse(t.getTakeoffdate()));
-						Calendar bc=Calendar.getInstance(Locale.getDefault());
+						Calendar bc = Calendar.getInstance(Locale.getDefault());
 						bc.setTime(m.line.getUdatebegin());
-						Calendar ec=Calendar.getInstance(Locale.getDefault());
+						Calendar ec = Calendar.getInstance(Locale.getDefault());
 						ec.setTime(m.line.getUdateend());
-						if(tc.after(ec) || tc.before(bc)){
+						if (tc.after(ec) || tc.before(bc)) {
 							continue;
 						}
 					}
-					
-					
-					
+
 					String dt = t.getTakeoffdate().trim().substring(0, 10);
 					if (bs) {
 						boolean ex = false;
@@ -2772,7 +2777,7 @@ public class HttpLogin {
 		if (m.line.getSendwaitbegin() >= 0) {
 			waittime = r.nextInt(m.line.getSendwaitend() - m.line.getSendwaitbegin()) + m.line.getSendwaitbegin();
 			try {
-				updateUI("等待时间："+(waittime)+"秒");
+				updateUI("等待时间：" + (waittime) + "秒");
 				Thread.sleep(waittime * 1000);
 			} catch (InterruptedException e) {
 			}

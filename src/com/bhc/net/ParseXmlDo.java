@@ -76,6 +76,15 @@ public class ParseXmlDo {
 			line.getSummary().setFreetripbacktraffic(summary.element("freetripbacktraffic").getText());
 			line.getSummary().setImage(summary.element("image").getText());
 
+			Element fun = summary.element("sub_function");
+			if (fun != null) {
+				line.getSummary().setSubfunction(fun.getText());
+			}
+			fun = summary.element("ext_function");
+			if (fun != null) {
+				line.getSummary().setExtfunction(fun.getText());
+			}
+
 			for (Iterator featureData = summary.elementIterator("feature"); featureData.hasNext();) {
 				Element feature = (Element) featureData.next();
 				line.getSummary().getFeature().add(feature.getText());

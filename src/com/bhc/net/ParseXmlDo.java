@@ -38,7 +38,7 @@ public class ParseXmlDo {
 		reader.close();
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"rawtypes" })
 	public void pxml(String str) {
 		SAXReader reader = new SAXReader();
 		Document doc = null;

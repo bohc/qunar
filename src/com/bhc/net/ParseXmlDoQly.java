@@ -83,6 +83,15 @@ public class ParseXmlDoQly {
 			line.getSummary().setFreetripbacktraffic(summary.element("freetripbacktraffic").getText());
 			line.getSummary().setImage(summary.element("image").getText());
 
+			Element fun = summary.element("sub_function");
+			if (fun != null) {
+				line.getSummary().setSubfunction(fun.getText());
+			}
+			fun = summary.element("ext_function");
+			if (fun != null) {
+				line.getSummary().setExtfunction(fun.getText());
+			}
+
 			for (Iterator featureData = summary.elementIterator("feature"); featureData.hasNext();) {
 				Element feature = (Element) featureData.next();
 				line.getSummary().getFeature().add(feature.asXML());
@@ -193,7 +202,7 @@ public class ParseXmlDoQly {
 
 			try {
 				if (vehicles != null) {
-					Set fset=new HashSet();
+					Set fset = new HashSet();
 					for (Iterator teamData = vehicles.elementIterator("flight"); teamData.hasNext();) {
 						Element eteam = (Element) teamData.next();
 						vehicle = new Vehicle();
@@ -206,7 +215,7 @@ public class ParseXmlDoQly {
 						vehicle.setFlightno(eteam.attributeValue("flightno"));
 						vehicle.setFlightype(eteam.attributeValue("flighttype"));
 						line.getVehicles().add(vehicle);
-						if(!fset.contains(vehicle.getFlightno().trim())){
+						if (!fset.contains(vehicle.getFlightno().trim())) {
 							line.getVehicleSet().add(vehicle);
 						}
 					}
@@ -214,7 +223,7 @@ public class ParseXmlDoQly {
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
-			
+
 			try {
 				line.setFreetrippickupairinfo(route.element("freetrippickupairinfo").getText());
 				line.setAgelimit(route.element("agelimit").getText());

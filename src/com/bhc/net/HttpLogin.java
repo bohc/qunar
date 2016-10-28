@@ -924,7 +924,8 @@ public class HttpLogin {
 			} else {
 				nvps.add(new BasicNameValuePair("method", "updateProductBaseInfo"));
 				nvps.add(new BasicNameValuePair("newFlag", "false"));
-				nvps.add(new BasicNameValuePair("ret", "/supplier/product/product_warehouse.jsp"));
+				nvps.add(new BasicNameValuePair("ret", "1"));
+				nvps.add(new BasicNameValuePair("retUrl", "/supplier/product/product.jsp?id="+pid+"&ret=1&newFlag=false"));
 				if (m.line.isC1nomain()) {
 					// nvps.add(new BasicNameValuePair("mainpic", mainpic));
 					nvps.add(new BasicNameValuePair("images", images));
@@ -1078,6 +1079,9 @@ public class HttpLogin {
 				if (summary.getExtfunction() != null && !summary.getExtfunction().trim().equals("")) {
 					nvps.add(new BasicNameValuePair("ext_function", summary.getExtfunction()));
 					nvps.add(new BasicNameValuePair("sub_function", summary.getSubfunction()));
+				}else{
+					nvps.add(new BasicNameValuePair("ext_function", "0"));
+					nvps.add(new BasicNameValuePair("sub_function", "0"));
 				}
 			} else if (pfunction.trim().equals("free")) {
 				if (m.line.isPromise_guarantee_go()) {

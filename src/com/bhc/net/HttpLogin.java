@@ -129,7 +129,7 @@ public class HttpLogin {
 	private Line line;
 	private Header firstheader;
 	private Main m;
-	private String pid = "", supperid = "";
+	private String pid = "", supperid = "", title = "", productFeatures = "";
 	private boolean isup = false;
 	private ParseXmlDo pxd;
 	private ParseXmlDoQly pxQLy;
@@ -925,7 +925,7 @@ public class HttpLogin {
 				nvps.add(new BasicNameValuePair("method", "updateProductBaseInfo"));
 				nvps.add(new BasicNameValuePair("newFlag", "false"));
 				nvps.add(new BasicNameValuePair("ret", "1"));
-				nvps.add(new BasicNameValuePair("retUrl", "/supplier/product/product.jsp?id="+pid+"&ret=1&newFlag=false"));
+				nvps.add(new BasicNameValuePair("retUrl", "/supplier/product/product.jsp?id=" + pid + "&ret=1&newFlag=false"));
 				if (m.line.isC1nomain()) {
 					// nvps.add(new BasicNameValuePair("mainpic", mainpic));
 					nvps.add(new BasicNameValuePair("images", images));
@@ -944,7 +944,9 @@ public class HttpLogin {
 			nvps.add(new BasicNameValuePair("b2bFlag", ""));
 
 			// 产品名称
-			nvps.add(new BasicNameValuePair("title", concatStr(m.line.getSummary().getTitle().trim(), "{title}", summary.getTitle())));
+			String otitle = concatStr(m.line.getSummary().getTitle().trim(), "{title}", summary.getTitle());
+			otitle = otitle == null || otitle.trim().length() > 38 ? title : otitle;
+			nvps.add(new BasicNameValuePair("title", otitle));
 			// 团号
 			nvps.add(new BasicNameValuePair("team_no", summary.getTeamno().trim()));
 			// 行程天数
@@ -1079,7 +1081,7 @@ public class HttpLogin {
 				if (summary.getExtfunction() != null && !summary.getExtfunction().trim().equals("")) {
 					nvps.add(new BasicNameValuePair("ext_function", summary.getExtfunction()));
 					nvps.add(new BasicNameValuePair("sub_function", summary.getSubfunction()));
-				}else{
+				} else {
 					nvps.add(new BasicNameValuePair("ext_function", "0"));
 					nvps.add(new BasicNameValuePair("sub_function", "0"));
 				}
@@ -3994,6 +3996,8 @@ public class HttpLogin {
 						String remotenno = lms.get("teamNo").toString().trim();
 						if (remotenno.equals(tno)) {
 							pid = lms.get("id").toString().trim();
+							title = lms.get("title").toString().trim();
+							productFeatures = "";
 							break;
 						}
 						c++;

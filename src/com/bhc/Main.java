@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.BeanProperties;
@@ -292,6 +293,8 @@ public class Main extends ApplicationWindow {
 	private Button usedateflagck;
 	private DateTime udatebegin;
 	private DateTime udateend;
+	private Label label_46;
+	private Text productFeatures;
 
 	/**
 	 * Create the application window.
@@ -333,6 +336,7 @@ public class Main extends ApplicationWindow {
 		line.getSummary().setFeeinclude("{title}");
 		line.getSummary().setFeeexclude("{title}");
 		line.getSummary().setAttention("{title}");
+		line.getSummary().setProductFeatures("{title}");
 		line.getSummary().setTip("{title}");
 		line.setBtc1(true);
 		line.setBtc2(false);
@@ -776,25 +780,25 @@ public class Main extends ApplicationWindow {
 		listViewer.setLabelProvider(new ListLabelProvider());
 		listViewer.setContentProvider(new ContentProvider());
 		listViewer.setInput(new Object());
-		
+
 		composite_59 = new Composite(composite_54, SWT.NONE);
 		GridData gd_composite_59 = new GridData(SWT.FILL, SWT.FILL, false, true, 1, 2);
 		gd_composite_59.heightHint = 429;
 		composite_59.setLayoutData(gd_composite_59);
 		composite_59.setLayout(new GridLayout(1, false));
-		
+
 		usedateflagck = new Button(composite_59, SWT.CHECK);
 		usedateflagck.setSelection(true);
 		usedateflagck.setText("\u542F\u7528\u6307\u5B9A\u65E5\u671F");
-		
+
 		Label label_44 = new Label(composite_59, SWT.NONE);
 		label_44.setText("\u66F4\u65B0\u65E5\u671F\u4ECE");
-		
+
 		udatebegin = new DateTime(composite_59, SWT.CALENDAR);
-		
+
 		Label label_45 = new Label(composite_59, SWT.NONE);
 		label_45.setText("\u66F4\u65B0\u65E5\u671F\u5230");
-		
+
 		udateend = new DateTime(composite_59, SWT.CALENDAR);
 
 		Composite composite_55 = new Composite(composite_54, SWT.NONE);
@@ -855,10 +859,10 @@ public class Main extends ApplicationWindow {
 		GridData gd_txt_failinterrupt = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
 		gd_txt_failinterrupt.widthHint = 30;
 		txt_failinterrupt.setLayoutData(gd_txt_failinterrupt);
-		
+
 		m_p_ck = new Button(composite_55, SWT.RADIO);
 		m_p_ck.setText("\u6807\u51C6\u4EF7");
-		
+
 		a_p_ck = new Button(composite_55, SWT.RADIO);
 		a_p_ck.setSelection(true);
 		a_p_ck.setText("\u5E73\u5747\u4EF7");
@@ -1060,6 +1064,15 @@ public class Main extends ApplicationWindow {
 		recommendation = new Text(composite_4, SWT.BORDER);
 		recommendation.setText("{title}");
 		recommendation.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+
+		label_46 = new Label(composite_4, SWT.NONE);
+		label_46.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		label_46.setText("\u4EA7\u54C1\u7279\u8272\uFF1A");
+
+		productFeatures = new Text(composite_4, SWT.BORDER);
+		productFeatures.setToolTipText("\u4E0D\u80FD\u957F\u8FC724\u4E2A\u5B57\u7B26");
+		productFeatures.setText("{title}");
+		productFeatures.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
 		Composite composite_6 = new Composite(composite_58, SWT.NONE);
 		composite_6.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1));
@@ -2285,7 +2298,7 @@ public class Main extends ApplicationWindow {
 		log_txt = new Text(composite_3, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.CANCEL | SWT.MULTI);
 
 		tabFolder.setSelection(0);
-		sashForm_1.setWeights(new int[] {519, 128});
+		sashForm_1.setWeights(new int[] { 519, 128 });
 		// hl.getVimage();
 		m_bindingContext = initDataBindings();
 
@@ -2296,8 +2309,6 @@ public class Main extends ApplicationWindow {
 		return container;
 	}
 
-	
-	
 	/**
 	 * 文件选择
 	 * 
@@ -2607,6 +2618,7 @@ public class Main extends ApplicationWindow {
 				line.getSummary().setFeaturechecked(lt.getSummary().isFeaturechecked());
 				line.getSummary().setTxtfeaturepath(lt.getSummary().getTxtfeaturepath());
 				line.getSummary().setConfeature(lt.getSummary().getConfeature());
+				line.getSummary().setProductFeatures(lt.getSummary().getProductFeatures());
 				line.setDkeycheck(lt.isDkeycheck());
 				line.setDkeytxt(lt.getDkeytxt());
 				line.setDkeystyle(lt.getDkeystyle());
@@ -2781,10 +2793,16 @@ public class Main extends ApplicationWindow {
 									hl.postLine();
 									postnum++;
 									showProcess();
-									try {
-										Thread.sleep(1000);
-									} catch (InterruptedException e2) {
-										e2.printStackTrace();
+
+									Random r = new Random(new Date().getTime());
+									int waittime = 0;
+									if (line.getSendwaitbegin() >= 0) {
+										waittime = r.nextInt(line.getSendwaitend() - line.getSendwaitbegin()) + line.getSendwaitbegin();
+										try {
+											hl.updateUI("下一条等待时间：" + (waittime) + "秒");
+											Thread.sleep(waittime * 1000);
+										} catch (InterruptedException e) {
+										}
 									}
 								}
 								plist.clear();
@@ -2858,6 +2876,7 @@ public class Main extends ApplicationWindow {
 		}
 		line.setLimitcountchk(ls.isLimitcountchk());
 	}
+
 	protected DataBindingContext initDataBindings() {
 		DataBindingContext bindingContext = new DataBindingContext();
 		//
@@ -3474,19 +3493,19 @@ public class Main extends ApplicationWindow {
 		IObservableValue lineFlashshowuseObserveValue = BeansObservables.observeValue(line, "flashshowuse");
 		bindingContext.bindValue(flash_show_useObserveSelectionObserveWidget, lineFlashshowuseObserveValue, null, null);
 		//
-		IObservableValue observeTextTn_unameObserveWidget = WidgetProperties.text(new int[]{SWT.Modify, SWT.DefaultSelection}).observe(tn_uname);
+		IObservableValue observeTextTn_unameObserveWidget = WidgetProperties.text(new int[] { SWT.Modify, SWT.DefaultSelection }).observe(tn_uname);
 		IObservableValue tnunameLineObserveValue = BeanProperties.value("tnuname").observe(line);
 		bindingContext.bindValue(observeTextTn_unameObserveWidget, tnunameLineObserveValue, null, null);
 		//
-		IObservableValue observeTextTn_pwdObserveWidget = WidgetProperties.text(new int[]{SWT.Modify, SWT.DefaultSelection}).observe(tn_pwd);
+		IObservableValue observeTextTn_pwdObserveWidget = WidgetProperties.text(new int[] { SWT.Modify, SWT.DefaultSelection }).observe(tn_pwd);
 		IObservableValue tnpwdLineObserveValue = BeanProperties.value("tnpwd").observe(line);
 		bindingContext.bindValue(observeTextTn_pwdObserveWidget, tnpwdLineObserveValue, null, null);
 		//
-		IObservableValue observeTextTn_randObserveWidget = WidgetProperties.text(new int[]{SWT.Modify, SWT.DefaultSelection}).observe(tn_rand);
+		IObservableValue observeTextTn_randObserveWidget = WidgetProperties.text(new int[] { SWT.Modify, SWT.DefaultSelection }).observe(tn_rand);
 		IObservableValue tnrandLineObserveValue = BeanProperties.value("tnrand").observe(line);
 		bindingContext.bindValue(observeTextTn_randObserveWidget, tnrandLineObserveValue, null, null);
 		//
-		IObservableValue observeTextAssemblyObserveWidget = WidgetProperties.text(new int[]{SWT.Modify, SWT.DefaultSelection}).observe(assembly);
+		IObservableValue observeTextAssemblyObserveWidget = WidgetProperties.text(new int[] { SWT.Modify, SWT.DefaultSelection }).observe(assembly);
 		IObservableValue assemblyLineObserveValue = BeanProperties.value("assembly").observe(line);
 		bindingContext.bindValue(observeTextAssemblyObserveWidget, assemblyLineObserveValue, null, null);
 		//
@@ -3617,6 +3636,10 @@ public class Main extends ApplicationWindow {
 		IObservableValue observeSelectionUdateendObserveWidget = WidgetProperties.selection().observe(udateend);
 		IObservableValue udateendLineObserveValue = BeanProperties.value("udateend").observe(line);
 		bindingContext.bindValue(observeSelectionUdateendObserveWidget, udateendLineObserveValue, null, null);
+		//
+		IObservableValue observeTextProductFeaturesObserveWidget = WidgetProperties.text(SWT.Modify).observe(productFeatures);
+		IObservableValue productFeaturesLinegetSummaryObserveValue = BeanProperties.value("productFeatures").observe(line.getSummary());
+		bindingContext.bindValue(observeTextProductFeaturesObserveWidget, productFeaturesLinegetSummaryObserveValue, null, null);
 		//
 		return bindingContext;
 	}

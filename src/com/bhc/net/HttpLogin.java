@@ -1122,7 +1122,8 @@ public class HttpLogin {
 				nvps.add(new BasicNameValuePair("profit", "0"));
 			}
 			// 产品特色
-			nvps.add(new BasicNameValuePair("productFeatures", "优质的服务"));
+			String productFeatures = concatStr(m.line.getSummary().getProductFeatures().trim(), "{title}", summary.getProductFeatures());
+			nvps.add(new BasicNameValuePair("productFeatures", productFeatures));
 
 			for (NameValuePair bp : nvps) {
 				System.out.println(bp.getName() + ":" + bp.getValue());

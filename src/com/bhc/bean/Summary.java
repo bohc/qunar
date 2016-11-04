@@ -7,7 +7,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 public class Summary extends OrderModel implements Serializable, PropertyChangeListener {
+	@XStreamOmitField
 	private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 	private String title;
 	private String recommendation;// 产品副标题
@@ -17,7 +20,7 @@ public class Summary extends OrderModel implements Serializable, PropertyChangeL
 	private String pfunction;
 	private String extfunction;
 	private String subfunction;
-	private String pcomposition, linesubject;
+	private String pcomposition, linesubject, productFeatures;// 线路特色
 	private String day;
 	private String advanceday;
 	private String advancedaytype;
@@ -73,6 +76,14 @@ public class Summary extends OrderModel implements Serializable, PropertyChangeL
 
 	public void setLinesubject(String linesubject) {
 		propertyChangeSupport.firePropertyChange("linesubject", this.linesubject, this.linesubject = linesubject);
+	}
+
+	public String getProductFeatures() {
+		return productFeatures;
+	}
+
+	public void setProductFeatures(String productFeatures) {
+		propertyChangeSupport.firePropertyChange("productFeatures", this.productFeatures, this.productFeatures = productFeatures);
 	}
 
 	public boolean isPayway3() {

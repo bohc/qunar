@@ -295,6 +295,15 @@ public class Main extends ApplicationWindow {
 	private DateTime udateend;
 	private Label label_46;
 	private Text productFeatures;
+	private Label label_47;
+	private Composite composite_60;
+	private Text freetrip_othername;
+	private Button freetrip_traffic;
+	private Button freetrip_hotel;
+	private Button freetrip_ticket;
+	private Button freetrip_visa;
+	private Button freetrip_pickupair;
+	private Button freetrip_other;
 
 	/**
 	 * Create the application window.
@@ -1191,6 +1200,7 @@ public class Main extends ApplicationWindow {
 		composite_53.setLayout(new GridLayout(2, false));
 
 		Group group_12 = new Group(composite_53, SWT.NONE);
+		group_12.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false, 1, 1));
 		group_12.setSize(643, 156);
 		group_12.setLayout(new GridLayout(1, false));
 		group_12.setText("\u8DDF\u56E2\u6E38\u6709\u6548");
@@ -1256,6 +1266,7 @@ public class Main extends ApplicationWindow {
 		assembly.setLayoutData(gd_assembly);
 
 		group_23 = new Group(composite_53, SWT.NONE);
+		group_23.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, true, true, 1, 1));
 		group_23.setText("\u81EA\u7531\u884C\u6709\u6548");
 		group_23.setLayout(new GridLayout(1, false));
 
@@ -1280,6 +1291,36 @@ public class Main extends ApplicationWindow {
 
 		promise_refund_anytime_not_consume = new Button(composite_52, SWT.CHECK);
 		promise_refund_anytime_not_consume.setText("\u672A\u9A8C\u8BC1\u6D88\u8D39 \u968F\u65F6\u9000");
+		
+		label_47 = new Label(composite_51, SWT.NONE);
+		label_47.setText("\u81EA\u7531\u884C\u7C7B\u522B\uFF0C\u6700\u5C11\u9009\u62E9\u4E24\u9879");
+		
+		composite_60 = new Composite(composite_51, SWT.NONE);
+		composite_60.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		composite_60.setLayout(new GridLayout(2, false));
+		
+		freetrip_traffic = new Button(composite_60, SWT.CHECK);
+		freetrip_traffic.setText("\u4EA4\u901A");
+		
+		freetrip_hotel = new Button(composite_60, SWT.CHECK);
+		freetrip_hotel.setText("\u9152\u5E97");
+		
+		freetrip_ticket = new Button(composite_60, SWT.CHECK);
+		freetrip_ticket.setText("\u95E8\u7968");
+		
+		freetrip_visa = new Button(composite_60, SWT.CHECK);
+		freetrip_visa.setText("\u7B7E\u8BC1");
+		
+		freetrip_pickupair = new Button(composite_60, SWT.CHECK);
+		freetrip_pickupair.setText("\u63A5\u9001\u673A");
+		new Label(composite_60, SWT.NONE);
+		
+		freetrip_other = new Button(composite_60, SWT.CHECK);
+		freetrip_other.setText("\u5176\u5B83");
+		new Label(composite_60, SWT.NONE);
+		
+		freetrip_othername = new Text(composite_60, SWT.BORDER);
+		freetrip_othername.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 
 		CTabItem tabItem_15 = new CTabItem(tabFolder_2, SWT.NONE);
 		tabItem_15.setText("\u4E3B\u56FE\u7247");
@@ -2876,7 +2917,6 @@ public class Main extends ApplicationWindow {
 		}
 		line.setLimitcountchk(ls.isLimitcountchk());
 	}
-
 	protected DataBindingContext initDataBindings() {
 		DataBindingContext bindingContext = new DataBindingContext();
 		//
@@ -3493,19 +3533,19 @@ public class Main extends ApplicationWindow {
 		IObservableValue lineFlashshowuseObserveValue = BeansObservables.observeValue(line, "flashshowuse");
 		bindingContext.bindValue(flash_show_useObserveSelectionObserveWidget, lineFlashshowuseObserveValue, null, null);
 		//
-		IObservableValue observeTextTn_unameObserveWidget = WidgetProperties.text(new int[] { SWT.Modify, SWT.DefaultSelection }).observe(tn_uname);
+		IObservableValue observeTextTn_unameObserveWidget = WidgetProperties.text(new int[]{SWT.Modify, SWT.DefaultSelection}).observe(tn_uname);
 		IObservableValue tnunameLineObserveValue = BeanProperties.value("tnuname").observe(line);
 		bindingContext.bindValue(observeTextTn_unameObserveWidget, tnunameLineObserveValue, null, null);
 		//
-		IObservableValue observeTextTn_pwdObserveWidget = WidgetProperties.text(new int[] { SWT.Modify, SWT.DefaultSelection }).observe(tn_pwd);
+		IObservableValue observeTextTn_pwdObserveWidget = WidgetProperties.text(new int[]{SWT.Modify, SWT.DefaultSelection}).observe(tn_pwd);
 		IObservableValue tnpwdLineObserveValue = BeanProperties.value("tnpwd").observe(line);
 		bindingContext.bindValue(observeTextTn_pwdObserveWidget, tnpwdLineObserveValue, null, null);
 		//
-		IObservableValue observeTextTn_randObserveWidget = WidgetProperties.text(new int[] { SWT.Modify, SWT.DefaultSelection }).observe(tn_rand);
+		IObservableValue observeTextTn_randObserveWidget = WidgetProperties.text(new int[]{SWT.Modify, SWT.DefaultSelection}).observe(tn_rand);
 		IObservableValue tnrandLineObserveValue = BeanProperties.value("tnrand").observe(line);
 		bindingContext.bindValue(observeTextTn_randObserveWidget, tnrandLineObserveValue, null, null);
 		//
-		IObservableValue observeTextAssemblyObserveWidget = WidgetProperties.text(new int[] { SWT.Modify, SWT.DefaultSelection }).observe(assembly);
+		IObservableValue observeTextAssemblyObserveWidget = WidgetProperties.text(new int[]{SWT.Modify, SWT.DefaultSelection}).observe(assembly);
 		IObservableValue assemblyLineObserveValue = BeanProperties.value("assembly").observe(line);
 		bindingContext.bindValue(observeTextAssemblyObserveWidget, assemblyLineObserveValue, null, null);
 		//
@@ -3640,6 +3680,38 @@ public class Main extends ApplicationWindow {
 		IObservableValue observeTextProductFeaturesObserveWidget = WidgetProperties.text(SWT.Modify).observe(productFeatures);
 		IObservableValue productFeaturesLinegetSummaryObserveValue = BeanProperties.value("productFeatures").observe(line.getSummary());
 		bindingContext.bindValue(observeTextProductFeaturesObserveWidget, productFeaturesLinegetSummaryObserveValue, null, null);
+		//
+		IObservableValue observeSelectionFreetrip_trafficObserveWidget = WidgetProperties.selection().observe(freetrip_traffic);
+		IObservableValue freetrip_trafficLineObserveValue = BeanProperties.value("freetrip_traffic").observe(line);
+		bindingContext.bindValue(observeSelectionFreetrip_trafficObserveWidget, freetrip_trafficLineObserveValue, null, null);
+		//
+		IObservableValue observeSelectionFreetrip_hotelObserveWidget = WidgetProperties.selection().observe(freetrip_hotel);
+		IObservableValue freetrip_hotelLineObserveValue = BeanProperties.value("freetrip_hotel").observe(line);
+		bindingContext.bindValue(observeSelectionFreetrip_hotelObserveWidget, freetrip_hotelLineObserveValue, null, null);
+		//
+		IObservableValue observeSelectionFreetrip_ticketObserveWidget = WidgetProperties.selection().observe(freetrip_ticket);
+		IObservableValue freetrip_ticketLineObserveValue = BeanProperties.value("freetrip_ticket").observe(line);
+		bindingContext.bindValue(observeSelectionFreetrip_ticketObserveWidget, freetrip_ticketLineObserveValue, null, null);
+		//
+		IObservableValue observeSelectionFreetrip_visaObserveWidget = WidgetProperties.selection().observe(freetrip_visa);
+		IObservableValue freetrip_visaLineObserveValue = BeanProperties.value("freetrip_visa").observe(line);
+		bindingContext.bindValue(observeSelectionFreetrip_visaObserveWidget, freetrip_visaLineObserveValue, null, null);
+		//
+		IObservableValue observeSelectionFreetrip_pickupairObserveWidget = WidgetProperties.selection().observe(freetrip_pickupair);
+		IObservableValue freetrip_pickupairLineObserveValue = BeanProperties.value("freetrip_pickupair").observe(line);
+		bindingContext.bindValue(observeSelectionFreetrip_pickupairObserveWidget, freetrip_pickupairLineObserveValue, null, null);
+		//
+		IObservableValue observeSelectionFreetrip_otherObserveWidget = WidgetProperties.selection().observe(freetrip_other);
+		IObservableValue freetrip_otherLineObserveValue = BeanProperties.value("freetrip_other").observe(line);
+		bindingContext.bindValue(observeSelectionFreetrip_otherObserveWidget, freetrip_otherLineObserveValue, null, null);
+		//
+		IObservableValue observeTextFreetrip_othernameObserveWidget = WidgetProperties.text(SWT.Modify).observe(freetrip_othername);
+		IObservableValue freetrip_othernameLineObserveValue = BeanProperties.value("freetrip_othername").observe(line);
+		bindingContext.bindValue(observeTextFreetrip_othernameObserveWidget, freetrip_othernameLineObserveValue, null, null);
+		//
+		IObservableValue observeEnabledFreetrip_othernameObserveWidget = WidgetProperties.enabled().observe(freetrip_othername);
+		IObservableValue observeSelectionFreetrip_otherObserveWidget_1 = WidgetProperties.selection().observe(freetrip_other);
+		bindingContext.bindValue(observeEnabledFreetrip_othernameObserveWidget, observeSelectionFreetrip_otherObserveWidget_1, null, null);
 		//
 		return bindingContext;
 	}

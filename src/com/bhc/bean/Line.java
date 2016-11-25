@@ -102,6 +102,11 @@ public class Line extends OrderModel implements Serializable, PropertyChangeList
 	private boolean marketpriceck, avgpriceck;// 市场价和平均价选择
 
 	private boolean have_shopping0, have_shopping1;// 现在已经不用，保留只是为了加载以前的xml数据不出错；
+	
+	@XStreamOmitField
+	private boolean freetrip_traffic,freetrip_hotel,freetrip_ticket,freetrip_visa,freetrip_pickupair,freetrip_other;//自由行类别
+	@XStreamOmitField
+	private String freetrip_othername;//自由行其它内容
 
 	private String assembly;// 集合地信息
 	private String gathertime;// 集合时间
@@ -1305,4 +1310,61 @@ public class Line extends OrderModel implements Serializable, PropertyChangeList
 		propertyChangeSupport.firePropertyChange("udateend", this.udateend, this.udateend = udateend);
 	}
 
+	public boolean isFreetrip_traffic() {
+		return freetrip_traffic;
+	}
+
+	public void setFreetrip_traffic(boolean freetrip_traffic) {
+		propertyChangeSupport.firePropertyChange("freetrip_traffic", this.freetrip_traffic, this.freetrip_traffic = freetrip_traffic);
+	}
+
+	public boolean isFreetrip_hotel() {
+		return freetrip_hotel;
+	}
+
+	public void setFreetrip_hotel(boolean freetrip_hotel) {
+		propertyChangeSupport.firePropertyChange("freetrip_hotel", this.freetrip_hotel, this.freetrip_hotel = freetrip_hotel);
+	}
+
+	public boolean isFreetrip_ticket() {
+		return freetrip_ticket;
+	}
+
+	public void setFreetrip_ticket(boolean freetrip_ticket) {
+		propertyChangeSupport.firePropertyChange("freetrip_ticket", this.freetrip_ticket, this.freetrip_ticket = freetrip_ticket);
+	}
+
+	public boolean isFreetrip_visa() {
+		return freetrip_visa;
+	}
+
+	public void setFreetrip_visa(boolean freetrip_visa) {
+		propertyChangeSupport.firePropertyChange("freetrip_visa", this.freetrip_visa, this.freetrip_visa = freetrip_visa);
+	}
+
+	public boolean isFreetrip_pickupair() {
+		return freetrip_pickupair;
+	}
+
+	public void setFreetrip_pickupair(boolean freetrip_pickupair) {
+		propertyChangeSupport.firePropertyChange("freetrip_pickupair", this.freetrip_pickupair, this.freetrip_pickupair = freetrip_pickupair);
+	}
+
+	public boolean isFreetrip_other() {
+		return freetrip_other;
+	}
+
+	public void setFreetrip_other(boolean freetrip_other) {
+		propertyChangeSupport.firePropertyChange("freetrip_other", this.freetrip_other, this.freetrip_other = freetrip_other);
+	}
+
+	public String getFreetrip_othername() {
+		return freetrip_othername;
+	}
+
+	public void setFreetrip_othername(String freetrip_othername) {
+		propertyChangeSupport.firePropertyChange("freetrip_othername", this.freetrip_othername, this.freetrip_othername = freetrip_othername);
+	}
+
+	
 }

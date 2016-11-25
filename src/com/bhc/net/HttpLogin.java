@@ -1102,10 +1102,26 @@ public class HttpLogin {
 				nvps.add(new BasicNameValuePair("free_type", "1"));
 				nvps.add(new BasicNameValuePair("first_date", "2013-10-22"));
 				nvps.add(new BasicNameValuePair("last_date", "2013-10-26"));
-				// 自由行类别
-				nvps.add(new BasicNameValuePair("freetrip_traffic", "on"));
-				nvps.add(new BasicNameValuePair("freetrip_hotel", "on"));
-				nvps.add(new BasicNameValuePair("freetrip_othername", ""));
+				// 自由行类别freetrip_traffic,freetrip_hotel,freetrip_ticket,freetrip_visa,freetrip_pickupair,freetrip_other
+				if (m.line.isFreetrip_hotel()) {
+					nvps.add(new BasicNameValuePair("freetrip_hotel", "on"));
+				}
+				if (m.line.isFreetrip_other()) {
+					nvps.add(new BasicNameValuePair("freetrip_other", "on"));
+					nvps.add(new BasicNameValuePair("freetrip_othername", m.line.getFreetrip_othername()));
+				}
+				if (m.line.isFreetrip_pickupair()) {
+					nvps.add(new BasicNameValuePair("freetrip_pickupair", "on"));
+				}
+				if (m.line.isFreetrip_ticket()) {
+					nvps.add(new BasicNameValuePair("freetrip_ticket", "on"));
+				}
+				if (m.line.isFreetrip_traffic()) {
+					nvps.add(new BasicNameValuePair("freetrip_traffic", "on"));
+				}
+				if (m.line.isFreetrip_visa()) {
+					nvps.add(new BasicNameValuePair("freetrip_visa", "on"));
+				}
 				// 旅客信息
 				nvps.add(new BasicNameValuePair("need_traveller_info", "1"));
 				// 提前预订设置
